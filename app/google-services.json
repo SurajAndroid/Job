@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "40869790781",
+    "project_id": "jobpool-168312"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:40869790781:android:7342e57b3bb008f7",
+        "android_client_info": {
+          "package_name": "com.example.dell.job"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "40869790781-pn910bssev7931mrdsfs9c7831013o2v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dell.job",
+            "certificate_hash": "f9338d46f734cea149f1763a645973230ceb93fb"
+          }
+        },
+        {
+          "client_id": "40869790781-kqc79c7km1e1j93hi33bf63f5ruu4vee.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiqwdfDaMrqeR2hbYyxwE09cp48ZoAxJU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

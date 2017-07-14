@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/parentLayout"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/topview">
+
+        <LinearLayout
+            android:padding="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <EditText android:id="@+id/nameEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapWords"
+                    android:textSize="@dimen/medium_font"
+                    android:hint="NAME"
+                    />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <EditText android:id="@+id/useridEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapCharacters"
+                    android:textSize="@dimen/medium_font"
+                    android:hint="USER ID" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <EditText android:id="@+id/email_idEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:textSize="@dimen/medium_font"
+                    android:hint="EMAIL ID" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <EditText android:id="@+id/passwordEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textSize="@dimen/medium_font"
+                    android:hint="PASSWORD" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <EditText android:id="@+id/phoneEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:hint="PHONE"
+                    android:maxLength="10"
+                    android:textSize="@dimen/medium_font"/>
+            </android.support.design.widget.TextInputLayout>
+
+
+            <utils.TextviewSemiBold
+                android:layout_marginBottom="10sp"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="10sp"
+                android:textStyle="bold"
+                android:text="GENDER"
+                android:textColor="#ffffff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+                <CheckBox
+                    android:buttonTint="@color/colorAccent"
+                    android:id="@+id/checkbox_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <utils.TextviewSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="MALE"
+                    android:textSize="12dp"/>
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent" />
+
+                <CheckBox
+                    android:buttonTint="@color/colorAccent"
+
+                    android:id="@+id/checkbox_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <utils.TextviewSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FEMALE"
+                    android:textSize="12dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+                <CheckBox
+                    android:buttonTint="@color/colorAccent"
+                    android:id="@+id/termsCondiationCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TERMS AND CONDITIONS"
+                    android:textSize="12dp"/>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_marginTop="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="50sp">
+
+                <LinearLayout
+                    android:id="@+id/registerNowLayout"
+                    android:gravity="center"
+                    android:background="@drawable/fillbaoundry"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp">
+
+                    <utils.TextviewSemiBold
+                        android:textSize="@dimen/header_font"
+                        android:text="REGISTER NOW!"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#000000"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/topview"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="45sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <utils.TextviewSemiBold
+            android:textSize="@dimen/header_font"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:text="CANDIDATE  REGISTRATION"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+</RelativeLayout>

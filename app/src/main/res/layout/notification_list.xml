@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_marginRight="10sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginBottom="10sp"
+        android:background="@drawable/fillbaoundry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <View
+            android:layout_below="@+id/viewlayout"
+            android:background="#808080"
+            android:layout_width="match_parent"
+            android:layout_height="0.5sp"></View>
+
+        <utils.TextviewSemiBold
+            android:textSize="@dimen/small_font"
+            android:layout_marginBottom="10sp"
+            android:text="Online budget network of hotels OYO which launched its mid-market offering 'OYO Townhouse' in the city today said, it aims to have 250 such properties in 12 cities, by "
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:id="@+id/textView12" />
+
+        <RelativeLayout
+            android:id="@+id/viewlayout"
+            android:layout_width="match_parent"
+            android:layout_height="40sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <utils.TextviewFont
+                android:text="Companymail@gmail.com"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textColor="#000000"
+                android:textSize="@dimen/medium_font"
+                android:layout_marginStart="15dp"
+                android:id="@+id/textView9"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <utils.TextviewFont
+                android:textSize="@dimen/extra_small_width"
+                android:text="22 min ago"
+                android:textColor="#000000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView11"
+                android:layout_alignBaseline="@+id/textView9"
+                android:layout_alignBottom="@+id/textView9"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.design.widget.TextInputLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="120dp">
+
+            <EditText
+                android:id="@+id/input_skills"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Skills,Job,Role"
+                android:textSize="13dp"
+                android:inputType="text"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="25sp"
+            android:layout_marginLeft="25sp"
+            android:layout_marginTop="8dp"
+            >
+
+            <EditText
+                android:id="@+id/input_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="City"
+                android:textSize="13dp"
+                android:inputType="text" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_marginTop="20sp"
+            android:layout_gravity="center"
+            android:background="@drawable/rouded"
+            android:layout_width="180sp"
+            android:gravity="center"
+            android:layout_height="40sp">
+
+            <TextView
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FIND CONDIDATE"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_marginTop="120sp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="45sp">
+
+
+            <LinearLayout
+                android:id="@+id/registerLayout"
+                android:background="@drawable/buttonrounded"
+                android:orientation="vertical"
+                android:layout_width="120sp"
+                android:gravity="center"
+                android:layout_marginRight="20sp"
+                android:layout_height="40sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REGISTER"/>
+
+            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/loginLayout"
+                    android:gravity="center"
+                    android:layout_marginLeft="20sp"
+                    android:background="@drawable/buttonrounded"
+                    android:orientation="vertical"
+                    android:layout_width="120sp"
+                    android:layout_height="40sp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LOGIN"/>
+                </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:src="@drawable/or"/>
+
+        <LinearLayout
+            android:layout_marginTop="5sp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="45sp">
+
+
+            <LinearLayout
+                android:id="@+id/facebookLayout"
+                android:background="@drawable/socialbutton"
+                android:orientation="vertical"
+                android:layout_width="120sp"
+                android:gravity="center"
+                android:layout_marginRight="20sp"
+                android:layout_height="40sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FACEBOOK"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/googleLayout"
+                android:gravity="center"
+                android:layout_marginLeft="20sp"
+                android:background="@drawable/socialbutton"
+                android:orientation="vertical"
+                android:layout_width="120sp"
+                android:layout_height="40sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GOOGLE"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            >
+
+            <com.facebook.login.widget.ProfilePictureView
+                android:id="@+id/picture"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone" />
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+
+            <Button
+                android:id="@+id/details"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="Show details"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/share"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="Share"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

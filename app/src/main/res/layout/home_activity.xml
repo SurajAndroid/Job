@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:id="@+id/parentLayout"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:padding="30sp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            >
+
+            <com.facebook.login.widget.ProfilePictureView
+                android:id="@+id/picture"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone" />
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/login_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+
+            <Button
+                android:id="@+id/details"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="Show details"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/share"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:text="Share"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            >
+
+            <EditText
+
+                android:drawableRight="@drawable/description"
+                android:id="@+id/skillesediTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Skills,Job,Role"
+                android:textSize="@dimen/medium_font"
+                android:inputType="textCapWords"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <EditText
+                android:drawableRight="@drawable/location"
+                android:id="@+id/locationEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="City"
+                android:inputType="textCapWords"
+                android:textSize="@dimen/medium_font"
+                 />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/findContactLayout"
+            android:layout_marginTop="20sp"
+            android:layout_gravity="center"
+            android:background="@drawable/fillbaoundry"
+            android:layout_width="180sp"
+            android:gravity="center"
+            android:layout_height="40sp">
+
+            <utils.TextviewSemiBold
+                android:textSize="@dimen/header_font"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FIND CANDIDATES"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginBottom="14dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="120sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <com.google.android.gms.common.SignInButton
+            android:visibility="gone"
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35sp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="@drawable/fillbaoundry"
+                android:id="@+id/registerLayout"
+                android:layout_marginRight="15sp"
+                android:layout_width="120sp"
+                android:gravity="center"
+                android:layout_height="match_parent">
+
+                <utils.TextviewSemiBold
+                    android:textSize="@dimen/medium_font"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="REGISTER"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/loginLayout"
+                android:gravity="center"
+                android:background="@drawable/boundry"
+                android:layout_marginLeft="15sp"
+                android:orientation="horizontal"
+                android:layout_width="120sp"
+                android:layout_height="match_parent">
+
+                <utils.TextviewSemiBold
+                    android:textSize="@dimen/medium_font"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LOGIN"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="30sp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/or"
+                android:id="@+id/imageView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="35sp">
+
+
+            <LinearLayout
+                android:id="@+id/facebookLayout"
+                android:layout_marginRight="15sp"
+                android:background="@drawable/fb"
+                android:orientation="horizontal"
+                android:layout_width="120sp"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent">
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/googleLayout"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="15sp"
+                android:background="@drawable/google"
+                android:orientation="horizontal"
+                android:layout_width="120sp"
+                android:layout_height="match_parent">
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
