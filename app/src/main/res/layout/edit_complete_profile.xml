@@ -65,6 +65,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -79,6 +80,21 @@
                     android:textSize="@dimen/medium_font"
                     android:hint="LOCATION" />
             </android.support.design.widget.TextInputLayout>
+
+            <Spinner
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_marginTop="10sp"
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="45sp"></Spinner>
+
+            <View
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="#Efedee"/>
 
 
             <android.support.design.widget.TextInputLayout

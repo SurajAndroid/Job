@@ -5,22 +5,12 @@ package dtos;
  */
 
 public class CompanyDTO {
- 
 
-    String  employer_id;
+    String employer_id;
     String company_name;
     String contact_person;
     String email;
     String phone;
-
-    public String getEmp_Image() {
-        return emp_Image;
-    }
-
-    public void setEmp_Image(String emp_Image) {
-        this.emp_Image = emp_Image;
-    }
-
     String current_requirment;
     String experience;
     String skill;
@@ -32,6 +22,15 @@ public class CompanyDTO {
     String amount;
     String user_type;
     String emp_Image;
+
+    public String getEmp_Image() {
+        return emp_Image;
+    }
+
+    public void setEmp_Image(String emp_Image) {
+        this.emp_Image = emp_Image;
+    }
+
 
     public String getEmployer_id() {
         return employer_id;

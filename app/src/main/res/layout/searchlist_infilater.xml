@@ -35,8 +35,9 @@
             android:layout_height="match_parent">
 
             <utils.TextviewSemiBold
+                android:paddingLeft="2sp"
                 android:textStyle="bold"
-                android:textSize="@dimen/medium_font"
+                android:textSize="@dimen/large_font"
                 android:textColor="#000000"
                 android:text="Candidate Name"
                 android:layout_width="match_parent"
@@ -44,7 +45,7 @@
                 android:id="@+id/candidateName" />
 
             <LinearLayout
-                android:layout_marginTop="2sp"
+                android:layout_marginTop="5sp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -102,6 +103,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+
                 android:id="@+id/showInterestLayout"
             android:gravity="center"
             android:background="@color/colorAccent"
@@ -128,6 +130,7 @@
                 android:layout_height="25sp">
 
                 <utils.TextviewFont
+                    android:id="@+id/applyTxt"
                     android:textSize="@dimen/small_font"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

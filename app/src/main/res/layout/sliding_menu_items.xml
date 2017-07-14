@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
     <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/parentLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,8 +18,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:id="@+id/relativeLayout"
-            >
+                android:id="@+id/relativeLayout">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="90sp"
@@ -74,6 +70,7 @@
                     android:layout_height="40sp">
 
                     <utils.TextviewSemiBold
+                        android:id="@+id/resumeDownloadTxt"
                         android:textStyle="bold"
                         android:textSize="@dimen/large_font"
                         android:layout_marginLeft="10sp"
@@ -110,8 +107,7 @@
                         android:text="Available Bid 06/10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-                        android:id="@+id/textView20" />
+                        android:id="@+id/profileViewTxt" />
                 </LinearLayout>
 
                 <View
@@ -440,5 +436,3 @@
         </LinearLayout>
     </ScrollView>
 
-
-</RelativeLayout>

@@ -17,6 +17,12 @@ import java.util.regex.Pattern;
  */
 public class Constant {
 
+	/*Payment Avanue*/
+	public static final String PARAMETER_SEP = "&";
+	public static final String PARAMETER_EQUALS = "=";
+	public static final String JSON_URL = "https://secure.ccavenue.com/transaction/transaction.do";
+	public static final String TRANS_URL = "https://secure.ccavenue.com/transaction/initTrans";
+
 	public static final int CONDIDATE_RAGISTRATION = 1;
 	public static final int EMPLOYER_RAGISTRATION = 2;
 	public static final int LOGIN = 3;
@@ -33,6 +39,10 @@ public class Constant {
 	public static final int CADIDATE_TOP_TEN = 14;
 	public static final int EMPLOYEETOP_TEN = 15;
 	public static final int SEARCH_API = 16;
+	public static final int COMPANY_API = 17;
+	public static final int NOTIFICATION_API = 18;
+	public static final int VIEW_PROFILE_API = 19;
+	public static final int GET_FILTER_API = 20;
 
 	public static String BASE_URL ="http://smtgroup.in/jobpools/wdiapi/index.php/";
 
@@ -51,6 +61,10 @@ public class Constant {
 	public static String UPDATE_CANDIDATE_TOP_TEN_URL = BASE_URL+"topten_candidate";
 	public static String UPDATE_EMPLOYEE_TOP_TEN_URL = BASE_URL+"topten_employer";
 	public static String SEARCH_URL = BASE_URL+"candidate_search";
+	public static String COMPANY_SEARCH_URL = BASE_URL+"company_search";
+	public static String NOTIFICATION_URL = BASE_URL+"notificationlist";
+	public static String VIEW_PROFILE_URL = BASE_URL+"viewprofile";
+	public static String GET_FILTER_URL = BASE_URL+"getallcity";
 
 	public static String NAME="";
 	public static String USER_NAME="";
@@ -65,6 +79,7 @@ public class Constant {
 	/*SOCIAL LOGIN*/
 	public static String FB_ID="";
 	public static String GOOGLE_ID="";
+	public static String COMPANY_ID="";
 
 	/*EMPLOYER REGISTER*/
 	public static String COMPANY_NAME="";
@@ -76,6 +91,7 @@ public class Constant {
 	public static String LOCATION="";
 	public static String USER_TYPE="";
 	public static String ADDRESS="";
+	public static String TOKEN="";
 
 	public static String OLDPASSWORD="";
 	public static String PAYMENTAMOUNT="";

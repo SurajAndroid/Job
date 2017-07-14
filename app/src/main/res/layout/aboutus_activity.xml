@@ -44,4 +44,99 @@
     </RelativeLayout>
 
 
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/topView">
+
+        <LinearLayout
+
+            android:padding="20sp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/topView">
+
+            <utils.TextviewSemiBold
+                android:textColor="@color/black_one"
+                android:text="ABOUT US:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView3" />
+
+            <View
+                android:layout_marginTop="5sp"
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="@color/black_one"/>
+
+            <utils.TextviewFont
+                android:textColor="@color/black_one"
+                android:layout_marginTop="5sp"
+                android:text="JOBPOOL is a mobile application that connects job seekers with employers. JOBPOOL is a venture of Inkcraft Creations LLP that was founded in 2015, and is headquartered at Bidar (Karnataka). The LLP’s services include the following: Skill Development, Startup Training, Website, logo and Infographic design, Content writing, Recruitment based services, and Online branding. The Company was founded with a noble cause of providing affordable online services to its clients. Its Startup Training Services under the flagship name of ‘Startup Soch’ is transforming the lives of Engineering Students."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView4" />
+
+            <utils.TextviewSemiBold
+                android:textColor="@color/black_one"
+                android:layout_marginTop="5sp"
+                android:text="Vision:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5" />
+
+            <utils.TextviewFont
+                android:textColor="@color/black_one"
+                android:layout_marginTop="2sp"
+                android:text="To provide impactful online and offline services at affordable costs!"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView23" />
+
+            <utils.TextviewSemiBold
+                android:textColor="@color/black_one"
+                android:layout_marginTop="2sp"
+                android:text="JobPool’s Mission:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView24" />
+
+            <utils.TextviewFont
+                android:textColor="@color/black_one"
+                android:text="To provide an affordable platform for job seekers to keep themselves updated with the latest jobs in the market. And provide the best available talent in the market to the Employers, by reaching out to maximum destinations in the country."
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView25" />
+
+            <utils.TextviewSemiBold
+                android:textColor="@color/black_one"
+                android:layout_marginTop="2sp"
+                android:text="Objectives:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView26" />
+
+            <utils.TextviewFont
+                android:textColor="@color/black_one"
+                android:layout_marginTop="5sp"
+                android:text="Provide affordable services to clients.
+Focus on localized job creation
+Provide the best talent to the employers
+Create a pool of job seekers in various fields.
+Boosting the employment rate in the country"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView27" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
 </RelativeLayout>

@@ -135,6 +135,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -157,6 +158,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -179,6 +181,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="gone"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -200,6 +203,7 @@
 
                 </LinearLayout>
                 <LinearLayout
+                    android:visibility="gone"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -220,7 +224,182 @@
                         android:text="173 Mig Colony Indore "/>
                 </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_margin="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:background="@drawable/baoudary"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp">
+
+                    <utils.TextviewFont
+                        android:textColor="@color/iron"
+                        android:paddingLeft="10sp"
+                        android:gravity="center_vertical"
+                        android:text="Name "
+                        android:layout_weight="0.5"
+                        android:layout_width="0sp"
+                        android:layout_height="30sp" />
+
+                    <View
+                        android:layout_width="0.5sp"
+                        android:background="@color/iron"
+                        android:layout_height="match_parent"/>
+
+                    <utils.TextviewFont
+                        android:textColor="@color/iron"
+                        android:id="@+id/userNameTxt"
+                        android:paddingLeft="10sp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0sp"
+                        android:layout_height="30sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="5sp"
+                    android:background="@drawable/baoudary"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp">
+
+                    <utils.TextviewFont
+                        android:textColor="@color/iron"
+                        android:text="UserID"
+                        android:paddingLeft="10sp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.5"
+                        android:layout_width="0sp"
+                        android:layout_height="30sp"
+                        android:id="@+id/textviewFont" />
+
+                    <View
+                        android:layout_width="0.5sp"
+                        android:background="@color/iron"
+                        android:layout_height="match_parent"/>
+
+                    <utils.TextviewFont
+                        android:textColor="@color/iron"
+                        android:id="@+id/userIDTxt"
+                        android:paddingLeft="10sp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0sp"
+                        android:layout_height="30sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5sp"
+                    android:background="@drawable/baoudary"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp">
+
+                    <utils.TextviewFont
+                        android:textColor="@color/iron"
+                        android:text="City"
+                        android:paddingLeft="10sp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.5"
+                        android:layout_width="0sp"
+                        android:layout_height="30sp" />
+
+                    <View
+                        android:layout_width="0.5sp"
+                        android:background="@color/iron"
+                        android:layout_height="match_parent"/>
+
+                    <utils.TextviewFont
+                        android:textColor="@color/iron"
+                        android:id="@+id/CityTxt"
+                        android:paddingLeft="10sp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0sp"
+                        android:layout_height="30sp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_marginTop="5sp"
+                    android:background="@drawable/baoudary"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp">
+
+                    <utils.TextviewFont
+                        android:textColor="@color/iron"
+                        android:text="Skilles"
+                        android:paddingLeft="10sp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.5"
+                        android:layout_width="0sp"
+                        android:layout_height="30sp"
+                        android:id="@+id/textviewFont2" />
+
+                    <View
+                        android:layout_width="0.5sp"
+                        android:background="@color/iron"
+                        android:layout_height="match_parent"/>
+
+                    <utils.TextviewFont
+                        android:textColor="@color/iron"
+                        android:id="@+id/SkillesTxt"
+                        android:paddingLeft="10sp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0sp"
+                        android:layout_height="30sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="5sp"
+                    android:background="@drawable/baoudary"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp">
+
+                    <utils.TextviewFont
+                        android:textColor="@color/iron"
+                        android:text="Experience"
+                        android:paddingLeft="10sp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="0.5"
+                        android:layout_width="0sp"
+                        android:layout_height="30sp"
+                        android:id="@+id/textviewFont3" />
+                    <View
+                        android:layout_width="0.5sp"
+                        android:background="@color/iron"
+                        android:layout_height="match_parent"/>
+                    <utils.TextviewFont
+                        android:textColor="@color/iron"
+                        android:id="@+id/ExpirenceTxt"
+                        android:paddingLeft="10sp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:layout_width="0sp"
+                        android:layout_height="30sp" />
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
             <View
+                android:visibility="gone"
                 android:id="@+id/viewfirst"
                 android:layout_marginBottom="0.5sp"
                 android:layout_below="@+id/view"
@@ -228,6 +407,7 @@
                 android:layout_height="0.5sp"
                 android:background="#C9c9c9"></View>
             <View
+                android:visibility="gone"
                 android:layout_marginBottom="0.5sp"
                 android:layout_below="@+id/viewfirst"
                 android:layout_width="match_parent"
@@ -235,6 +415,7 @@
                 android:background="@color/white_one"></View>
 
             <LinearLayout
+                android:visibility="gone"
                 android:paddingBottom="10sp"
                 android:paddingTop="10sp"
                 android:paddingLeft="20sp"
@@ -262,6 +443,7 @@
 
 
             </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

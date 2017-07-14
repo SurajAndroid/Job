@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.dell.job.EditProfileActivity;
-import com.example.dell.job.ProfileActivity;
-import com.example.dell.job.R;
+import com.suraj.jobpool.ProfileActivity;
+import com.suraj.jobpool.R;
 
 import java.util.ArrayList;
 
 import dtos.CandidateDTO;
-import dtos.CompanyDTO;
-import utils.Global;
+import utils.Constant;
 
 import static utils.Global.candidatelist;
 
@@ -39,11 +36,13 @@ public class CandidateSearchAdapter extends BaseAdapter {
     Activity activity;
     public ArrayList<CandidateDTO> candidateList;
     SharedPreferences sharedPreferences;
+    String TAG;
 
-    public CandidateSearchAdapter(Context context, Activity activity, ArrayList<CandidateDTO> candidateList){
+    public CandidateSearchAdapter(Context context, Activity activity, ArrayList<CandidateDTO> candidateList, String TAG){
         this.context = context;
         this.activity = activity;
         this.candidateList = candidateList;
+        this.TAG = TAG;
         sharedPreferences = context.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);;
     }
 
@@ -113,8 +112,10 @@ public class CandidateSearchAdapter extends BaseAdapter {
             public void onClick(View view) {
 
                 if(sharedPreferences.getString("status","").equals("1")){
+                    Constant.USER_ID = candidateList.get(position).getUserId();
                     Intent intent = new Intent(activity, ProfileActivity.class);
                     intent.putExtra("position",""+position);
+                    intent.putExtra("Tag",""+TAG);
                     activity.startActivity(intent);
                 }else {
                     final Dialog dialog = new Dialog(activity);

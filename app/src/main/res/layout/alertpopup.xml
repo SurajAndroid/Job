@@ -31,15 +31,15 @@
 
         <LinearLayout
             android:layout_marginBottom="25sp"
-            android:layout_marginLeft="50sp"
-            android:layout_marginRight="50sp"
             android:id="@+id/submitLayout"
             android:background="#000000"
             android:layout_marginTop="35sp"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="50sp">
+            android:paddingLeft="35sp"
+            android:paddingRight="35sp"
+            android:layout_width="wrap_content"
+            android:layout_height="35sp">
 
 
             <TextView

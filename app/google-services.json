@@ -1,33 +1,39 @@
 {
   "project_info": {
-    "project_number": "40869790781",
-    "project_id": "jobpool-168312"
+    "project_number": "1072313921091",
+    "firebase_url": "https://jobpool-171816.firebaseio.com",
+    "project_id": "jobpool-171816",
+    "storage_bucket": "jobpool-171816.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:40869790781:android:7342e57b3bb008f7",
+        "mobilesdk_app_id": "1:1072313921091:android:018917021a5f4bcf",
         "android_client_info": {
-          "package_name": "com.example.dell.job"
+          "package_name": "com.suraj.jobpool"
         }
       },
       "oauth_client": [
         {
-          "client_id": "40869790781-pn910bssev7931mrdsfs9c7831013o2v.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.dell.job",
-            "certificate_hash": "f9338d46f734cea149f1763a645973230ceb93fb"
-          }
+          "client_id": "1072313921091-6vtsgjiekeme3q2rcim1k4na7l4u4le4.apps.googleusercontent.com",
+          "client_type": 3
         },
         {
-          "client_id": "40869790781-kqc79c7km1e1j93hi33bf63f5ruu4vee.apps.googleusercontent.com",
+          "client_id": "1072313921091-ujd0tobe960j49jpblruvvhcn8j8ck4i.apps.googleusercontent.com",
           "client_type": 3
+        },
+        {
+          "client_id": "1072313921091-1p4cvtiltbrutp3jgb6oejq39rpik63a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.suraj.jobpool",
+            "certificate_hash": "3b121397dd50d9e9306c94bad40e6983a33997d6"
+          }
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDiqwdfDaMrqeR2hbYyxwE09cp48ZoAxJU"
+          "current_key": "AIzaSyAFiM27xKbucBbR8dGfEo4tJ3LOIWzo_Vw"
         }
       ],
       "services": {
@@ -35,11 +41,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1072313921091-6vtsgjiekeme3q2rcim1k4na7l4u4le4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

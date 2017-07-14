@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,127 +15,224 @@
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="@dimen/header_font"
-
         android:background="@color/colorAccent"
         android:id="@+id/textviewSemiBold">
     </utils.TextviewSemiBold>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="80dp"
-        android:layout_gravity="center">
+        android:padding="20sp"
+        android:layout_gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:id="@+id/TenCondidatelayout"
-            android:layout_width="300dp"
-            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="24dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:background="@drawable/paymentboundry"
             android:layout_marginTop="24dp"
-            android:background="@drawable/buttonrounded"
             android:padding="2dp"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/text1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="17dp"
-                android:text="10 Candidates"
-                android:textSize="30dp"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/text2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:text="(Rs100)"
-                android:textSize="20dp"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textStyle="italic" />
+
+            <LinearLayout
+                android:background="@color/colorAccent"
+                android:layout_weight="1.3"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_width="0sp"
+                android:layout_height="match_parent">
+
+
+                <CheckBox
+                    android:descendantFocusability="blocksDescendants"
+                    android:buttonTint="@color/black_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="#000000"
+                android:paddingLeft="15sp"
+                android:gravity="center_vertical"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:layout_width="0sp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tenTxt"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:text="Basic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:id="@+id/firstTxt"
+                    android:paddingRight="5dp"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:text="10 Candidates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+
+                    android:paddingRight="5dp"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:text="Only Rs 100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+            </LinearLayout>
 
         </LinearLayout>
         <LinearLayout
+            android:background="@drawable/paymentboundry"
             android:id="@+id/TwentyCondidatelayout"
-            android:layout_width="300dp"
-            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="24dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/buttonrounded"
             android:padding="2dp"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/text3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="17dp"
-                android:text="20 Candidates"
-                android:textSize="30dp"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/text4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:text="(Rs200)"
-                android:textSize="20dp"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textStyle="italic" />
+
+            <LinearLayout
+                android:background="@color/colorAccent"
+                android:layout_weight="1.3"
+                android:orientation="vertical"
+                android:layout_width="0sp"
+                android:gravity="center"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:descendantFocusability="blocksDescendants"
+                    android:buttonTint="@color/black_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="#000000"
+                android:paddingLeft="15sp"
+                android:gravity="center_vertical"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:layout_width="0sp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/thertyTxt"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:text="Premium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:textColor="#ffffff"
+                    android:id="@+id/secondTxt"
+                    android:textSize="16sp"
+                    android:text="30 Candidates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:text="Only Rs 300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+
+            </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
+            android:background="@drawable/paymentboundry"
             android:id="@+id/ThertyCondidatelayout"
-            android:layout_width="300dp"
-            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
             android:layout_gravity="center"
             android:layout_marginBottom="24dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/buttonrounded"
             android:padding="2dp"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/text5"
+
+            <LinearLayout
+                android:background="@color/colorAccent"
+                android:layout_weight="1.3"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_width="0sp"
+                android:layout_height="match_parent">
+
+                <CheckBox
+                    android:descendantFocusability="blocksDescendants"
+                    android:buttonTint="@color/black_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:background="#000000"
+                android:paddingLeft="15sp"
+                android:gravity="center_vertical"
+                android:layout_weight="3"
+                android:orientation="vertical"
+                android:layout_width="0sp"
+                android:layout_height="match_parent">
+
+                <TextView
+
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:textSize="25sp"
+                    android:text="Ultimate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/fifityTxt" />
+
+
+                <TextView
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:text="50 Candidates"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                android:id="@+id/theredTxt"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:text="Only Rs 500"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="17dp"
-                android:text="30 Candidates"
-                android:textSize="30dp"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/text6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                android:text="(Rs300)"
-                android:textSize="20dp"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textStyle="italic" />
+                android:layout_height="wrap_content" />
+
+
+
+
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

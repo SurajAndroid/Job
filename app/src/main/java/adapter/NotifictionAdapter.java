@@ -5,8 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
-import com.example.dell.job.R;
+import com.suraj.jobpool.R;
+
+import java.util.ArrayList;
+
+import dtos.NotificationDTO;
+
 
 /**
  * Created by Suraj shakya on 11/8/16.
@@ -16,9 +22,11 @@ public class NotifictionAdapter extends BaseAdapter {
 
     LayoutInflater layoutInflater;
     Context context;
+    ArrayList<NotificationDTO> list;
 
-    public NotifictionAdapter(Context context){
+    public NotifictionAdapter(Context context, ArrayList<NotificationDTO> list){
         this.context = context;
+        this.list = list;
     }
 
     @Override
@@ -33,17 +41,17 @@ public class NotifictionAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return 10;
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return 0;
+        return position;
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     @Override
@@ -53,16 +61,25 @@ public class NotifictionAdapter extends BaseAdapter {
         if(convertView==null){
             holder = new ViewHolder();
           convertView = layoutInflater.inflate(R.layout.notification_list,null);
+          holder.email = (TextView)convertView.findViewById(R.id.textView9);
+          holder.dateTime = (TextView)convertView.findViewById(R.id.textView11);
+          holder.message = (TextView)convertView.findViewById(R.id.textView12);
 
           convertView.setTag(holder);
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        String[] data = list.get(position).getDatetime().split(" ");
+        holder.email.setText(""+list.get(position).getEmail());
+        holder.dateTime.setText(data[0]);
+        holder.message.setText(list.get(position).getMessage());
+
         return convertView;
     }
 
     class ViewHolder{
 
+            TextView email, dateTime,message;
     }
 }

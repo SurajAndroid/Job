@@ -42,5 +42,239 @@
             android:id="@+id/textView15" />
     </RelativeLayout>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/topView">
+
+        <LinearLayout
+            android:padding="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="500sp"
+            android:orientation="vertical">
+
+            <utils.TextviewSemiBold
+                android:gravity="center"
+                android:text="Privacy Policy"
+                android:textColor="@color/black_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewSemiBold
+                android:text="Preamble"
+                android:textColor="@color/black_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <utils.TextviewFont
+                android:layout_marginTop="5sp"
+                android:text="We, at 'INKCRAFT CREATIONS LLP' give utmost priority to your online privacy and respect it. The management of your PIN (Personal information) is of utmost importance to us. For a personalized browsing experience, We may gather information, fed by you to the Website, which includes registration form related information, your device contact lists, location and other necessary information required to provide you access to www.Jobpool.in. The access to your preferences granted by you would help us deliver you better with relevant information.
+‘Personal Information’ (PIN) here refers to first and last name, a home or other physical address and an email address or other contact information keyed in by the User. In general, you can visit ‘Inkcraft Creations LLP’s web pages without telling us who you are or revealing any of your Personal Information.
+"
+                android:textColor="@color/black_one"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewSemiBold
+                android:textColor="@color/black_one"
+                android:text="Consent "
+                android:layout_marginTop="2sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewFont
+                android:layout_marginTop="2sp"
+                android:text="By using this web site, you consent to the terms of our online Privacy Policy and to Inkcraft Creations LLP’s Personal Information (PIN) for the reasons provided above and also those  where ‘Inkcraft Creations LLP’ gathers Your Personal Information on the web site. "
+                android:textColor="@color/black_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewSemiBold
+                android:layout_marginTop="2sp"
+                android:text="Under 13 years of age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_one"/>
+
+            <utils.TextviewFont
+                android:text="•	‘Inkcraft Creations LLP’ would never get in touch with children under age 13 regarding special offers for marketing purposes without the permission of the parents/guardians."
+                android:layout_marginTop="2sp"
+                android:textColor="@color/black_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewSemiBold
+                android:text="Information Update"
+                android:textColor="@color/black_one"
+                android:layout_marginTop="2sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewFont
+                android:text="•	We provide means for updating and correcting your personally identifying information for our various services offered. Please check the help pages for different services when in doubt."
+                android:textColor="@color/black_one"
+                android:layout_marginTop="2sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewSemiBold
+                android:text="Cookies and Tracking Management"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/black_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewFont
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="www.Jobpool.in utilizes ‘cookies’ and various tracking technologies. A ‘cookie’ is a small text file that gathers information about any type of activity on the website. Cookies and other technologies store Personal Information (PIN) previously entered by a Web user. Most browsers allow you to completely control cookies, their creation and deletion. Most browsers provide you with a cookie notification when you receive a cookie. In case the original user ID and password is erased then you may have to re-enter it to access the web site.
+
+Tracking technologies records information such as domain and host names; internet protocol (IP) addresses; operating system types and browser details; clickstream patterns; and timing related information regarding the website that was accessed. Our use of cookies and other tracking technologies allows us to improvise upon our website leading to an enhanced web experience for you. We may also analyze different information which is devoid of Personal Information(PIN) for maintaining statistics.
+"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/black_one"/>
+
+
+            <utils.TextviewSemiBold
+                android:text="Services offered by Third Parties "
+                android:layout_marginTop="2sp"
+                android:textColor="@color/black_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewFont
+                android:text="Some Third parties provide select services available on www.jobpool.in on Inkcraft Creations LLP's behalf. ‘Inkcraft Creations LLP’ may provide information, including Personal Information (PIN), that we collect on the web to third-party service providers to help us deliver better services and information. To maintain web sites and mailing lists by ‘Inkcraft Creations LLP’, service providers play a very crucial role. We will take rational decisions at our end to ensure that these third-party service providers are compelled to protect Our Users Personal Information on Inkcraft Creations LLP's behalf.
+‘Inkcraft Creations LLP’ don’t intend to send your Personal Information without your consent to third parties unless we are legally compelled to perform such an act. We also assure You that our policy prohibits ‘Inkcraft Creations LLP’ to sell Personal Information of Our Users without their consent.
+"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/black_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewSemiBold
+                android:layout_marginTop="2sp"
+                android:text="Information security"
+                android:textColor="@color/black_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewFont
+                android:text="•	We have tried our best to put all possible safekeeping measures in place, protection against unauthorized access to or unauthorized alteration, exposé or obliteration of data/information on the web site.
+•	Limited access to your personally identifying information (PIN) is provided to employees who may use that information for operating, developing or civilizing our services.
+"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/black_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewSemiBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Information Sharing and Disclosure "
+                android:layout_marginTop="2sp"
+                android:textColor="@color/black_one"/>
+
+            <utils.TextviewFont
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_one"
+                android:layout_marginTop="2sp"
+                android:text="•	‘Inkcraft Creations LLP’ never shares, sells or provides your personal information with others without your consent except to provide services or products requested by you under the following circumstances:
+
+o	Information is provided to trusted partners who work on behalf of or with 'Inkcraft Creations LLP' under our confidentiality agreements. These entities/companies may use the personal information provided by you to the web site to help ‘Us’ communicate with you regarding the offers from 'Inkcraft Creations LLP' and our marketing partners. However, we don’t grant any independent right to these companies to share this personal information.
+
+o	We respond to court orders or legal processes, to ascertain/exercise our legal rights or defend our rights against legal claims;
+
+o	We trust it is important to share data with a specific end goal to explore, avoid, or make a move in regards to unlawful exercises, suspected extortion, circumstances including potential dangers to the physical wellbeing of any individual, infringement of Inkcraft Creations LLP's terms of utilization, or as generally required by law.
+
+o	We exchange data about you if ‘Inkcraft Creations LLP’ is gained by or converged with another organization. In this occasion, 'Inkcraft Creations LLP' will tell you before data/information about you are exchanged and end up noticeably subject to an alternate security strategy.
+
+o	'Inkcraft Creations LLP' shows targeted promotions in view of individual data. Promoters (counting advertisement serving organizations) may expect that individuals who communicate with, view, or tap on focused advertisements meet the focusing on criteria - for instance, ladies aged 18-24 from a specific geographic territory.
+
+
+•	'Inkcraft Creations LLP' does not give any individual data to the promoter when you interface with or see a targeted advertisement. In any case, by interfacing with or seeing a promotion you are consenting to the likelihood that the sponsor will make the presumption that you meet the targeting criteria used to show the advertisement.
+
+•	'Inkcraft Creations LLP' sponsors incorporate money related specialist organizations, (for example, banks, protection operators, stock merchants and home loan moneylenders) and non-monetary organizations, (for example, stores, carriers, and programming organizations).
+"/>
+
+            <utils.TextviewSemiBold
+                android:text="Confidentiality and Security"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/black_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewFont
+                android:text="•	Access to personal information would be provided in a limited way to employees who may need that information to provide products/services to you to accomplish their assigned jobs.
+
+•	We have put physical, electronic, and ceremonial protection in place that complies with Indian laws to protect your personal information.
+
+•	We work to ensure conformity with the necessities of the IT Act, 2000 as amended and rules made thereafter for the protection and preservation of the privacy of our users.
+"
+                android:textColor="@color/black_one"
+                android:layout_marginTop="2sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewSemiBold
+                android:text="Changes to this Privacy Policy"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/black_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewFont
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2sp"
+                android:text="'Inkcraft Creations LLP' reserves the right to revise, alter or amend this policy at any time. The changed policy would be effective from the date of such revision, alteration, or amendment."
+                android:textColor="@color/black_one"/>
+
+            <utils.TextviewSemiBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disclaimer:"
+                android:textColor="@color/black_one"
+                android:layout_marginTop="2sp"/>
+
+            <utils.TextviewFont
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_one"
+                android:text="Inkcraft Creations LLP takes utmost precaution to ensure that our Users data/information doesn’t fall in the unauthorized people’s hands, especially with respect to the electronic transfer of money.
+An authorized secured payment gateway handles the online payments and Inkcraft Creations LLP neither stores nor keeps a record of any monetary transaction whatsoever.
+
+Inkcraft Creations LLP cannot be held responsible for damage or loss incurred by the User as a way of any disclosure of user’s private data/information during online transactions using whichever mode (credit/debit/online banking etc) opted by the user on the web site.
+
+Inkcraft Creations LLP cannot also be held responsible for any loss occurred during the verification of entered data or any fault, omission or incorrect data/information disclosed intentionally/unintentionally and used in accordance or without following the legal norms.
+"
+                android:layout_marginTop="2sp"/>
+
+
+            <utils.TextviewSemiBold
+                android:text="Contact Information"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/black_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <utils.TextviewFont
+                android:text="Inkcraft Creations LLP awaits your responses regarding this privacy policy at the contact address provided in the Website. We will address issues related to the breach of the policy by employing all possible means within the policy framework of Inkcraft Creations LLP.
+
+
+Note : Inkcraft Creations LLP reserves the right to change the terms of policy at any time. There are no restrictions binding on us to offer these services to nay client/prospective client.
+"
+                android:layout_marginTop="2sp"
+                android:textColor="@color/black_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </RelativeLayout>

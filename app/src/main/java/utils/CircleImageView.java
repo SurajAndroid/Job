@@ -44,7 +44,7 @@ public class CircleImageView extends ImageView {
 		}
 		System.out.println("newWidth...."+getWidth());
 		int radius = getWidth();
-		Bitmap bitmap = ((BitmapDrawable )d).getBitmap();
+		Bitmap bitmap = ((BitmapDrawable)d).getBitmap();
 		Bitmap resized = Bitmap.createScaledBitmap(bitmap, getWidth(), getWidth(), true);
 		Bitmap b = createCroppedBitmap(radius, resized);
 		canvas.drawBitmap(b, 0, 0, null);

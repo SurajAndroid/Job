@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +12,16 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.example.dell.job.ProfileActivity;
-import com.example.dell.job.R;
+
+import com.suraj.jobpool.R;
 
 import java.util.ArrayList;
 
 import dtos.CompanyDTO;
+
+import static utils.Global.candidatelist;
 
 /**
  * Created by Suraj shakya on 11/8/16.
@@ -32,7 +34,7 @@ public class EmployeeSearchAdapter extends BaseAdapter {
     Activity activity;
     public ArrayList<CompanyDTO> companylist;
 
-    public EmployeeSearchAdapter(Context context, Activity activity,ArrayList<CompanyDTO> companylist){
+    public EmployeeSearchAdapter(Context context, Activity activity, ArrayList<CompanyDTO> companylist){
         this.context = context;
         this.activity = activity;
         this.companylist = companylist;
@@ -75,6 +77,7 @@ public class EmployeeSearchAdapter extends BaseAdapter {
           holder.skillesTxt = (TextView)convertView.findViewById(R.id.skillesTxt);
           holder.locationTxt = (TextView)convertView.findViewById(R.id.locationTxt);
           holder.expTxt = (TextView)convertView.findViewById(R.id.expTxt);
+          holder.applyTxt = (TextView)convertView.findViewById(R.id.applyTxt);
           holder.candidateName = (TextView)convertView.findViewById(R.id.candidateName);
           convertView.setTag(holder);
 
@@ -82,9 +85,11 @@ public class EmployeeSearchAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        holder.applyTxt.setText("Apply");
+        holder.showInterestLayout.setVisibility(View.GONE);
         holder.candidateName.setText(companylist.get(position).getCompany_name());
-        if(!companylist.get(position).getSkill().equals("null")){
-            holder.skillesTxt.setText(companylist.get(position).getSkill());
+        if(!companylist.get(position).getCurrent_requirment().equals("null")){
+            holder.skillesTxt.setText(companylist.get(position).getCurrent_requirment());
         }else {
             holder.skillesTxt.setText("");
         }
@@ -121,11 +126,17 @@ public class EmployeeSearchAdapter extends BaseAdapter {
                 mailTxt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                                "mailto","", null));
-                        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Invite Friend");
-                        emailIntent.putExtra(Intent.EXTRA_TEXT,  "");
-                        activity.startActivity(Intent.createChooser(emailIntent, "Send Email..."));
+                        Intent i = new Intent(Intent.ACTION_SEND);
+                        i.setType("message/rfc822");
+                        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{companylist.get(position).getEmail().toString()});
+                        i.putExtra(Intent.EXTRA_SUBJECT, "");
+                        i.putExtra(Intent.EXTRA_TEXT   , "");
+                        try {
+                            activity.startActivity(Intent.createChooser(i, "Send mail..."));
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(context, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                        }
+                        dialog.dismiss();
                         dialog.dismiss();
                     }
                 });
@@ -133,12 +144,8 @@ public class EmployeeSearchAdapter extends BaseAdapter {
                 messageTxt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String smsBody= "";
-                        Uri uri = Uri.parse("smsto:0800000123");
-                        Intent sendIntent = new Intent(Intent.ACTION_VIEW);
-                        sendIntent.putExtra("sms_body", smsBody);
-                        sendIntent.setType("vnd.android-dir/mms-sms");
-                        activity.startActivity(sendIntent);
+                        activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"
+                                )));
                         dialog.dismiss();
                     }
                 });
@@ -151,7 +158,7 @@ public class EmployeeSearchAdapter extends BaseAdapter {
     }
 
     class ViewHolder{
-        TextView skillesTxt, locationTxt, expTxt,candidateName;
+        TextView skillesTxt, locationTxt, expTxt,candidateName, applyTxt;
         LinearLayout showInterestLayout, contactLayout;
     }
 }
