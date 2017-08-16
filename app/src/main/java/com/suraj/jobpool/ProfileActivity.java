@@ -1,16 +1,21 @@
 package com.suraj.jobpool;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.PowerManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -39,6 +44,11 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -94,7 +104,6 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
 
     public void init(){
 
-
         receiver = this;
         String data = getIntent().getExtras().getString("position","");
         TAG = getIntent().getExtras().getString("Tag","");
@@ -102,7 +111,6 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
 
         sharedPreferences = this.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
         Constant.COMPANY_ID = sharedPreferences.getString("user_id","");
-
 
         try{
             getWindow().getDecorView()
@@ -116,7 +124,6 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         contactTxtView = (TextView)findViewById(R.id.contactTxtView);
         candidateName = (TextView)findViewById(R.id.candidateName);
 
-
         ProfileImage = (ImageView)findViewById(R.id.ProfileImage);
         parentLayout = (RelativeLayout) findViewById(R.id.parentLayout);
 
@@ -126,9 +133,7 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         SkillesTxt = (TextView)findViewById(R.id.SkillesTxt);
         ExpirenceTxt = (TextView)findViewById(R.id.ExpirenceTxt);
 
-
         viewProfileService();
-
         setProfielData();
 
     }
@@ -223,20 +228,19 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
     }
 
     public void clickListenr(){
-
         slidMenuLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sm.toggle();
             }
         });
-
         downloadTxtView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 downloadTxtView.setBackgroundResource(R.color.yellow);
                 contactTxtView.setBackgroundResource(R.color.colorAccent);
-                savePdf();
+//                savePdf();
+                new DownloadTask(ProfileActivity.this,Global.candidatelist.get(position).getResume());
             }
         });
 
@@ -490,5 +494,220 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
     @Override
     public void requestFinished(String[] result) throws Exception {
 
+    }
+
+    // usually, subclasses of AsyncTask are declared inside the activity class.
+// that way, you can easily modify the UI thread from here
+/*    private class DownloadTask extends AsyncTask<String, Integer, String> {
+
+        private Context context;
+        private PowerManager.WakeLock mWakeLock;
+
+        public DownloadTask(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected String doInBackground(String... sUrl) {
+            InputStream input = null;
+            OutputStream output = null;
+            HttpURLConnection connection = null;
+            try {
+                URL url = new URL(sUrl[0]);
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+                // expect HTTP 200 OK, so we don't mistakenly save error report
+                // instead of the file
+                if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                    return "Server returned HTTP " + connection.getResponseCode()
+                            + " " + connection.getResponseMessage();
+                }
+
+                // this will be useful to display download percentage
+                // might be -1: server did not report the length
+                int fileLength = connection.getContentLength();
+
+                // download the file
+                input = connection.getInputStream();
+                output = new FileOutputStream("/sdcard/resume.doc");
+
+                byte data[] = new byte[4096];
+                long total = 0;
+                int count;
+                while ((count = input.read(data)) != -1) {
+                    // allow canceling with back button
+                    if (isCancelled()) {
+                        input.close();
+                        return null;
+                    }
+                    total += count;
+                    // publishing the progress....
+                    if (fileLength > 0) // only if total length is known
+                        publishProgress((int) (total * 100 / fileLength));
+                    output.write(data, 0, count);
+                }
+            } catch (Exception e) {
+                return e.toString();
+            } finally {
+                try {
+                    if (output != null)
+                        output.close();
+                    if (input != null)
+                        input.close();
+                } catch (IOException ignored) {
+                }
+
+                if (connection != null)
+                    connection.disconnect();
+            }
+            return null;
+        }
+    }*/
+
+
+    public class DownloadTask {
+
+        private static final String TAG = "Download Task";
+        private Context context;
+
+        private String downloadUrl = "", downloadFileName = "";
+        private ProgressDialog progressDialog;
+        public DownloadTask(Context context, String downloadUrl) {
+            this.context = context;
+
+            this.downloadUrl = downloadUrl;
+
+
+            downloadFileName = downloadUrl.substring(downloadUrl.lastIndexOf( '/' ),downloadUrl.length());//Create file name by picking download file name from URL
+            Log.e(TAG, downloadFileName);
+
+            //Start Downloading Task
+            new DownloadingTask().execute();
+        }
+
+        private class DownloadingTask extends AsyncTask<Void, Void, Void> {
+
+            File apkStorage = null;
+            File outputFile = null;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog=new ProgressDialog(context);
+                progressDialog.setMessage("Downloading...");
+                progressDialog.show();
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                try {
+                    if (outputFile != null) {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Downloaded Successfully", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+                            }
+                        }, 3000);
+
+                        Log.e(TAG, "Download Failed");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                    //Change button text if exception occurs
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+
+                        }
+                    }, 3000);
+                    Log.e(TAG, "Download Failed with Exception - " + e.getLocalizedMessage());
+
+                }
+                super.onPostExecute(result);
+            }
+
+            @Override
+            protected Void doInBackground(Void... arg0) {
+                try {
+                    URL url = new URL(downloadUrl);//Create Download URl
+                    HttpURLConnection c = (HttpURLConnection) url.openConnection();//Open Url Connection
+                    c.setRequestMethod("GET");//Set Request Method to "GET" since we are grtting data
+                    c.connect();//connect the URL Connection
+
+                    //If Connection response is not OK then show Logs
+                    if (c.getResponseCode() != HttpURLConnection.HTTP_OK) {
+                        Log.e(TAG, "Server returned HTTP " + c.getResponseCode()
+                                + " " + c.getResponseMessage());
+
+                    }
+
+
+                    //Get File if SD card is present
+                    if (new CheckForSDCard().isSDCardPresent()) {
+
+                        apkStorage = new File(
+                                Environment.getExternalStorageDirectory() + "/"
+                                        + "JOBPOOL RESUME");
+                    } else
+                        Toast.makeText(context, "Oops!! There is no SD Card.", Toast.LENGTH_SHORT).show();
+
+                    //If File is not present create directory
+                    if (!apkStorage.exists()) {
+                        apkStorage.mkdir();
+                        Log.e(TAG, "Directory Created.");
+                    }
+
+                    outputFile = new File(apkStorage, downloadFileName);//Create Output file in Main File
+
+                    //Create New File if not present
+                    if (!outputFile.exists()) {
+                        outputFile.createNewFile();
+                        Log.e(TAG, "File Created");
+                    }
+
+                    FileOutputStream fos = new FileOutputStream(outputFile);//Get OutputStream for NewFile Location
+
+                    InputStream is = c.getInputStream();//Get InputStream for connection
+
+                    byte[] buffer = new byte[1024];//Set buffer type
+                    int len1 = 0;//init length
+                    while ((len1 = is.read(buffer)) != -1) {
+                        fos.write(buffer, 0, len1);//Write new file
+                    }
+
+                    //Close all connection after doing task
+                    fos.close();
+                    is.close();
+
+                } catch (Exception e) {
+
+                    //Read exception if something went wrong
+                    e.printStackTrace();
+                    outputFile = null;
+                    Log.e(TAG, "Download Error Exception " + e.getMessage());
+                }
+
+                return null;
+            }
+        }
+    }
+
+    public class CheckForSDCard {
+        //Check If SD Card is present or not method
+        public boolean isSDCardPresent() {
+            if (Environment.getExternalStorageState().equals(
+
+                    Environment.MEDIA_MOUNTED)) {
+                return true;
+            }
+            return false;
+        }
     }
 }

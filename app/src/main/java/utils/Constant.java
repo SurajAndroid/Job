@@ -75,6 +75,9 @@ public class Constant {
 	public static String GENDER="";
 	public static String USER_ID="";
 	public static String USER_IMAGE="";
+	public static String DOCUMENT="";
+	public static String RESUME="";
+
 
 	/*SOCIAL LOGIN*/
 	public static String FB_ID="";

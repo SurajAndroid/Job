@@ -398,6 +398,8 @@ public class MenuFragment extends Fragment implements RequestReceiver {
                     Intent intent = new Intent(getActivity(),SearchActivity.class);
                     startActivity(intent);
                     getActivity().finish();
+                }else {
+                    SearchActivity.closeMenu();
                 }
             }
         });
@@ -504,6 +506,8 @@ public class MenuFragment extends Fragment implements RequestReceiver {
                     Intent intent = new Intent(getActivity(),NotificationActivity.class);
                     startActivity(intent);
                     getActivity().finish();
+                }else {
+                    NotificationActivity.closeMenu();
                 }
 
             }

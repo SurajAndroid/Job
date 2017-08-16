@@ -196,6 +196,86 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                 break;
 
             case Constant.CONDIDATE_RAGISTRATION:
+                String[] regParm = new String[3];
+                httppost = new HttpPost(Constant.CONDIDATE_RAGISTRATION_URL);
+                Log.e("", "Constant.SIGNUP_URL : " + Constant.CONDIDATE_RAGISTRATION_URL);
+                try {
+                    MultipartEntity entity = new MultipartEntity();
+                    try {
+                        Log.e("", "ImagePathe : " + Constant.DOCUMENT);
+                        File file = new File(Constant.DOCUMENT);
+                        FileBody bin = new FileBody(file);
+                        entity.addPart("image", bin);
+                    } catch (Exception e) {
+                        Log.v("Exception in Image", "" + e);
+                    }
+
+                    entity.addPart("user_type", new StringBody(Constant.USER_TYPE));
+                    entity.addPart("device_token", new StringBody(Constant.TOKEN));
+                    entity.addPart("company_name", new StringBody(Constant.COMPANY_NAME));
+
+                    entity.addPart("name", new StringBody(Constant.NAME));
+                    entity.addPart("user_name", new StringBody(Constant.USER_NAME) );
+                    entity.addPart("email", new StringBody(Constant.EMAIL));
+                    entity.addPart("password", new StringBody(Constant.PASSWORD));
+                    entity.addPart("phone", new StringBody(Constant.PHONE_NUMBER));
+                    entity.addPart("gender", new StringBody(Constant.GENDER));
+                    entity.addPart("device_token", new StringBody(Constant.TOKEN));
+
+                    httppost.setEntity(entity);
+
+                    try {
+                        response1 = httpclient.execute(httppost);
+                        Log.d("myapp", "response " + response1.getEntity());
+                        Log.e("myapp", "response.. statau.." + response1.getStatusLine().getStatusCode());
+                    } catch (ClientProtocolException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    InputStream inputStream = response1.getEntity().getContent();
+                    InputStreamReader inputStreamReader = new InputStreamReader(
+                            inputStream);
+                    BufferedReader bufferedReader = new BufferedReader(
+                            inputStreamReader);
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String bufferedStrChunk = null;
+                    String encodeRes = "";
+                    JSONObject jsondata = null;
+                    JSONObject object = null;
+                    JSONObject jsonObject = null;
+                    while ((bufferedStrChunk = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(bufferedStrChunk);
+                        encodeRes = stringBuilder.toString();
+                     //                        break;
+                    }
+
+                    try {
+                        object = new JSONObject(encodeRes);
+                        Log.d("", "jsonObj responce... " + object);
+                        regParm[0] = object.getString("success");
+                        regParm[1] = object.getString("message");
+                        jsondata = object.getJSONObject("data");
+                        Constant.RESUME = jsondata.getString("resume");
+                        Constant.USER_ID = jsondata.getString("user_id");
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        regParm[0] = object.getString("success");
+                        regParm[1] = object.getString("message");
+                    }
+
+                    return regParm;
+
+                } catch (Exception e) {
+                    // TODO: handle exception
+                }
+
+                break;
+
+
+            /*case Constant.CONDIDATE_RAGISTRATION:
                 String[] signParm = new String[3];
                 httppost = new HttpPost(Constant.CONDIDATE_RAGISTRATION_URL);
                 try {
@@ -276,7 +356,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                     e.printStackTrace();
                 }
                 break;
-
+*/
             case Constant.LOGIN:
                 String[] login = new String[3];
                 httppost = new HttpPost(Constant.LOGIN_URL);
@@ -1409,6 +1489,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     candidateDTO.setUser_type(jsonObject.getString("user_type"));
                                     candidateDTO.setDesignation(jsonObject.getString("designation"));
                                     candidateDTO.setExperience(jsonObject.getString("experience"));
+                                    candidateDTO.setResume(jsonObject.getString("resume"));
 
                                     Global.candidatelist.add(candidateDTO);
                                 }
@@ -1505,6 +1586,8 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     candidateDTO.setUser_type(object1.getString("user_type"));
                                     candidateDTO.setDesignation(object1.getString("designation"));
                                     candidateDTO.setExperience(object1.getString("experience"));
+//                                    candidateDTO.setResume(object1.getString("resume"));
+
                                     Global.searchcandidatelist.add(candidateDTO);
                                 }
 

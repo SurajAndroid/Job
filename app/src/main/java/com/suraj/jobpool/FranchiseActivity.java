@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import utils.RequestReceiver;
+
 /**
  * Created by chauhan on 5/12/2017.
  */
 
-public class FranchiseActivity extends Activity {
+public class FranchiseActivity extends Activity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,4 +18,6 @@ public class FranchiseActivity extends Activity {
         setContentView(R.layout.franchise_activity);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
+
+
 }

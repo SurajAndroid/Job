@@ -51,7 +51,7 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
     EditText skillesediTxt, locationEdit;
     LinearLayout searchLayout, slidMenuLayout ;
     EmployeeSearchAdapter adapter;
-    SlidingMenu sm;
+    public  static SlidingMenu sm;
     RelativeLayout layout;
     RelativeLayout filterLayout, parentLayout;
     boolean doubleBackToExitPressedOnce = false;
@@ -62,7 +62,7 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
     Spinner spinner;
     String TAG;
     AutoCompleteTextView lookingJob;
-    String[] citys = {"Location", "Bangalore", "Bider","Delhi", "Kalaburagi","Hydrabad","Indore","Pune"};
+    String[] citys = {"Select City", "Bangalore", "Bider","Delhi","Hydrabad","Indore", "Kalaburagi","Pune"};
     String [] skilles = {"Android","PHP","Xamarin",".Net","iOS","Ionic","Angular JS","Node JS","ASP .Net","MVC","React Native"};
     SkillesDTO skillesDTO;
     ArrayList<SkillesDTO> list = new ArrayList<>();
@@ -131,6 +131,11 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         }else {
             getCandidatetopTenSerivice();
         }
+    }
+
+
+    public static void closeMenu(){
+        sm.toggle();
     }
 
     @Override

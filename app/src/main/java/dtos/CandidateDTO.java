@@ -14,10 +14,18 @@ public class CandidateDTO {
     }
 
     String name, phone, gender, location, experience, skill, strength,userName,designation,
-            expected_salary, address, prefered_location,objective, brief_description, email, user_type, UserImage,UserId;
+            expected_salary, address, prefered_location,objective, brief_description, email, user_type, UserImage,UserId,resume;
 
     public String getName() {
         return name;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
     }
 
     public String getUserName() {

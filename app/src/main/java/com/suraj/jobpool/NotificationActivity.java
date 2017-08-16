@@ -33,7 +33,7 @@ public class NotificationActivity extends SlidingFragmentActivity implements Req
     ListView notificationList;
     NotifictionAdapter adapter;
     RelativeLayout parentLayout;
-    SlidingMenu sm;
+    public static  SlidingMenu sm;
     LinearLayout slidMenuLayout;
     SharedPreferences sharedPreferences;
     @Override
@@ -66,6 +66,10 @@ public class NotificationActivity extends SlidingFragmentActivity implements Req
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
 
+    }
+
+    public static void closeMenu(){
+        sm.toggle();
     }
 
     public void notificationService() {

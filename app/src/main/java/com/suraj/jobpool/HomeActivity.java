@@ -87,7 +87,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
     RelativeLayout parentLayout;
     EditText skillesediTxt, locationEdit;
     Spinner spinner;
-    String[] citys = {"Select City", "Bangalore", "Bider","Delhi", "Kalaburagi","Hydrabad","Indore","Pune"};
+    String[] citys = {"Select City", "Bangalore", "Bider","Delhi","Hydrabad","Indore", "Kalaburagi","Pune"};
     String [] skilles = {"Android","PHP","Xamarin",".Net","iOS","Ionic","Angular JS","Node JS","ASP .Net","MVC","React Native"};
     SkillesDTO skillesDTO;
     ArrayList<SkillesDTO> list = new ArrayList<>();
@@ -172,6 +172,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
         sharedPreferences = this.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
 
         if(sharedPreferences.getString("status","").equals("1")){
+
             Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);

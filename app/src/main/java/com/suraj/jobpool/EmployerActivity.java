@@ -31,7 +31,7 @@ public class EmployerActivity extends AppCompatActivity implements RequestReceiv
     LinearLayout SubmiTLayout;
     ScrollView parentLayout;
     Spinner spinner;
-    String[] citys = {"Location", "Bangalore", "Bider","Delhi", "Kalaburagi","Hydrabad","Indore","Pune"};
+    String[] citys = {"Select City", "Bangalore", "Bider","Delhi","Hydrabad","Indore", "Kalaburagi","Pune"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,34 +111,34 @@ public class EmployerActivity extends AppCompatActivity implements RequestReceiv
                                             if(termsCondiationCheck.isChecked()){
                                                 callSerivice();
                                             }else {
-                                                Snackbar.make(parentLayout,"Select Term and Condition.!",Snackbar.LENGTH_SHORT).show();
+                                                Snackbar.make(parentLayout,"Select Term and Condition.",Snackbar.LENGTH_SHORT).show();
                                             }
                                         }else {
-                                            Snackbar.make(parentLayout,"Select Location.!",Snackbar.LENGTH_SHORT).show();
+                                            Snackbar.make(parentLayout,"Select Location.",Snackbar.LENGTH_SHORT).show();
                                         }
                                     }else {
-                                        Snackbar.make(parentLayout,"Enter Skills.!",Snackbar.LENGTH_SHORT).show();
+                                        Snackbar.make(parentLayout,"Enter Skills.",Snackbar.LENGTH_SHORT).show();
                                     }
                                 }else {
-                                    Snackbar.make(parentLayout,"Enter your Experience.!",Snackbar.LENGTH_SHORT).show();
+                                    Snackbar.make(parentLayout,"Enter your Experience.",Snackbar.LENGTH_SHORT).show();
                                 }
                             }else {
-                                Snackbar.make(parentLayout,"Enter current Requirment.!",Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(parentLayout,"Enter current Requirment.",Snackbar.LENGTH_SHORT).show();
                             }
                         }else {
-                            Snackbar.make(parentLayout,"Enter Password.!",Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(parentLayout,"Enter Password.",Snackbar.LENGTH_SHORT).show();
                         }
                     }else {
-                        Snackbar.make(parentLayout,"Enter Phone Number.!",Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(parentLayout,"Enter Phone Number.",Snackbar.LENGTH_SHORT).show();
                     }
                 }else {
-                    Snackbar.make(parentLayout,"Enter Email.!",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(parentLayout,"Enter Email.",Snackbar.LENGTH_SHORT).show();
                 }
             }else {
-                Snackbar.make(parentLayout,"Enter Contact Person Name.!",Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(parentLayout,"Enter Contact Person Name.",Snackbar.LENGTH_SHORT).show();
             }
         }else {
-            Snackbar.make(parentLayout,"Enter Company Name.!",Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(parentLayout,"Enter Company Name.",Snackbar.LENGTH_SHORT).show();
         }
     }
 
