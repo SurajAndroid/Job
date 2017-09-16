@@ -33,7 +33,7 @@ public class EditCandidateActivity extends Activity implements RequestReceiver {
     EditProfileActivity candidateActivity;
     SharedPreferences sharedPreferences;
     Spinner spinner;
-    String[] citys = {"Location", "Indore", "Gwalior", "Pune","Bombey","Noida","Bangluru","Hyderabad"};
+    String[] citys = {"Select City", "Bengaluru", "Bidar","Delhi","Hyderabad","Indore", "Kalaburagi","Pune"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

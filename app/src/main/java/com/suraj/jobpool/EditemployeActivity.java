@@ -36,7 +36,7 @@ public class EditemployeActivity extends AppCompatActivity implements RequestRec
     MenuFragment menuFragment;
     EditProfileActivity editProfileActivity;
     Spinner spinner;
-    String[] citys = {"Location", "Bangalore", "Bider","Delhi", "Kalaburagi","Hydrabad","Indore","Pune"};
+    String[] citys = {"Select City", "Bengaluru", "Bidar","Delhi","Hyderabad","Indore", "Kalaburagi","Pune"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +91,31 @@ public class EditemployeActivity extends AppCompatActivity implements RequestRec
             }
         });
 
+
+        /*if(current_requirementEditTxt.getText().length()!=0){
+            if(skillEditTxt.getText().length()!=0){
+                if(!Constant.LOCATION.equalsIgnoreCase("Location")){
+                    Constant.COMPANY_NAME =  nameCompanyEditTxt.getText().toString();
+                    Constant.CONTACTPERSON = contactPersonEditTxt.getText().toString();
+                    Constant.EMAIL = email_idEditTxt.getText().toString();
+                    Constant.PHONE_NUMBER = phoneEditTxt.getText().toString();
+                    Constant.CURRENT_REQUIRMENT = current_requirementEditTxt.getText().toString();
+                    Constant.EXPERIENCE = experienceEditTxt.getText().toString();
+                    Constant.SKILLES = skillEditTxt.getText().toString();
+                    Constant.JOBROLL = job_roleEditTxt.getText().toString();
+                    Constant.LOCATION = locationEditTxt.getText().toString();
+                    Constant.ADDRESS = addressEditTxt.getText().toString();
+                    callSerivice();
+                }else {
+                    Snackbar.make(parentLayout,"Select location.!",Snackbar.LENGTH_SHORT).show();
+                }
+            }else {
+                Snackbar.make(parentLayout,"Enter skilles.!",Snackbar.LENGTH_SHORT).show();
+            }
+        }else {
+            Snackbar.make(parentLayout,"Enter current requirement.!",Snackbar.LENGTH_SHORT).show();
+        }*/
+
         SubmiTLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,29 +125,11 @@ public class EditemployeActivity extends AppCompatActivity implements RequestRec
                         if(email_idEditTxt.getText().length()!=0){
                             if(Constant.emailValidation(email_idEditTxt.getText().toString())){
                                 if(phoneEditTxt.getText().length()>=10){
-                                    if(current_requirementEditTxt.getText().length()!=0){
-                                        if(skillEditTxt.getText().length()!=0){
-                                            if(!Constant.LOCATION.equalsIgnoreCase("Location")){
-                                                Constant.COMPANY_NAME =  nameCompanyEditTxt.getText().toString();
-                                                Constant.CONTACTPERSON = contactPersonEditTxt.getText().toString();
-                                                Constant.EMAIL = email_idEditTxt.getText().toString();
-                                                Constant.PHONE_NUMBER = phoneEditTxt.getText().toString();
-                                                Constant.CURRENT_REQUIRMENT = current_requirementEditTxt.getText().toString();
-                                                Constant.EXPERIENCE = experienceEditTxt.getText().toString();
-                                                Constant.SKILLES = skillEditTxt.getText().toString();
-                                                Constant.JOBROLL = job_roleEditTxt.getText().toString();
-                                                Constant.LOCATION = locationEditTxt.getText().toString();
-                                                Constant.ADDRESS = addressEditTxt.getText().toString();
-                                                callSerivice();
-                                            }else {
-                                                Snackbar.make(parentLayout,"Select location.!",Snackbar.LENGTH_SHORT).show();
-                                            }
-                                        }else {
-                                            Snackbar.make(parentLayout,"Enter skilles.!",Snackbar.LENGTH_SHORT).show();
-                                        }
-                                    }else {
-                                        Snackbar.make(parentLayout,"Enter current requirement.!",Snackbar.LENGTH_SHORT).show();
-                                    }
+                                    Constant.COMPANY_NAME =  nameCompanyEditTxt.getText().toString();
+                                    Constant.CONTACTPERSON = contactPersonEditTxt.getText().toString();
+                                    Constant.EMAIL = email_idEditTxt.getText().toString();
+                                    Constant.PHONE_NUMBER = phoneEditTxt.getText().toString();
+                                    callSerivice();
                                 }else {
                                     Snackbar.make(parentLayout,"Enter valid phone number.!",Snackbar.LENGTH_SHORT).show();
                                 }

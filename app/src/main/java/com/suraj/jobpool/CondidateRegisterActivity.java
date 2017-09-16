@@ -3,13 +3,9 @@ package com.suraj.jobpool;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -20,15 +16,18 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.util.StringTokenizer;
 
+import adapter.BranchAdapter;
+import adapter.JobRollAdapter;
 import utils.Constant;
+import utils.Global;
 import utils.PathUtils;
 import utils.RequestReceiver;
 import utils.WebserviceHelper;
@@ -40,16 +39,19 @@ import utils.WebserviceHelper;
 
 public class CondidateRegisterActivity extends Activity implements RequestReceiver {
 
-    EditText nameEditTxt, email_idEditTxt, passwordEditTxt, phoneEditTxt, jobrole, user_idEditTxt;
-    CheckBox checkbox_male, checkbox_female,termsCondiationCheck;
+    EditText nameEditTxt, email_idEditTxt, passwordEditTxt, phoneEditTxt;
+    Spinner spinnerBranch, spinnerJobRole, spinnerCity, spinnerGender;
+    RadioButton itiRadio, nonitiRadio;
+    CheckBox checkbox_male, checkbox_female, termsCondiationCheck;
     RelativeLayout parentLayout;
     LinearLayout registerNowLayout;
     RequestReceiver receiver;
-    TextView conditionTxt;
-    String[] citys = {"Select City", "Bangalore", "Bider","Delhi","Hydrabad","Indore", "Kalaburagi","Pune"};
-    Spinner spinner;
+    TextView conditionTxt, conditionTxtterms, conditionTxtPolicy;
+    String[] citys = {"Select City", "Bengaluru", "Bidar", "Delhi", "Hyderabad", "Indore", "Kalaburagi", "Pune"};
+    String[] gender = {"Gender", "Male", "Female"};
     LinearLayout uploadLayout;
-    TextView uploadTxt;
+    TextView uploadTxt, jobrolTxt, branchTxt;
+    int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,35 +62,66 @@ public class CondidateRegisterActivity extends Activity implements RequestReceiv
         clickListener();
     }
 
-    public  void init(){
+    public void init() {
 
         receiver = this;
         nameEditTxt = (EditText) findViewById(R.id.nameEditTxt);
-        user_idEditTxt  = (EditText) findViewById(R.id.user_idEditTxt);
-        email_idEditTxt  = (EditText) findViewById(R.id.email_idEditTxt);
-        passwordEditTxt  = (EditText) findViewById(R.id.passwordEditTxt);
-        phoneEditTxt  = (EditText) findViewById(R.id.phoneEditTxt);
+        email_idEditTxt = (EditText) findViewById(R.id.email_idEditTxt);
+        passwordEditTxt = (EditText) findViewById(R.id.passwordEditTxt);
+        phoneEditTxt = (EditText) findViewById(R.id.phoneEditTxt);
 
-        jobrole = (EditText)findViewById(R.id.jobrole);
+        checkbox_male = (CheckBox) findViewById(R.id.checkbox_male);
+        checkbox_female = (CheckBox) findViewById(R.id.checkbox_female);
+        termsCondiationCheck = (CheckBox) findViewById(R.id.termsCondiationCheck);
 
+//        conditionTxt = (TextView) findViewById(R.id.conditionTxt);
+        conditionTxtterms = (TextView) findViewById(R.id.conditionTxtterms);
+        conditionTxtPolicy = (TextView) findViewById(R.id.conditionTxtPolicy);
 
-        checkbox_male = (CheckBox)findViewById(R.id.checkbox_male);
-        checkbox_female = (CheckBox)findViewById(R.id.checkbox_female);
-        termsCondiationCheck = (CheckBox)findViewById(R.id.termsCondiationCheck);
-        conditionTxt = (TextView)findViewById(R.id.conditionTxt);
+        spinnerBranch = (Spinner) findViewById(R.id.spinnerBranch);
+        spinnerJobRole = (Spinner) findViewById(R.id.spinnerJobRole);
+        spinnerCity = (Spinner) findViewById(R.id.spinnerCity);
+        spinnerGender = (Spinner) findViewById(R.id.spinnerGender);
 
-        uploadTxt = (TextView)findViewById(R.id.uploadTxt);
+        itiRadio = (RadioButton) findViewById(R.id.itiRadio);
+        nonitiRadio = (RadioButton) findViewById(R.id.nonitiRadio);
 
-        registerNowLayout = (LinearLayout)findViewById(R.id.registerNowLayout);
-        uploadLayout =  (LinearLayout)findViewById(R.id.uploadLayout);
+        uploadTxt = (TextView) findViewById(R.id.uploadTxt);
+        jobrolTxt = (TextView) findViewById(R.id.jobrolTxt);
+        branchTxt = (TextView) findViewById(R.id.branchTxt);
+
+        registerNowLayout = (LinearLayout) findViewById(R.id.registerNowLayout);
+        uploadLayout = (LinearLayout) findViewById(R.id.uploadLayout);
         parentLayout = (RelativeLayout) findViewById(R.id.parentLayout);
-        conditionTxt.setText(Html.fromHtml("<p><u>TERMS AND CONDITIONS</u></p>").toString());
 
-        spinner = (Spinner)findViewById(R.id.spinner);
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, citys);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+        spinnerCity.setAdapter(dataAdapter);
+
+        ArrayAdapter<String> spinnergender = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, gender);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerGender.setAdapter(spinnergender);
+
+        conditionTxtterms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CondidateRegisterActivity.this, WebViewForTerms.class);
+                intent.putExtra("URL", "http://jobpool.in/terms");
+                startActivity(intent);
+//                new Intent(CondidateRegisterActivity.this, WebViewForTerms.class);
+            }
+        });
+        conditionTxtPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CondidateRegisterActivity.this, WebViewForTerms.class);
+                intent.putExtra("URL", "http://jobpool.in/policy");
+                startActivity(intent);
+//                new Intent(CondidateRegisterActivity.this, WebViewForTerms.class);
+            }
+        });
 
     }
 
@@ -104,16 +137,95 @@ public class CondidateRegisterActivity extends Activity implements RequestReceiv
                 Log.d("", "File : " + file.getName());
                 String uploadedFileName = file.getName().toString();
                 uploadTxt.setText(uploadedFileName);
-                PathUtils.getPath(getApplicationContext(),selectedFileURI);
+                PathUtils.getPath(getApplicationContext(), selectedFileURI);
 //                Toast.makeText(getApplicationContext(), ""+PathUtils.getPath(getApplicationContext(),selectedFileURI) , Toast.LENGTH_SHORT).show();
-                Constant.DOCUMENT = PathUtils.getPath(getApplicationContext(),selectedFileURI);
+                Constant.DOCUMENT = PathUtils.getPath(getApplicationContext(), selectedFileURI);
             }
         }
     }
 
 
+    public void clickListener() {
 
-    public void clickListener(){
+        spinnerBranch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Constant.SPECILIZATION = Global.getFilterList.get(position).getIndustry();
+                pos = position;
+
+                JobRollAdapter adapter = new JobRollAdapter(getApplicationContext(), Global.getFilterList.get(position).getJobRolllist());
+                spinnerJobRole.setAdapter(adapter);
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Constant.LOCATION = citys[position];
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
+        spinnerJobRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Constant.JOBROLL = Global.getFilterList.get(pos).getJobRolllist().get(position).getTitle().toString();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        spinnerGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Constant.GENDER = gender[position];
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        itiRadio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (itiRadio.isChecked()) {
+                    nonitiRadio.setChecked(false);
+                    jobrolTxt.setVisibility(View.GONE);
+                    branchTxt.setVisibility(View.GONE);
+                    ;
+                    Constant.JOB_TYPE = itiRadio.getText().toString();
+                    BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Global.getFilterList);
+                    spinnerBranch.setAdapter(adapter);
+                    spinnerBranch.setEnabled(true);
+                }
+            }
+        });
+
+        nonitiRadio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (nonitiRadio.isChecked()) {
+                    itiRadio.setChecked(false);
+                    jobrolTxt.setVisibility(View.GONE);
+                    branchTxt.setVisibility(View.GONE);
+                    ;
+                    Constant.JOB_TYPE = nonitiRadio.getText().toString();
+                    BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Global.getFilterList);
+                    spinnerBranch.setAdapter(adapter);
+                    spinnerBranch.setSelection(Global.getFilterList.size() - 1);
+                    spinnerBranch.setEnabled(false);
+                }
+            }
+        });
 
         uploadLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,26 +244,10 @@ public class CondidateRegisterActivity extends Activity implements RequestReceiv
             }
         });
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Constant.LOCATION = parent.getItemAtPosition(position).toString();
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-
-        });
-
-        conditionTxt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Coming Soon..!
-            }
-        });
-
         checkbox_male.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(checkbox_male.isChecked()){
+                if (checkbox_male.isChecked()) {
                     checkbox_female.setChecked(false);
                 }
             }
@@ -160,7 +256,7 @@ public class CondidateRegisterActivity extends Activity implements RequestReceiv
         checkbox_female.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(checkbox_female.isChecked()){
+                if (checkbox_female.isChecked()) {
                     checkbox_male.setChecked(false);
                 }
             }
@@ -182,67 +278,57 @@ public class CondidateRegisterActivity extends Activity implements RequestReceiv
         signup.execute();
     }
 
-
-    public  void validation(){
-        if(nameEditTxt.getText().length()!=0){
-            if(user_idEditTxt.getText().length()!=0){
-                if(email_idEditTxt.getText().length()!=0){
-                   if(passwordEditTxt.getText().length()!=0){
-                        if(phoneEditTxt.getText().length()!=0){
-                            if(jobrole.getText().length()!=0){
-                                if(checkbox_male.isChecked() || checkbox_female.isChecked()){
-                                    if(checkbox_male.isChecked()){
-                                        Constant.GENDER = "Male";
-                                    }else {
-                                        Constant.GENDER = "Female";
+    public void validation() {
+        if (nameEditTxt.getText().length() != 0) {
+            if (email_idEditTxt.getText().length() != 0) {
+                if (passwordEditTxt.getText().length() != 0) {
+                    if (phoneEditTxt.getText().length() != 0) {
+                        if (!Constant.JOB_TYPE.equals("")) {
+                            if (!Constant.LOCATION.equals("Select City")) {
+                                if (!Constant.GENDER.equalsIgnoreCase("Gender")) {
+                                    if (termsCondiationCheck.isChecked()) {
+                                        Constant.NAME = nameEditTxt.getText().toString();
+                                        Constant.EMAIL = email_idEditTxt.getText().toString();
+                                        Constant.PASSWORD = passwordEditTxt.getText().toString();
+                                        Constant.PHONE_NUMBER = phoneEditTxt.getText().toString();
+                                        callSerivice();
+                                    } else {
+                                        Snackbar.make(parentLayout, "Select terms & Condition.", Snackbar.LENGTH_SHORT).show();
                                     }
-                                    if(termsCondiationCheck.isChecked()){
-                                        if(!Constant.LOCATION.equals("Location")){
-                                            Constant.NAME = nameEditTxt.getText().toString();
-                                            Constant.USER_NAME = user_idEditTxt.getText().toString();
-                                            Constant.EMAIL = email_idEditTxt.getText().toString();
-                                            Constant.PASSWORD = passwordEditTxt.getText().toString();
-                                            Constant.PHONE_NUMBER = phoneEditTxt.getText().toString();
-                                            callSerivice();
-                                        }else {
-                                            Snackbar.make(parentLayout,"Select location",Snackbar.LENGTH_SHORT).show();
-                                        }
-                                    }else {
-                                        Snackbar.make(parentLayout,"Select terms & Condition.",Snackbar.LENGTH_SHORT).show();
-                                    }
-                                }else {
-                                    Snackbar.make(parentLayout,"Select Gender",Snackbar.LENGTH_SHORT).show();
+                                } else {
+                                    Snackbar.make(parentLayout, "Select Gender", Snackbar.LENGTH_SHORT).show();
                                 }
-                            }else {
-                                Snackbar.make(parentLayout,"Enter Job Role.",Snackbar.LENGTH_SHORT).show();
+                            } else {
+                                Snackbar.make(parentLayout, "Select location", Snackbar.LENGTH_SHORT).show();
                             }
-                        }else {
-                            Snackbar.make(parentLayout,"Enter Phone No",Snackbar.LENGTH_SHORT).show();
+                        } else {
+                            Snackbar.make(parentLayout, "Select Job Type", Snackbar.LENGTH_SHORT).show();
                         }
-                   }else {
-                       Snackbar.make(parentLayout,"Enter Password",Snackbar.LENGTH_SHORT).show();
-                   }
-                }else {
-                    Snackbar.make(parentLayout,"Enter Email",Snackbar.LENGTH_SHORT).show();
+                    } else {
+                        Snackbar.make(parentLayout, "Enter Phone No", Snackbar.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Snackbar.make(parentLayout, "Enter Password", Snackbar.LENGTH_SHORT).show();
                 }
-            }else {
-                Snackbar.make(parentLayout,"Enter UserId",Snackbar.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(parentLayout, "Enter Email", Snackbar.LENGTH_SHORT).show();
             }
-        }else {
-            Snackbar.make(parentLayout,"Enter Name",Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(parentLayout, "Enter Name", Snackbar.LENGTH_SHORT).show();
         }
     }
 
+
     @Override
     public void requestFinished(String[] result) throws Exception {
-        if(result[0].equals("1")){
+        if (result[0].equals("1")) {
 
             final Dialog dialog = new Dialog(CondidateRegisterActivity.this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.alertpopup);
             TextView massageTxtView = (TextView) dialog.findViewById(R.id.massageTxtView);
             massageTxtView.setText(result[1]);
-            LinearLayout submitLayout = (LinearLayout)dialog.findViewById(R.id.submitLayout);
+            LinearLayout submitLayout = (LinearLayout) dialog.findViewById(R.id.submitLayout);
             submitLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -253,8 +339,8 @@ public class CondidateRegisterActivity extends Activity implements RequestReceiv
                 }
             });
             dialog.show();
-        }else {
-            Snackbar.make(parentLayout,""+result[1],Snackbar.LENGTH_SHORT).show();
+        } else {
+            Snackbar.make(parentLayout, "" + result[1], Snackbar.LENGTH_SHORT).show();
         }
     }
 }

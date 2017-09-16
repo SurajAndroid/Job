@@ -102,7 +102,8 @@
         <utils.TextviewSemiBold
             android:textColor="#000000"
             android:textSize="@dimen/header_font"
-            android:text="SHOW INTEREST"
+            android:text="Candidate Resume"
+            android:textAllCaps="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView16"
@@ -337,7 +338,7 @@
 
                     <utils.TextviewFont
                         android:textColor="@color/iron"
-                        android:text="Skilles"
+                        android:text="Skills"
                         android:paddingLeft="10sp"
                         android:gravity="center_vertical"
                         android:layout_weight="0.5"

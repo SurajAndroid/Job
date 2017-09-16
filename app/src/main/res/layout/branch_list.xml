@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@null"
+        android:padding="10sp"
+
+        android:layout_width="match_parent"
+        android:layout_height="45sp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+
+        <utils.TextviewFont
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/medium_font"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/branchNameTxt"
+            android:layout_toLeftOf="@+id/checkBox2"
+            android:layout_toStartOf="@+id/checkBox2" />
+
+    </RelativeLayout>
+</RelativeLayout>

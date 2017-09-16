@@ -5,13 +5,14 @@
 
     <!--Sliding Menu-->
     <string name="profile_txt">Profile</string>
+    <string name="post_new_job_txt">Post a new-job</string>
     <string name="search_conidates_txt">Search Candidates</string>
     <string name="notification_txt">Notification</string>
     <string name="about_us_txt">About Us</string>
     <string name="change_password_txt">Change Password</string>
-    <string name="privacy_policy_txt">Privacy Policy</string>
-    <string name="payment_txt">Payment</string>
-    <string name="terms_conditions_txt">Terms &amp; Conditions</string>
+    <string name="privacy_policy_txt">Help</string>
+    <string name="payment_txt">Membership</string>
+    <string name="terms_conditions_txt">Interview Tips</string>
     <string name="logout_txt">Logout</string>
     <string-array name="selectAction">
         <item>Resend OTP</item>

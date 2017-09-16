@@ -1,438 +1,506 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/parentLayout"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="15sp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userImage"
+                android:layout_width="90sp"
+                android:layout_height="90sp"
+                android:src="@drawable/placeholder"
+                app:civ_border_color="@color/colorAccent"
+                app:civ_border_width="2sp" />
+
+            <utils.TextviewFont
+                android:id="@+id/userNameTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView3"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10sp"
+                android:text="CANDIDATE NAME"
+                android:textColor="@color/white_one" />
+
+            <utils.TextviewFont
+                android:id="@+id/userMemPackTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView3"
+                android:layout_centerHorizontal="true"
+                android:textSize="16sp"
+                android:textColor="@color/white_one" />
+
+            <utils.TextviewFont
+                android:id="@+id/userTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imageView3"
+                android:layout_centerHorizontal="true"
+                android:text="CANDIDATE"
+                android:visibility="gone"
+                android:textColor="@color/white_one"
+                android:textSize="10sp" />
+
+            <LinearLayout
+                android:id="@+id/selectLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/fillbaoundry"
+                android:gravity="center">
+
+                <utils.TextviewSemiBold
+                    android:id="@+id/selectedPackBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="upgrade"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/colorAccent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:padding="15sp"
+                android:id="@+id/approachLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_height="40sp"
+                android:background="#000000"
                 android:gravity="center"
-                android:id="@+id/relativeLayout">
+                android:orientation="horizontal">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="90sp"
-                    android:layout_height="90sp"
-                    android:src="@drawable/placeholder"
-                    android:id="@+id/userImage"
-                    app:civ_border_width="2sp"
-                    app:civ_border_color="@color/colorAccent"/>
-
-                <utils.TextviewFont
-                    android:textColor="@color/white_one"
-                    android:id="@+id/userNameTxt"
-                    android:layout_marginTop="10sp"
+                <utils.TextviewSemiBold
+                    android:id="@+id/resumeDownloadTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CANDIDATE NAME"
-                    android:layout_below="@+id/imageView3"
-                    android:layout_centerHorizontal="true" />
-
-                <utils.TextviewFont
-                    android:textSize="10sp"
-                    android:textColor="@color/white_one"
-                    android:id="@+id/userTxt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CANDIDATE"
-                    android:layout_below="@+id/imageView3"
-                    android:layout_centerHorizontal="true" />
-
-
+                    android:layout_marginLeft="10sp"
+                    android:text="Approach on profile 10"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
+
+            <LinearLayout
+
+                android:id="@+id/availableBidLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:background="#000000"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <utils.TextviewSemiBold
+                    android:id="@+id/profileViewTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="Available Bid 06/10"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
 
 
             <LinearLayout
-                android:background="@color/colorAccent"
-                android:orientation="vertical"
+                android:id="@+id/profileLayout"
                 android:layout_width="match_parent"
-                android:layout_height="479dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                >
+                android:layout_height="40sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:background="#000000"
-                    android:id="@+id/approachLayout"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40sp">
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/person_black" />
 
-                    <utils.TextviewSemiBold
-                        android:id="@+id/resumeDownloadTxt"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/large_font"
-                        android:layout_marginLeft="10sp"
-                        android:textColor="@color/colorAccent"
-                        android:text="Approach on profile 10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Fae731"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Baa307"/>
-
-                <LinearLayout
-
-                    android:background="#000000"
-                    android:id="@+id/availableBidLayout"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40sp">
-
-                    <utils.TextviewSemiBold
-                        android:textStyle="bold"
-                        android:textSize="@dimen/large_font"
-                        android:layout_marginLeft="10sp"
-                        android:textColor="@color/colorAccent"
-                        android:text="Available Bid 06/10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/profileViewTxt" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Fae731"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Baa307"/>
-
-
-                <LinearLayout
-                    android:id="@+id/profileLayout"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40sp">
-
-                    <ImageView
-                        android:layout_marginLeft="10sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/person_black"
-                        android:id="@+id/imageView5"
-                        />
-
-                    <utils.TextviewSemiBold
-                        android:textStyle="bold"
-                        android:textSize="@dimen/large_font"
-                        android:layout_marginLeft="10sp"
-                        android:textColor="#000000"
-                        android:text="@string/profile_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView6"
-                        />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Fae731"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Baa307"/>
-
-
-                <LinearLayout
-                    android:id="@+id/searchLayout"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40sp">
-
-                    <ImageView
-                        android:layout_marginLeft="10sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/search"
-                        />
-
-                    <utils.TextviewSemiBold
-                        android:textStyle="bold"
-                        android:textSize="@dimen/large_font"
-                        android:layout_marginLeft="10sp"
-                        android:textColor="#000000"
-                        android:text="@string/search_conidates_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/searchCandidate" />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Fae731"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Baa307"/>
-
-
-                <LinearLayout
-                    android:id="@+id/paymentLayout"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40sp">
-
-                    <ImageView
-                        android:layout_marginLeft="10sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/wallet_ic"
-                        />
-
-                    <utils.TextviewSemiBold
-                        android:textStyle="bold"
-                        android:textSize="@dimen/large_font"
-                        android:layout_marginLeft="10sp"
-                        android:textColor="#000000"
-                        android:text="@string/payment_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView21" />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Fae731"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Baa307"/>
-
-
-                <LinearLayout
-                    android:id="@+id/notificationLayout"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40sp">
-
-                    <ImageView
-                        android:layout_marginLeft="10sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/notifications"
-                        />
-
-                    <utils.TextviewSemiBold
-                        android:textStyle="bold"
-                        android:textSize="@dimen/large_font"
-                        android:layout_marginLeft="10sp"
-                        android:textColor="#000000"
-                        android:text="@string/notification_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Fae731"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Baa307"/>
-
-
-                <LinearLayout
-                    android:id="@+id/aboutusLayout"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40sp">
-
-                    <ImageView
-                        android:layout_marginLeft="10sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/about_us"
-                        />
-
-                    <utils.TextviewSemiBold
-                        android:textStyle="bold"
-                        android:textSize="@dimen/large_font"
-                        android:layout_marginLeft="10sp"
-                        android:textColor="#000000"
-                        android:text="@string/about_us_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Fae731"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Baa307"/>
-
-
-                <LinearLayout
-                    android:id="@+id/change_passwordLayout"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40sp">
-
-                    <ImageView
-                        android:layout_marginLeft="10sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/password"
-                        />
-
-                    <utils.TextviewSemiBold
-                        android:textStyle="bold"
-                        android:textSize="@dimen/large_font"
-                        android:layout_marginLeft="10sp"
-                        android:textColor="#000000"
-                        android:text="@string/change_password_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Fae731"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Baa307"/>
-
-
-                <LinearLayout
-                    android:id="@+id/privacyPolicyLayout"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40sp">
-
-                    <ImageView
-                        android:layout_marginLeft="10sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/assignment"
-                        />
-
-                    <utils.TextviewSemiBold
-                        android:textStyle="bold"
-                        android:textSize="@dimen/large_font"
-                        android:layout_marginLeft="10sp"
-                        android:textColor="#000000"
-                        android:text="@string/privacy_policy_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Fae731"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Baa307"/>
-
-
-                <LinearLayout
-                    android:id="@+id/termsLayout"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40sp">
-
-                    <ImageView
-                        android:layout_marginLeft="10sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/terms"
-                        />
-
-                    <utils.TextviewSemiBold
-                        android:textStyle="bold"
-                        android:textSize="@dimen/large_font"
-                        android:layout_marginLeft="10sp"
-                        android:textColor="#000000"
-                        android:text="@string/terms_conditions_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Fae731"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Baa307"/>
-
-
-                <LinearLayout
-                    android:layout_marginBottom="120sp"
-                    android:id="@+id/logoutLayout"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="40sp">
-
-                    <ImageView
-                        android:layout_marginLeft="10sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/logout"
-                        />
-
-                    <utils.TextviewSemiBold
-                        android:textStyle="bold"
-                        android:textSize="@dimen/large_font"
-                        android:layout_marginLeft="10sp"
-                        android:textColor="#000000"
-                        android:text="@string/logout_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        />
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Fae731"/>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5sp"
-                    android:background="#Baa307"/>
->
+                <utils.TextviewSemiBold
+                    android:id="@+id/profileText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="@string/profile_txt"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
             </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
+
+
+            <LinearLayout
+                android:id="@+id/postLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/person_black"
+
+                    />
+
+                <utils.TextviewSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="@string/post_new_job_txt"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold"
+
+                    />
+            </LinearLayout>
+
+
+            <View
+                android:id="@+id/postview1"
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <View
+                android:id="@+id/postview2"
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
+
+            <LinearLayout
+                android:id="@+id/searchLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/search" />
+
+                <utils.TextviewSemiBold
+                    android:id="@+id/searchCandidate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="@string/search_conidates_txt"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
+
+
+            <LinearLayout
+                android:id="@+id/paymentLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/wallet_ic" />
+
+                <utils.TextviewSemiBold
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="@string/payment_txt"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
+
+
+            <LinearLayout
+                android:id="@+id/notificationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/notifications" />
+
+                <utils.TextviewSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="@string/notification_txt"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
+
+
+            <LinearLayout
+                android:id="@+id/aboutusLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/about_us" />
+
+                <utils.TextviewSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="@string/about_us_txt"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
+
+
+            <LinearLayout
+                android:id="@+id/change_passwordLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/password" />
+
+                <utils.TextviewSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="@string/change_password_txt"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
+
+
+            <LinearLayout
+                android:id="@+id/privacyPolicyLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/assignment" />
+
+                <utils.TextviewSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="@string/privacy_policy_txt"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
+
+
+            <LinearLayout
+                android:id="@+id/termsLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/terms" />
+
+                <utils.TextviewSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="@string/terms_conditions_txt"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <LinearLayout
+                android:id="@+id/logoutLayout"
+                android:layout_width="match_parent"
+                android:layout_height="40sp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:src="@drawable/logout" />
+
+                <utils.TextviewSemiBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10sp"
+                    android:text="@string/logout_txt"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Fae731" />
+
+            <View
+
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="#Baa307" />
+            >
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
+</ScrollView>
 

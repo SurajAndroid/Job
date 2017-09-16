@@ -5,6 +5,7 @@ package dtos;
  */
 
 public class CandidateDTO {
+
     public String getDesignation() {
         return designation;
     }

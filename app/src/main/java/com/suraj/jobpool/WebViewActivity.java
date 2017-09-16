@@ -96,6 +96,7 @@ public class WebViewActivity extends ActionBarActivity implements  Communicator 
                 vEncVal.append(ServiceUtility.addToPostParams(AvenuesParams.EXPIRY_MONTH, mainIntent.getStringExtra(AvenuesParams.EXPIRY_MONTH)));
 
                 encVal = RSAUtility.encrypt(vEncVal.substring(0, vEncVal.length() - 1), vResponse);
+
             }
 
             return null;

@@ -43,7 +43,7 @@ public class CandidateSearchAdapter extends BaseAdapter {
         this.activity = activity;
         this.candidateList = candidateList;
         this.TAG = TAG;
-        sharedPreferences = context.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);;
+        sharedPreferences = context.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
     }
 
     @Override
@@ -80,7 +80,8 @@ public class CandidateSearchAdapter extends BaseAdapter {
           convertView = layoutInflater.inflate(R.layout.searchlist_infilater,null);
           holder.showInterestLayout = (LinearLayout)convertView.findViewById(R.id.showInterestLayout);
           holder.contactLayout = (LinearLayout)convertView.findViewById(R.id.contactLayout);
-          holder.skillesTxt = (TextView)convertView.findViewById(R.id.skillesTxt);
+          holder.itiNonIti = (TextView)convertView.findViewById(R.id.itiNonIti);
+          holder.specialization = (TextView)convertView.findViewById(R.id.specialization);
           holder.locationTxt = (TextView)convertView.findViewById(R.id.locationTxt);
           holder.expTxt = (TextView)convertView.findViewById(R.id.expTxt);
           holder.candidateName = (TextView)convertView.findViewById(R.id.candidateName);
@@ -92,10 +93,13 @@ public class CandidateSearchAdapter extends BaseAdapter {
 
         holder.candidateName.setText(candidateList.get(position).getName());
         if(!candidateList.get(position).getSkill().equals("null")){
-            holder.skillesTxt.setText(candidateList.get(position).getSkill());
+            holder.itiNonIti.setText(candidateList.get(position).getSkill());
         }else {
-            holder.skillesTxt.setText("");
+            holder.itiNonIti.setText("fgfgfh");
         }
+      /*  holder.itiNonIti.setText("ITI");
+        holder.specialization.setText("Android Developer");
+        holder.expTxt.setText("2 year");*/
         if(candidateList.get(position).getExperience().equals("null")){
             holder.expTxt.setText("");
         }else {
@@ -200,7 +204,7 @@ public class CandidateSearchAdapter extends BaseAdapter {
     }
 
     class ViewHolder{
-        TextView skillesTxt, locationTxt, expTxt,candidateName;
+        TextView itiNonIti,specialization, locationTxt, expTxt,candidateName;
         LinearLayout showInterestLayout, contactLayout;
     }
 }

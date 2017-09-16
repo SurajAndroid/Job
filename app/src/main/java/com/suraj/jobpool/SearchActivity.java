@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,7 +15,6 @@ import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -25,7 +23,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -49,9 +46,9 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
 
     ListView searchListView;
     EditText skillesediTxt, locationEdit;
-    LinearLayout searchLayout, slidMenuLayout ;
+    LinearLayout searchLayout, slidMenuLayout;
     EmployeeSearchAdapter adapter;
-    public  static SlidingMenu sm;
+    public static SlidingMenu sm;
     RelativeLayout layout;
     RelativeLayout filterLayout, parentLayout;
     boolean doubleBackToExitPressedOnce = false;
@@ -59,24 +56,28 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
     RequestReceiver receiver;
     EmployeeSearchAdapter employeeSearchAdapter;
     CandidateSearchAdapter candidateSearchAdapter;
-    Spinner spinner;
+    Spinner spinner, spinnerJobroll;
     String TAG;
     AutoCompleteTextView lookingJob;
-    String[] citys = {"Select City", "Bangalore", "Bider","Delhi","Hydrabad","Indore", "Kalaburagi","Pune"};
-    String [] skilles = {"Android","PHP","Xamarin",".Net","iOS","Ionic","Angular JS","Node JS","ASP .Net","MVC","React Native"};
+    String[] citys = {"Select City", "Bengaluru", "Bidar", "Delhi", "Hyderabad", "Indore", "Kalaburagi", "Pune"};
+    String[] skilles = {"Android", "PHP", "Xamarin", ".Net", "iOS", "Ionic", "Angular JS", "Node JS", "ASP .Net", "MVC", "React Native"};
     SkillesDTO skillesDTO;
     ArrayList<SkillesDTO> list = new ArrayList<>();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_activity);
 
         init();
+
+        showPopup();
+
         clickListener();
 
 
-        for(int i=0;i<skilles.length;i++){
-            skillesDTO = new SkillesDTO( skilles[i],false);
+        for (int i = 0; i < skilles.length; i++) {
+            skillesDTO = new SkillesDTO(skilles[i], false);
             list.add(skillesDTO);
         }
 
@@ -90,19 +91,19 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         sm.setSlidingEnabled(false);
     }
 
-    public void init(){
+    public void init() {
 
         TAG = SearchActivity.class.getSimpleName();
-        try{
+        try {
             getWindow().getDecorView()
                     .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         sharedPreferences = this.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
         receiver = this;
-        layout = (RelativeLayout)findViewById(R.id.layout);
+        layout = (RelativeLayout) findViewById(R.id.layout);
 
 
         searchLayout = (LinearLayout) findViewById(R.id.searchLayout);
@@ -111,30 +112,33 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         locationEdit = (EditText) findViewById(R.id.locationEdit);
         searchListView = (ListView) findViewById(R.id.searchListView);
 
-        filterLayout = (RelativeLayout)findViewById(R.id.filterLayout);
-        parentLayout = (RelativeLayout)findViewById(R.id.parentLayout);
-        lookingJob = (AutoCompleteTextView)findViewById(R.id.lookingJob);
+        filterLayout = (RelativeLayout) findViewById(R.id.filterLayout);
+        parentLayout = (RelativeLayout) findViewById(R.id.parentLayout);
+        lookingJob = (AutoCompleteTextView) findViewById(R.id.lookingJob);
 
-        spinner = (Spinner)findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        spinnerJobroll = (Spinner) findViewById(R.id.spinnerJobroll);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this,android.R.layout.simple_list_item_1,skilles);
+                (this, android.R.layout.simple_list_item_1, skilles);
         lookingJob.setAdapter(adapter);
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, citys);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
-        Constant.EMAIL = sharedPreferences.getString("email","");
-        if(sharedPreferences.getString("user_type","").equals("candidate")){
+        Constant.EMAIL = sharedPreferences.getString("email", "");
+        if (sharedPreferences.getString("user_type", "").equals("candidate")) {
             getEmployeeTopTenSerivice();
-        }else {
+        } else {
             getCandidatetopTenSerivice();
         }
+
+
     }
 
 
-    public static void closeMenu(){
+    public static void closeMenu() {
         sm.toggle();
     }
 
@@ -147,12 +151,12 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
 
         this.doubleBackToExitPressedOnce = true;
 //        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-        Snackbar.make(parentLayout,"Please click BACK again to exit.!", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(parentLayout, "Please click BACK again to exit.!", Snackbar.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }
@@ -181,7 +185,13 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         toggle();
     }
 
-    public void clickListener(){
+    public void GetJobRollSerivice() {
+        WebserviceHelper employer = new WebserviceHelper(receiver, SearchActivity.this);
+        employer.setAction(Constant.GET_JOB_LIST);
+        employer.execute();
+    }
+
+    public void clickListener() {
 
 
         lookingJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -197,10 +207,10 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
                 dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog1.setContentView(R.layout.skilles_dialog);
                 dialog1.show();
-                ListView myListView = (ListView)dialog1.findViewById(R.id.myListView);
-                LinearLayout SubmiTLayout= (LinearLayout)dialog1.findViewById(R.id.SubmiTLayout);
-                final EditText editText2 = (EditText)dialog1.findViewById(R.id.editText2);
-                final SkillesAdapter skillesAdapter  = new SkillesAdapter(SearchActivity.this,list);
+                ListView myListView = (ListView) dialog1.findViewById(R.id.myListView);
+                LinearLayout SubmiTLayout = (LinearLayout) dialog1.findViewById(R.id.SubmiTLayout);
+                final EditText editText2 = (EditText) dialog1.findViewById(R.id.editText2);
+                final SkillesAdapter skillesAdapter = new SkillesAdapter(SearchActivity.this, list);
                 myListView.setAdapter(skillesAdapter);
                 Constant.setListViewHeightBasedOnChildren(myListView);
                 editText2.addTextChangedListener(new TextWatcher() {
@@ -230,9 +240,9 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
                         StringBuilder builder = new StringBuilder();
                         dialog1.dismiss();
 //                        Toast.makeText(getApplicationContext(),"Liat Size "+ Global.skilleslist.size(),Toast.LENGTH_SHORT).show();
-                        for(int i=0;i<Global.skilleslist.size();i++){
+                        for (int i = 0; i < Global.skilleslist.size(); i++) {
                             builder.append(Global.skilleslist.get(i));
-                            if(i!=Global.skilleslist.size()-1){
+                            if (i != Global.skilleslist.size() - 1) {
                                 builder.append(", ");
                             }
                         }
@@ -242,11 +252,21 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
             }
         });
 
+        spinnerJobroll.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Constant.SKILLES = parent.getItemAtPosition(position).toString();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Constant.LOCATION = parent.getItemAtPosition(position).toString();
             }
+
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
@@ -254,7 +274,7 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         filterLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SearchActivity.this,FilterActivity.class);
+                Intent intent = new Intent(SearchActivity.this, FilterActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_up, R.anim.stay);
             }
@@ -273,18 +293,18 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
 
                /* InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);*/
-                if( Constant.SKILLES.length()!=0){
-                    if(!Constant.LOCATION .equalsIgnoreCase("Location")){
-                          if(sharedPreferences.getString("user_type","").equals("candidate")){
-                          companySearchApiSerivice();
-                        }else {
+                if (!Constant.SKILLES.equals("Select JobRoll")) {
+                    if (!Constant.LOCATION.equalsIgnoreCase("Location")) {
+                        if (sharedPreferences.getString("user_type", "").equals("candidate")) {
+                            companySearchApiSerivice();
+                        } else {
                             searchApiSerivice();
                         }
-                    }else {
-                        Snackbar.make(parentLayout,"Please enter location.!",Snackbar.LENGTH_SHORT).show();
+                    } else {
+                        Snackbar.make(parentLayout, "Please select location", Snackbar.LENGTH_SHORT).show();
                     }
-                }else {
-                    Snackbar.make(parentLayout,"Please enter skilles",Snackbar.LENGTH_SHORT).show();
+                } else {
+                    Snackbar.make(parentLayout, "Please select  Job Role", Snackbar.LENGTH_SHORT).show();
                 }
             }
         });
@@ -315,21 +335,50 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         Companysearch.execute();
     }
 
+    public void showPopup() {
+        final Dialog dialog = new Dialog(SearchActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.membership_renavel_popup);
+        dialog.show();
+        LinearLayout cancelLayout = (LinearLayout) dialog.findViewById(R.id.cancelLayout);
+        LinearLayout okayLayout = (LinearLayout) dialog.findViewById(R.id.okayLayout);
+        cancelLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        okayLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchActivity.this, SelectPackageActivity.class);
+                startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+    }
+
     @Override
     public void requestFinished(String[] result) throws Exception {
-            if(result[0].equals("01")){
-                if(sharedPreferences.getString("user_type","").equals("candidate")){
-                    employeeSearchAdapter = new EmployeeSearchAdapter(SearchActivity.this,SearchActivity.this, Global.companylist);
-                    searchListView.setAdapter(employeeSearchAdapter);
-                }else {
-                    candidateSearchAdapter = new CandidateSearchAdapter(SearchActivity.this,SearchActivity.this, Global.candidatelist,TAG);
-                    searchListView.setAdapter(candidateSearchAdapter);
-                }
-            }else if(result[0].equals("0001")){
-                        Intent intent = new Intent(SearchActivity.this, AllListActivity.class);
-                        startActivity(intent);
-            }else {
-                Snackbar.make(parentLayout,""+result[1],Snackbar.LENGTH_SHORT).show();
+        if (result[0].equals("01")) {
+            if (sharedPreferences.getString("user_type", "").equals("candidate")) {
+                employeeSearchAdapter = new EmployeeSearchAdapter(SearchActivity.this, SearchActivity.this, Global.companylist);
+                searchListView.setAdapter(employeeSearchAdapter);
+                GetJobRollSerivice();
+            } else {
+                candidateSearchAdapter = new CandidateSearchAdapter(SearchActivity.this, SearchActivity.this, Global.candidatelist, TAG);
+                searchListView.setAdapter(candidateSearchAdapter);
+                GetJobRollSerivice();
             }
+        } else if (result[0].equals("0001")) {
+            Intent intent = new Intent(SearchActivity.this, AllListActivity.class);
+            startActivity(intent);
+        } else if (result[0].equals("701")) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                    (this, android.R.layout.simple_list_item_1, Global.jobroll_List);
+            spinnerJobroll.setAdapter(adapter);
+        } else {
+            Snackbar.make(parentLayout, "" + result[1], Snackbar.LENGTH_SHORT).show();
+        }
     }
 }

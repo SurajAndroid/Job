@@ -2,13 +2,19 @@ package com.suraj.jobpool;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.paypal.android.sdk.payments.PayPalConfiguration;
@@ -21,8 +27,13 @@ import org.json.JSONException;
 
 import java.math.BigDecimal;
 
+import adapter.MembershipAdapter;
+import listners.CustomButtonListener;
 import paypal.PayPalConfig;
 import utils.Constant;
+import utils.Global;
+import utils.RequestReceiver;
+import utils.WebserviceHelper;
 
 import static com.suraj.jobpool.CandidatepackageActivity.PAYPAL_REQUEST_CODE;
 
@@ -30,14 +41,19 @@ import static com.suraj.jobpool.CandidatepackageActivity.PAYPAL_REQUEST_CODE;
  * Created by chauhan on 5/28/2017.
  */
 
-public class SelectPackageActivity extends Activity {
+public class SelectPackageActivity extends Activity implements RequestReceiver, CustomButtonListener {
 
     private static PayPalConfiguration config = new PayPalConfiguration()
             .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
             .clientId(PayPalConfig.PAYPAL_CLIENT_ID);
-    LinearLayout ThertyCondidatelayout,TwentyCondidatelayout, TenCondidatelayout;
+    LinearLayout ThertyCondidatelayout, TwentyCondidatelayout, TenCondidatelayout;
     private String paymentAmount;
     TextView fifityTxt, thertyTxt, tenTxt, theredTxt, secondTxt, firstTxt;
+    ListView listViewMemberShip;
+    RequestReceiver receiver;
+    ImageView membershipBtnBack;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,26 +61,48 @@ public class SelectPackageActivity extends Activity {
         setContentView(R.layout.activity_employerpackage);
 
         init();
-        clickListenr();
+
+        receiver = this;
+
+        getALLMemberShipSerivice();
+
+//        clickListenr();
     }
 
-    public void init(){
+    private void getALLMemberShipSerivice() {
+        WebserviceHelper employer = new WebserviceHelper(receiver, SelectPackageActivity.this);
+        employer.setAction(Constant.GET_PACK_LIST);
+        employer.execute();
+    }
+
+    public void callSerivice() {
+        WebserviceHelper employer = new WebserviceHelper(receiver, SelectPackageActivity.this);
+        employer.setAction(Constant.SELECT_PACK);
+        employer.execute();
+    }
+
+    public void init() {
         Typeface tf = Typeface.createFromAsset(getAssets(),
                 "font/Roboto-Black.ttf");
 
         Typeface ttf = Typeface.createFromAsset(getAssets(),
                 "font/Roboto-Italic.ttf");
-        ThertyCondidatelayout = (LinearLayout)findViewById(R.id.ThertyCondidatelayout);
-        TwentyCondidatelayout = (LinearLayout)findViewById(R.id.TwentyCondidatelayout);
-        TenCondidatelayout = (LinearLayout)findViewById(R.id.TenCondidatelayout);
 
-        fifityTxt = (TextView)findViewById(R.id.fifityTxt);
-        thertyTxt = (TextView)findViewById(R.id.thertyTxt);
-        tenTxt = (TextView)findViewById(R.id.tenTxt);
+        listViewMemberShip = (ListView) findViewById(R.id.listViewMemberShip);
 
-        theredTxt  = (TextView)findViewById(R.id.theredTxt);
-        secondTxt  = (TextView)findViewById(R.id.secondTxt);
-        firstTxt  = (TextView)findViewById(R.id.firstTxt);
+        membershipBtnBack = (ImageView) findViewById(R.id.membershipBtnBack);
+
+        ThertyCondidatelayout = (LinearLayout) findViewById(R.id.ThertyCondidatelayout);
+        TwentyCondidatelayout = (LinearLayout) findViewById(R.id.TwentyCondidatelayout);
+        TenCondidatelayout = (LinearLayout) findViewById(R.id.TenCondidatelayout);
+
+        fifityTxt = (TextView) findViewById(R.id.fifityTxt);
+        thertyTxt = (TextView) findViewById(R.id.thertyTxt);
+        tenTxt = (TextView) findViewById(R.id.tenTxt);
+
+        theredTxt = (TextView) findViewById(R.id.theredTxt);
+        secondTxt = (TextView) findViewById(R.id.secondTxt);
+        firstTxt = (TextView) findViewById(R.id.firstTxt);
 
         fifityTxt.setTypeface(tf);
         thertyTxt.setTypeface(tf);
@@ -76,9 +114,16 @@ public class SelectPackageActivity extends Activity {
         Intent intent = new Intent(this, PayPalService.class);
         intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
         startService(intent);
+
+        membershipBtnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
-    public void clickListenr(){
+    public void clickListenr() {
 
         ThertyCondidatelayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +194,7 @@ public class SelectPackageActivity extends Activity {
                         dialog.show();
                         TextView massageTxtView = (TextView) dialog.findViewById(R.id.massageTxtView);
                         massageTxtView.setText("Payment Done.!");
-                        LinearLayout submitLayout = (LinearLayout)dialog.findViewById(R.id.submitLayout);
+                        LinearLayout submitLayout = (LinearLayout) dialog.findViewById(R.id.submitLayout);
                         submitLayout.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -165,6 +210,46 @@ public class SelectPackageActivity extends Activity {
             } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
                 Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
             }
+        }
+    }
+
+    @Override
+    public void requestFinished(String[] result) throws Exception {
+        if (result[0].equals("001")) {
+
+            Snackbar.make(listViewMemberShip, result[1], Snackbar.LENGTH_SHORT).show();
+
+            /*SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("selected_pack", Constant.SELECTED_PACK);
+            editor.commit();*/
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Log.e("Sohel ", "working ..  .. ");
+                    Intent intent = new Intent(SelectPackageActivity.this, SearchActivity.class);
+                    startActivity(intent);
+                }
+            }, 1000);
+        } else {
+            if (result[0].equals("01")) {
+                MembershipAdapter membershipAdapter = new MembershipAdapter(SelectPackageActivity.this, SelectPackageActivity.this, Global.membershipPack_List);
+                listViewMemberShip.setAdapter(membershipAdapter);
+                membershipAdapter.setCustomListener(SelectPackageActivity.this);
+            } else {
+                Snackbar.make(listViewMemberShip, result[1], Snackbar.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    public void onButtonClick(int position, String buttonText) {
+        if (buttonText.equalsIgnoreCase("btn_click")) {
+//            Snackbar.make(listViewMemberShip, "Coming soon...", Snackbar.LENGTH_SHORT).show();
+            Constant.SELECTED_PACK = Global.membershipPack_List.get(position).getPackage_name();
+            SharedPreferences sharedPreferences = getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
+            Constant.USER_ID = sharedPreferences.getString("user_id", "");
+            callSerivice();
         }
     }
 }

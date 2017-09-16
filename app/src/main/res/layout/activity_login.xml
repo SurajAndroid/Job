@@ -1,69 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:id="@+id/parentLayout"
-  >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:padding="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
+            android:padding="20sp">
 
             <ImageView
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="50sp"
-                android:src="@drawable/logo"/>
+                android:layout_gravity="center"
+                android:src="@drawable/logo" />
 
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
-                android:textColorHint="#ffffff"
-                android:layout_marginBottom="8dp"
-                >
+                android:textColorHint="#ffffff">
 
                 <EditText
                     android:id="@+id/input_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="EMAIL"
                     android:inputType="text"
-                    android:textSize="18sp"
-                    android:hint="EMAIL" />
+                    android:textSize="18sp" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:textColorHint="#ffffff"
                 android:layout_height="wrap_content"
-                >
+                android:textColorHint="#ffffff">
 
                 <EditText
-                    android:paddingBottom="10sp"
-                    android:layout_marginBottom="5sp"
                     android:id="@+id/input_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:hint="PASSWORD"
                     android:inputType="textPassword"
-                    android:textSize="18sp"
-                    android:hint="PASSWORD"/>
+                    android:paddingBottom="10sp"
+                    android:textSize="18sp" />
             </android.support.design.widget.TextInputLayout>
 
 
@@ -76,45 +73,45 @@
                 >
 
                 <CheckBox
-                    android:textSize="@dimen/medium_font"
-                    android:buttonTint="@color/colorAccent"
-                    android:text="Remember Me"
                     android:id="@+id/rememberCheck"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorAccent"
+                    android:text="Remember Me"
+                    android:textSize="@dimen/medium_font" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/loginLayout"
+                android:layout_width="200sp"
+                android:layout_height="40sp"
                 android:layout_marginTop="15sp"
                 android:background="@drawable/fillbaoundry"
                 android:gravity="center"
-                android:layout_width="200sp"
-                android:layout_height="40sp"
                 android:orientation="vertical">
 
                 <utils.TextviewSemiBold
-                    android:textSize="@dimen/large_font"
-                    android:textStyle="bold"
-                    android:textColor="#000000"
+                    android:id="@+id/textView7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="LOGIN NOW!"
-                    android:id="@+id/textView7" />
+                    android:text="LOGIN NOW"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/large_font"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
 
             <TextView
 
-                android:layout_marginTop="20sp"
-                android:textAlignment="center"
                 android:id="@+id/forgotPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="20sp"
                 android:text="Forgot Password"
+                android:textAlignment="center"
                 android:textSize="@dimen/small_font"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -122,16 +119,15 @@
             android:id="@+id/registerTxtView"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:text="REGISTER NOW!"
-            android:gravity="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="@dimen/header_font"
-            android:layout_gravity="center"
-            android:background="@color/colorAccent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-        </utils.TextviewSemiBold>
+            android:layout_alignParentStart="true"
+            android:layout_gravity="center"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="REGISTER NOW!"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/header_font"></utils.TextviewSemiBold>
 
     </RelativeLayout>
 

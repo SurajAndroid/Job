@@ -14,14 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.suraj.jobpool.R;
 
 import java.util.ArrayList;
 
 import dtos.CompanyDTO;
-
-import static utils.Global.candidatelist;
 
 /**
  * Created by Suraj shakya on 11/8/16.
@@ -74,7 +71,8 @@ public class EmployeeSearchAdapter extends BaseAdapter {
           convertView = layoutInflater.inflate(R.layout.searchlist_infilater,null);
           holder.showInterestLayout = (LinearLayout)convertView.findViewById(R.id.showInterestLayout);
           holder.contactLayout = (LinearLayout)convertView.findViewById(R.id.contactLayout);
-          holder.skillesTxt = (TextView)convertView.findViewById(R.id.skillesTxt);
+          holder.itiNonIti = (TextView)convertView.findViewById(R.id.itiNonIti);
+          holder.specialization = (TextView)convertView.findViewById(R.id.specialization);
           holder.locationTxt = (TextView)convertView.findViewById(R.id.locationTxt);
           holder.expTxt = (TextView)convertView.findViewById(R.id.expTxt);
           holder.applyTxt = (TextView)convertView.findViewById(R.id.applyTxt);
@@ -89,9 +87,9 @@ public class EmployeeSearchAdapter extends BaseAdapter {
         holder.showInterestLayout.setVisibility(View.GONE);
         holder.candidateName.setText(companylist.get(position).getCompany_name());
         if(!companylist.get(position).getCurrent_requirment().equals("null")){
-            holder.skillesTxt.setText(companylist.get(position).getCurrent_requirment());
+            holder.itiNonIti.setText(companylist.get(position).getCurrent_requirment());
         }else {
-            holder.skillesTxt.setText("");
+            holder.itiNonIti.setText("");
         }
         if(!companylist.get(position).getExperience().equals("null")){
             holder.expTxt.setText(companylist.get(position).getExperience()+" of year");
@@ -158,7 +156,7 @@ public class EmployeeSearchAdapter extends BaseAdapter {
     }
 
     class ViewHolder{
-        TextView skillesTxt, locationTxt, expTxt,candidateName, applyTxt;
+        TextView itiNonIti,specialization, locationTxt, expTxt,candidateName, applyTxt;
         LinearLayout showInterestLayout, contactLayout;
     }
 }

@@ -21,7 +21,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -59,7 +58,6 @@ import org.json.JSONObject;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Locale;
 
 import adapter.SkillesAdapter;
 import app.Config;
@@ -87,7 +85,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
     RelativeLayout parentLayout;
     EditText skillesediTxt, locationEdit;
     Spinner spinner;
-    String[] citys = {"Select City", "Bangalore", "Bider","Delhi","Hydrabad","Indore", "Kalaburagi","Pune"};
+    String[] citys = {"Select City", "Bengaluru", "Bidar","Delhi","Hyderabad","Indore", "Kalaburagi","Pune"};
     String [] skilles = {"Android","PHP","Xamarin",".Net","iOS","Ionic","Angular JS","Node JS","ASP .Net","MVC","React Native"};
     SkillesDTO skillesDTO;
     ArrayList<SkillesDTO> list = new ArrayList<>();
@@ -95,6 +93,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
     private static final String TAG = HomeActivity.class.getSimpleName();
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     AutoCompleteTextView lookingJob;
+    Spinner spinnerJobroll;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,6 +144,18 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
     }
 
 
+    public void callSerivice() {
+        WebserviceHelper employer = new WebserviceHelper(receiver, HomeActivity.this);
+        employer.setAction(Constant.GET_FILTER_DATA);
+        employer.execute();
+    }
+
+    public void GetJobRollSerivice() {
+        WebserviceHelper employer = new WebserviceHelper(receiver, HomeActivity.this);
+        employer.setAction(Constant.GET_JOB_LIST);
+        employer.execute();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -169,6 +180,8 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
     public  void init(){
 
         receiver = this;
+          callSerivice();
+//        GetJobRollSerivice();
         sharedPreferences = this.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
 
         if(sharedPreferences.getString("status","").equals("1")){
@@ -210,11 +223,14 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
         lookingJob = (AutoCompleteTextView)findViewById(R.id.lookingJob) ;
         spinner = (Spinner)findViewById(R.id.spinner);
 
+        spinnerJobroll = (Spinner)findViewById(R.id.spinnerJobroll);
+
 
         for(int i=0;i<skilles.length;i++){
             skillesDTO = new SkillesDTO( skilles[i],false);
             list.add(skillesDTO);
         }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
                 (this,android.R.layout.simple_list_item_1,skilles);
         lookingJob.setAdapter(adapter);
@@ -232,8 +248,9 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
                 }
             }
         }
-
     }
+
+
 
     private void showAccessTokens() {
         Log.e("showAccessToken", "accessToken");
@@ -372,12 +389,21 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
 
     public void clickListener(){
 
-        lookingJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        spinnerJobroll.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Constant.SKILLES = parent.getItemAtPosition(position).toString();
+//                Toast.makeText(getApplicationContext(),""+  Constant.SKILLES ,Toast.LENGTH_SHORT).show();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+       /* lookingJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Constant.SKILLES = adapterView.getItemAtPosition(i).toString();
             }
-        });
+        });*/
 
         skillesediTxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -450,21 +476,22 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
         findContactLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 //              InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 //              inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                if(Constant.SKILLES.length()!=0){
-                    if(!Constant.LOCATION.equalsIgnoreCase("Select City")){
+                if(!Constant.SKILLES.equals("Select JobRoll")){
+                    if(!Constant.LOCATION.equals("Select City")){
                         if(sharedPreferences.getString("user_type","").equals("candidate")){
-                            Toast.makeText(getApplicationContext(),"Company Searching Comming Soon.!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(),"Company Searching Comming Soon.", Toast.LENGTH_LONG).show();
                         }else {
                             searchApiSerivice();
                         }
                     }else {
-                        Snackbar.make(parentLayout,"Please enter location.!",Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(parentLayout,"Please select location",Snackbar.LENGTH_SHORT).show();
                     }
                 }else {
-                    Snackbar.make(parentLayout,"Please enter skilles",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(parentLayout,"Please select Jobroll",Snackbar.LENGTH_SHORT).show();
                 }
 
 
@@ -589,6 +616,13 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
         }if(result[0].equals("0001")){
             Intent intent = new Intent(HomeActivity.this, AllListActivity.class);
             startActivity(intent);
+        }else if(result[0].equals("01")){
+            GetJobRollSerivice();
+        }else if(result[0].equals("701")) {
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_spinner_item, Global.jobroll_List);
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerJobroll.setAdapter(dataAdapter);
         }else {
             Snackbar.make(parentLayout,""+result[1],Snackbar.LENGTH_SHORT).show();
         }

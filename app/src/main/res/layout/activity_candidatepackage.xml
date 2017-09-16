@@ -46,7 +46,7 @@
         <LinearLayout
             android:background="@drawable/paymentboundry"
             android:id="@+id/tenComany"
-            android:layout_width="338dp"
+            android:layout_width="match_parent"
             android:layout_height="120dp"
             android:layout_gravity="center"
             android:layout_marginTop="24dp"

@@ -112,7 +112,7 @@
                     android:layout_height="40dp">
 
                     <TextView
-                        android:text="SUBMIT NOW!"
+                        android:text="SUBMIT NOW"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#000000"/>

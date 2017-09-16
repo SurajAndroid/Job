@@ -43,8 +43,15 @@ public class Constant {
 	public static final int NOTIFICATION_API = 18;
 	public static final int VIEW_PROFILE_API = 19;
 	public static final int GET_FILTER_API = 20;
-
-	public static String BASE_URL ="http://smtgroup.in/jobpools/wdiapi/index.php/";
+	public static final int GET_FILTER_DATA = 21;
+	public static final int POST_JOB = 22;
+	public static final int GET_ALL_POST = 23;
+	public static final int GET_JOB_LIST = 24;
+	//Sohel
+	public static final int GET_PACK_LIST = 25;
+	public static final int SELECT_PACK = 26;
+//	public static String BASE_URL ="http://smtgroup.in/jobpools/wdiapi/index.php/";
+	public static String BASE_URL ="http://jobpool.in/jobpoolapi/index.php/";
 
 	public static String CONDIDATE_RAGISTRATION_URL = BASE_URL+"candidate_register";
 	public static String EMPLOYER_RAGISTRATION_URL = BASE_URL+"employer_register";
@@ -65,6 +72,13 @@ public class Constant {
 	public static String NOTIFICATION_URL = BASE_URL+"notificationlist";
 	public static String VIEW_PROFILE_URL = BASE_URL+"viewprofile";
 	public static String GET_FILTER_URL = BASE_URL+"getallcity";
+	public static String POST_JOB_URL = BASE_URL+"postjob";
+	public static String GET_ALL_POST_URL = BASE_URL+"allpostedjob";
+	public static String GET_FILTER_DATA_URL = BASE_URL+"getallfilter";
+	public static String GET_ALL_JOBLIST_URL = BASE_URL+"alljobrole";
+	public static String GET_ALL_MEMBERSHIP_URL = BASE_URL+"allmembership";
+	public static String SELECT_MEMBERSHIP_URL = BASE_URL+"update_membership";
+//	public static String GET_ALL_JOBLIST_URL = BASE_URL+"alljobrole";
 
 	public static String NAME="";
 	public static String USER_NAME="";
@@ -72,12 +86,11 @@ public class Constant {
 	public static String PASSWORD="";
 	public static String CONFIRM_PASSWORD="";
 	public static String PHONE_NUMBER="";
-	public static String GENDER="";
+	public static String GENDER="Male";
 	public static String USER_ID="";
 	public static String USER_IMAGE="";
 	public static String DOCUMENT="";
 	public static String RESUME="";
-
 
 	/*SOCIAL LOGIN*/
 	public static String FB_ID="";
@@ -94,7 +107,12 @@ public class Constant {
 	public static String LOCATION="";
 	public static String USER_TYPE="";
 	public static String ADDRESS="";
+	public static String NO_OF_REQUIRMENT="";
+	public static String SPECILIZATION="";
 	public static String TOKEN="";
+	public static String BRANCH="";
+	public static String DISCRIPTION="";
+	public static String JOB_TYPE="";
 
 	public static String OLDPASSWORD="";
 	public static String PAYMENTAMOUNT="";
@@ -104,6 +122,7 @@ public class Constant {
 	public static String OBJECTIVE="";
 	public static String BRIEFDESCRIPTION="";
 
+	public static String SELECTED_PACK="";
 
 	public static String EMAIL_PETTERN = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9][.com])?)*$";
 	/*^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$*/

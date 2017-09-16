@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import dtos.CandidateDTO;
 import dtos.CompanyDTO;
 import dtos.FilterDTO;
+import dtos.GetFillterDTO;
+import dtos.MembershipDTO;
 import dtos.NotificationDTO;
+import dtos.PostDTO;
 
 
 /**
@@ -23,4 +26,11 @@ public class Global {
     public static ArrayList<FilterDTO> roleList = new ArrayList<>();
     public static ArrayList<FilterDTO> educationList = new ArrayList<>();
     public static ArrayList<FilterDTO> industryList = new ArrayList<>();
+
+    public static ArrayList<String> jobroll_List = new ArrayList<>();
+    public static ArrayList<PostDTO> postJob_List = new ArrayList<>();
+
+    public static ArrayList<MembershipDTO> membershipPack_List = new ArrayList<>();
+
+    public static ArrayList<GetFillterDTO> getFilterList = new ArrayList<>();
 }

@@ -1,34 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
     android:id="@+id/parentLayout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
+
         <utils.TextviewSemiBold
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:background="@color/colorAccent"
+            android:gravity="center"
             android:text="EMPLOYER REGISTRATION"
-            android:textStyle="bold"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="@dimen/header_font"
-            android:gravity="center"
-            android:background="@color/colorAccent">
-        </utils.TextviewSemiBold>
+            android:textStyle="bold"></utils.TextviewSemiBold>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="30dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp"
+            android:gravity="center"
             android:orientation="vertical"
-            android:gravity="center">
+            android:padding="20sp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -38,79 +37,83 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
-                <EditText android:id="@+id/nameCompanyEditTxt"
+                <EditText
+                    android:id="@+id/nameCompanyEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Company Name"
                     android:inputType="textCapWords"
-                    android:textSize="@dimen/medium_font"
-                    android:hint="COMPANY NAME"
-                    />
+                    android:textSize="@dimen/medium_font" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
-                <EditText android:id="@+id/contactPersonEditTxt"
+                <EditText
+                    android:id="@+id/contactPersonEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Contact Person"
                     android:inputType="textCapWords"
-                    android:textSize="@dimen/medium_font"
-                    android:hint="CONTACT PERSON" />
+                    android:textSize="@dimen/medium_font" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
-                <EditText android:id="@+id/email_idEditTxt"
+                <EditText
+                    android:id="@+id/email_idEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Email Id"
                     android:inputType="textEmailAddress"
-                    android:textSize="@dimen/medium_font"
-                    android:hint="EMAIL ID" />
+                    android:textSize="@dimen/medium_font" />
             </android.support.design.widget.TextInputLayout>
 
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
-                <EditText android:id="@+id/phoneEditTxt"
+                <EditText
+                    android:id="@+id/phoneEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Contact Number"
                     android:inputType="number"
                     android:maxLength="10"
-                    android:hint="PHONE"
-                    android:textSize="@dimen/medium_font"/>
+                    android:textSize="@dimen/medium_font" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
-                <EditText android:id="@+id/passwordEditTxt"
+                <EditText
+                    android:id="@+id/passwordEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Password"
                     android:inputType="textPassword"
-                    android:textSize="@dimen/medium_font"
-                    android:hint="PASSWORD" />
+                    android:textSize="@dimen/medium_font" />
 
 
             </android.support.design.widget.TextInputLayout>
@@ -119,173 +122,398 @@
                 android:id="@+id/looking_for"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="20dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="LOOKING FOR"
                 android:textColor="@color/colorAccent"
-                android:textSize="15dp"/>
-
-
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <EditText android:id="@+id/current_requirementEditTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapWords"
-                    android:textSize="@dimen/medium_font"
-                    android:hint="CURRENT REQUIREMENT"
-                    />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <EditText android:id="@+id/experienceEditTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:hint="EXPERIENCE"
-                    android:textSize="@dimen/medium_font"/>
-            </android.support.design.widget.TextInputLayout>
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <EditText android:id="@+id/skillEditTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapWords"
-                    android:textSize="@dimen/medium_font"
-                    android:hint="SKILLS" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <EditText android:id="@+id/job_roleEditTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapWords"
-                    android:textSize="@dimen/medium_font"
-                    android:hint="JOB ROLE" />
-            </android.support.design.widget.TextInputLayout>
-
-            <Spinner
-
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:layout_marginTop="10sp"
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="45sp"></Spinner>
-
-            <View
-                android:layout_marginLeft="15sp"
-                android:layout_marginRight="15sp"
-                android:layout_width="match_parent"
-                android:layout_height="1sp"
-                android:background="#Efedee"/>
-
-            <android.support.design.widget.TextInputLayout
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <EditText android:id="@+id/locationEditTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textCapWords"
-                    android:textSize="@dimen/medium_font"
-                    android:hint="LOCATION" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <EditText android:id="@+id/addressEditTxt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPostalAddress"
-                    android:textSize="@dimen/medium_font"
-                    android:hint="ADDRESS" />
-            </android.support.design.widget.TextInputLayout>
-
-                <LinearLayout
-                    android:layout_marginTop="5sp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-                    <CheckBox
-                        android:buttonTint="@color/colorAccent"
-                        android:id="@+id/termsCondiationCheck"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TERMS AND CONDITIONS"
-                        android:textSize="12dp"/>
-                </LinearLayout>
+                android:textSize="15dp" />
 
 
             <LinearLayout
-                android:layout_marginBottom="20sp"
-                android:gravity="center"
-                android:layout_marginTop="20sp"
                 android:layout_width="match_parent"
-                android:layout_height="50sp">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <RadioButton
+                    android:id="@+id/itiRadio"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorAccent"
+                    android:padding="10sp"
+                    android:text="ITI"
+                    android:textSize="@dimen/medium_font" />
+
+                <RadioButton
+                    android:id="@+id/nonitRadio"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorAccent"
+                    android:padding="10sp"
+                    android:text="Non-ITI"
+                    android:textSize="@dimen/medium_font" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
+                android:orientation="horizontal">
+
+                <utils.TextviewFont
+                    android:id="@+id/branchTxt"
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="5"
+                    android:gravity="center_vertical"
+                    android:text="Select Branch"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/medium_font" />
+
+                <Spinner
+                    android:id="@+id/spinnerBranch"
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginRight="13sp"
+                android:background="#Efedee" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10sp">
+
+                <utils.TextviewFont
+                    android:id="@+id/jobTxt"
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15sp"
+                    android:layout_marginStart="15sp"
+                    android:layout_weight="5"
+                    android:gravity="center_vertical"
+                    android:text="Select Job Role"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/medium_font" />
+
+                <Spinner
+                    android:id="@+id/spinnerJobRaoll"
+                    android:layout_width="0sp"
+                    android:layout_height="45sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginRight="10sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginRight="13sp"
+                android:background="#Efedee" />
+
+            <Spinner
+                android:id="@+id/spinerExperience"
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginTop="10sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginRight="13sp"
+                android:background="#Efedee" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <RadioButton
+                    android:id="@+id/maleRadio"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorAccent"
+                    android:padding="10sp"
+                    android:text="Male"
+                    android:textSize="18sp" />
+
+                <RadioButton
+                    android:id="@+id/femaleRadio"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorAccent"
+                    android:padding="10sp"
+                    android:text="Female"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <EditText
+                    android:id="@+id/skillesEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skills(Optional)"
+                    android:inputType="textCapWords"
+                    android:textSize="@dimen/medium_font" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <EditText
+                    android:id="@+id/noOfRquirmwntEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Number Of Requirements"
+                    android:inputType="number"
+                    android:textSize="@dimen/medium_font" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/skillEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Skills"
+                    android:inputType="textCapWords"
+                    android:textSize="@dimen/medium_font" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/job_roleEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Job Role"
+                    android:inputType="textCapWords"
+                    android:textSize="@dimen/medium_font" />
+            </android.support.design.widget.TextInputLayout>
+
+            <!-- android:id="@+id/spinnerCity"-->
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginTop="10sp"
+                android:visibility="gone" />
+
+            <Spinner
+                android:id="@+id/spinnerCity"
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginTop="10sp" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginRight="13sp"
+                android:background="#Efedee" />
+
+            <android.support.design.widget.TextInputLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <EditText
+                    android:id="@+id/DiscriptionEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:hint="Job Details"
+                    android:gravity="start"
+                    android:padding="2dp"
+                    android:background="@drawable/baoudary"
+                    android:textSize="@dimen/medium_font" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/addressEditTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    android:inputType="textPostalAddress"
+                    android:textSize="@dimen/medium_font" />
+            </android.support.design.widget.TextInputLayout>
+
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <CheckBox
+                    android:id="@+id/termsCondiationCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorAccent"
+                    android:text="I agree with Terms &amp; Conditions" />
+
+            </LinearLayout>-->
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <CheckBox
+                    android:id="@+id/termsCondiationCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorAccent"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/conditionTxtagree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:layout_toRightOf="@id/termsCondiationCheck"
+                    android:text="I agree to "
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/conditionTxtterms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:layout_toRightOf="@id/conditionTxtagree"
+                    android:text="Terms &amp; Conditions"
+                    android:textSize="18dp"
+                    android:autoLink="web"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/conditionTxtPrivacy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="38sp"
+                    android:layout_below="@id/conditionTxtterms"
+                    android:text="and I have read the "
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/conditionTxtPolicy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:layout_toRightOf="@id/conditionTxtPrivacy"
+                    android:layout_below="@+id/conditionTxtterms"
+                    android:text="Privacy Policy"
+                    android:textSize="18dp"
+                    android:autoLink="web"
+                    android:textStyle="bold"
+                    android:visibility="visible" />
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginBottom="20sp"
+                android:layout_marginTop="20sp"
+                android:gravity="center">
 
                 <LinearLayout
                     android:id="@+id/SubmiTLayout"
-                    android:gravity="center"
-                    android:background="@drawable/fillbaoundry"
                     android:layout_width="200dp"
-                    android:layout_height="40dp">
+                    android:layout_height="40dp"
+                    android:background="@drawable/fillbaoundry"
+                    android:gravity="center">
 
                     <utils.TextviewSemiBold
-                        android:textStyle="bold"
-                        android:text="SAVE"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000000"/>
+                        android:text="SUBMIT"
+                        android:textColor="#000000"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>
