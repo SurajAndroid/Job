@@ -14,8 +14,32 @@ public class CandidateDTO {
         this.designation = designation;
     }
 
-    String name, phone, gender, location, experience, skill, strength,userName,designation,
-            expected_salary, address, prefered_location,objective, brief_description, email, user_type, UserImage,UserId,resume;
+    String name, phone, gender, location, experience, skill, strength, userName, designation,
+            expected_salary, address, prefered_location, objective, brief_description, email, user_type, UserImage, UserId, resume, jobRole, jobType, Specialization;
+
+    public String getJobRole() {
+        return jobRole;
+    }
+
+    public void setJobRole(String jobRole) {
+        this.jobRole = jobRole;
+    }
+
+    public String getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(String jobType) {
+        this.jobType = jobType;
+    }
+
+    public String getSpecialization() {
+        return Specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        Specialization = specialization;
+    }
 
     public String getName() {
         return name;

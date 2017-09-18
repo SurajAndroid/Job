@@ -1409,6 +1409,10 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     candidateDTO.setExperience(jsonObject.getString("experience"));
                                     candidateDTO.setResume(jsonObject.getString("resume"));
 
+                                    candidateDTO.setJobRole(jsonObject.getString("job_role"));
+                                    candidateDTO.setJobType(jsonObject.getString("job_type"));
+                                    candidateDTO.setSpecialization(jsonObject.getString("specilaization"));
+
                                     Global.candidatelist.add(candidateDTO);
                                 }
 
@@ -1505,6 +1509,10 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     candidateDTO.setUser_type(object1.getString("user_type"));
                                     candidateDTO.setDesignation(object1.getString("designation"));
                                     candidateDTO.setExperience(object1.getString("experience"));
+
+                                    candidateDTO.setJobRole(object1.getString("job_role"));
+                                    candidateDTO.setJobType(object1.getString("job_type"));
+                                    candidateDTO.setSpecialization(object1.getString("specilaization"));
 //                                    candidateDTO.setResume(object1.getString("resume"));
 
                                     Global.searchcandidatelist.add(candidateDTO);

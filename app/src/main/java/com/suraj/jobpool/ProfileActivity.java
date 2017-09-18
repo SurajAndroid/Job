@@ -10,7 +10,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.PowerManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +18,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -44,9 +44,7 @@ import com.squareup.picasso.Picasso;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -61,7 +59,7 @@ import utils.WebserviceHelper;
  * Created by Suraj Shakya on 5/14/2017.
  */
 
-public class ProfileActivity extends SlidingFragmentActivity implements RequestReceiver{
+public class ProfileActivity extends SlidingFragmentActivity implements RequestReceiver {
 
     LinearLayout slidMenuLayout;
     TextView downloadTxtView, contactTxtView;
@@ -69,12 +67,15 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
     RelativeLayout parentLayout;
     File myDir;
     ImageView ProfileImage;
-    TextView  candidateName;
+    TextView candidateName;
     TextView userNameTxt, userIDTxt, CityTxt, SkillesTxt, ExpirenceTxt;
     int position;
     String TAG;
     RequestReceiver receiver;
     SharedPreferences sharedPreferences;
+
+    EditText profileJobType, profileSpecialization, profileJobRole, profileCity;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,42 +103,46 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         startActivity(intent);
     }
 
-    public void init(){
+    public void init() {
 
         receiver = this;
-        String data = getIntent().getExtras().getString("position","");
-        TAG = getIntent().getExtras().getString("Tag","");
+        String data = getIntent().getExtras().getString("position", "");
+        TAG = getIntent().getExtras().getString("Tag", "");
         position = Integer.parseInt(data);
 
         sharedPreferences = this.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
-        Constant.COMPANY_ID = sharedPreferences.getString("user_id","");
+        Constant.COMPANY_ID = sharedPreferences.getString("user_id", "");
 
-        try{
+        try {
             getWindow().getDecorView()
                     .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        slidMenuLayout = (LinearLayout)findViewById(R.id.slidMenuLayout);
-        downloadTxtView = (TextView)findViewById(R.id.downloadTxtView);
-        contactTxtView = (TextView)findViewById(R.id.contactTxtView);
-        candidateName = (TextView)findViewById(R.id.candidateName);
+        slidMenuLayout = (LinearLayout) findViewById(R.id.slidMenuLayout);
+        downloadTxtView = (TextView) findViewById(R.id.downloadTxtView);
+        contactTxtView = (TextView) findViewById(R.id.contactTxtView);
+        candidateName = (TextView) findViewById(R.id.candidateName);
 
-        ProfileImage = (ImageView)findViewById(R.id.ProfileImage);
+        ProfileImage = (ImageView) findViewById(R.id.ProfileImage);
         parentLayout = (RelativeLayout) findViewById(R.id.parentLayout);
 
-        userNameTxt = (TextView)findViewById(R.id.userNameTxt);
-        userIDTxt = (TextView)findViewById(R.id.userIDTxt);
-        CityTxt = (TextView)findViewById(R.id.CityTxt);
-        SkillesTxt = (TextView)findViewById(R.id.SkillesTxt);
-        ExpirenceTxt = (TextView)findViewById(R.id.ExpirenceTxt);
+        userNameTxt = (TextView) findViewById(R.id.userNameTxt);
+        userIDTxt = (TextView) findViewById(R.id.userIDTxt);
+        CityTxt = (TextView) findViewById(R.id.CityTxt);
+        SkillesTxt = (TextView) findViewById(R.id.SkillesTxt);
+        ExpirenceTxt = (TextView) findViewById(R.id.ExpirenceTxt);
+
+        profileJobType = (EditText) findViewById(R.id.profileJobType);
+        profileSpecialization = (EditText) findViewById(R.id.profileSpecialization);
+        profileJobRole = (EditText) findViewById(R.id.profileJobRole);
+        profileCity = (EditText) findViewById(R.id.profileCity);
 
         viewProfileService();
         setProfielData();
 
     }
-
 
 
     public void viewProfileService() {
@@ -146,88 +151,135 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         employer.execute();
     }
 
-    public void setProfielData(){
+    public void setProfielData() {
 
-        if(TAG.equalsIgnoreCase("AllListActivity")){
+        if (TAG.equalsIgnoreCase("AllListActivity")) {
             candidateName.setText(Global.searchcandidatelist.get(position).getName().toUpperCase());
-            if(!Global.searchcandidatelist.get(position).getLocation().equals("null")){
-                CityTxt.setText(Global.searchcandidatelist.get(position).getLocation());
-            }else {
-                CityTxt.setText("");
+
+            Log.e("Sohel ","    "+Global.searchcandidatelist.get(position).getJobRole());
+            Log.e("Sohel ","    "+Global.searchcandidatelist.get(position).getJobType());
+            Log.e("Sohel ","    "+Global.searchcandidatelist.get(position).getSpecialization());
+
+            if (!Global.searchcandidatelist.get(position).getJobRole().equals("null")) {
+                profileJobRole.setText(Global.searchcandidatelist.get(position).getJobRole());
+            } else {
+                profileJobRole.setText("");
             }
-            if(!Global.searchcandidatelist.get(position).getSkill().equals("null")){
+            if (!Global.searchcandidatelist.get(position).getJobType().equals("null")) {
+                profileJobType.setText(Global.searchcandidatelist.get(position).getJobType());
+            } else {
+                profileJobType.setText("");
+            }
+            if (!Global.searchcandidatelist.get(position).getSpecialization().equals("null")) {
+                profileSpecialization.setText(Global.searchcandidatelist.get(position).getSpecialization());
+            } else {
+                profileSpecialization.setText("");
+            }
+
+            if (!Global.searchcandidatelist.get(position).getLocation().equals("null")) {
+                CityTxt.setText(Global.searchcandidatelist.get(position).getLocation());
+                profileCity.setText(Global.searchcandidatelist.get(position).getLocation());
+            } else {
+                CityTxt.setText("");
+                profileCity.setText("");
+            }
+            if (!Global.searchcandidatelist.get(position).getSkill().equals("null")) {
                 SkillesTxt.setText(Global.searchcandidatelist.get(position).getSkill());
-            }else {
+            } else {
                 SkillesTxt.setText("");
             }
 
-            if(!Global.searchcandidatelist.get(position).getExperience().equals("null")){
+            if (!Global.searchcandidatelist.get(position).getExperience().equals("null")) {
                 ExpirenceTxt.setText(Global.searchcandidatelist.get(position).getExperience());
-            }else {
+            } else {
                 ExpirenceTxt.setText("");
             }
 
-            if(Global.searchcandidatelist.get(position).getUserName().equals("null")){
+            if (Global.searchcandidatelist.get(position).getUserName().equals("null")) {
                 userIDTxt.setText("");
-            }else {
+            } else {
                 userIDTxt.setText(Global.searchcandidatelist.get(position).getUserName());
             }
 
-            if(!Global.searchcandidatelist.get(position).getName().equals("null")){
+            if (!Global.searchcandidatelist.get(position).getName().equals("null")) {
                 userNameTxt.setText(Global.searchcandidatelist.get(position).getName().toUpperCase());
-            }else {
+            } else {
                 userNameTxt.setText("");
             }
 
-            try{
+            try {
                 Picasso.with(getApplicationContext()).load(Global.searchcandidatelist.get(position).getUserImage())
                         .placeholder(R.drawable.placeholder).into(ProfileImage);
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
-        }else {
+        } else {
             candidateName.setText(Global.candidatelist.get(position).getName().toUpperCase());
 
-            if(!Global.candidatelist.get(position).getLocation().equals("null")){
+            if (!Global.candidatelist.get(position).getJobRole().equals("null")) {
+                profileJobRole.setText(Global.candidatelist.get(position).getJobRole());
+            } else {
+                profileJobRole.setText("");
+            }
+            if (!Global.candidatelist.get(position).getJobType().equals("null")) {
+                profileJobType.setText(Global.candidatelist.get(position).getJobType());
+            } else {
+                profileJobType.setText("");
+            }
+            if (!Global.candidatelist.get(position).getSpecialization().equals("null")) {
+                profileSpecialization.setText(Global.candidatelist.get(position).getSpecialization());
+            } else {
+                profileSpecialization.setText("");
+            }
+
+            if (!Global.candidatelist.get(position).getLocation().equals("null")) {
                 CityTxt.setText(Global.candidatelist.get(position).getLocation());
-            }else {
+                profileCity.setText(Global.candidatelist.get(position).getLocation());
+            } else {
+                CityTxt.setText("");
+                profileCity.setText("");
+            }
+
+            if (!Global.candidatelist.get(position).getLocation().equals("null")) {
+                CityTxt.setText(Global.candidatelist.get(position).getLocation());
+            } else {
                 CityTxt.setText("");
             }
-            if(!Global.candidatelist.get(position).getSkill().equals("null")){
+            if (!Global.candidatelist.get(position).getSkill().equals("null")) {
                 SkillesTxt.setText(Global.candidatelist.get(position).getSkill());
-            }else {
+            } else {
                 SkillesTxt.setText("");
             }
 
-            if(!Global.candidatelist.get(position).getExperience().equals("null")){
+            if (!Global.candidatelist.get(position).getExperience().equals("null")) {
                 ExpirenceTxt.setText(Global.candidatelist.get(position).getExperience());
-            }else {
+            } else {
                 ExpirenceTxt.setText("");
             }
 
-            if(Global.candidatelist.get(position).getUserName().equals("null")){
+            if (Global.candidatelist.get(position).getUserName().equals("null")) {
                 userIDTxt.setText("");
-            }else {
+            } else {
                 userIDTxt.setText(Global.candidatelist.get(position).getUserName());
             }
 
-            if(!Global.candidatelist.get(position).getName().equals("null")){
+            if (!Global.candidatelist.get(position).getName().equals("null")) {
                 userNameTxt.setText(Global.candidatelist.get(position).getName().toUpperCase());
-            }else {
+            } else {
                 userNameTxt.setText("");
             }
 
-            try{
+            try {
                 Picasso.with(getApplicationContext()).load(Global.candidatelist.get(position).getUserImage())
                         .placeholder(R.drawable.placeholder).into(ProfileImage);
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
         }
 
     }
 
-    public void clickListenr(){
+    public void clickListenr() {
         slidMenuLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -240,7 +292,7 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
                 downloadTxtView.setBackgroundResource(R.color.yellow);
                 contactTxtView.setBackgroundResource(R.color.colorAccent);
 //                savePdf();
-                new DownloadTask(ProfileActivity.this,Global.candidatelist.get(position).getResume());
+                new DownloadTask(ProfileActivity.this, Global.candidatelist.get(position).getResume());
             }
         });
 
@@ -252,16 +304,16 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
                 final Dialog dialog = new Dialog(ProfileActivity.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.share_dialog);
-                TextView mailTxt = (TextView)dialog.findViewById(R.id.mailTxt);
-                TextView messageTxt = (TextView)dialog.findViewById(R.id.messageTxt);
-                TextView emailTxt = (TextView)dialog.findViewById(R.id.emailTxt);
-                TextView phoneTxt = (TextView)dialog.findViewById(R.id.phoneTxt);
-                if(TAG.equalsIgnoreCase("AllListActivity")){
-                    emailTxt.setText("Email : "+Global.searchcandidatelist.get(position).getEmail());
-                    phoneTxt.setText("Phone : "+Global.searchcandidatelist.get(position).getPhone());
-                }else {
-                    emailTxt.setText("Email : "+Global.candidatelist.get(position).getEmail());
-                    phoneTxt.setText("Phone : "+Global.candidatelist.get(position).getPhone());
+                TextView mailTxt = (TextView) dialog.findViewById(R.id.mailTxt);
+                TextView messageTxt = (TextView) dialog.findViewById(R.id.messageTxt);
+                TextView emailTxt = (TextView) dialog.findViewById(R.id.emailTxt);
+                TextView phoneTxt = (TextView) dialog.findViewById(R.id.phoneTxt);
+                if (TAG.equalsIgnoreCase("AllListActivity")) {
+                    emailTxt.setText("Email : " + Global.searchcandidatelist.get(position).getEmail());
+                    phoneTxt.setText("Phone : " + Global.searchcandidatelist.get(position).getPhone());
+                } else {
+                    emailTxt.setText("Email : " + Global.candidatelist.get(position).getEmail());
+                    phoneTxt.setText("Phone : " + Global.candidatelist.get(position).getPhone());
                 }
 
                 mailTxt.setOnClickListener(new View.OnClickListener() {
@@ -274,9 +326,9 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
                         startActivity(Intent.createChooser(emailIntent, "Send Email..."));*/
                         Intent i = new Intent(Intent.ACTION_SEND);
                         i.setType("message/rfc822");
-                        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{Global.candidatelist.get(0).getEmail().toString()});
+                        i.putExtra(Intent.EXTRA_EMAIL, new String[]{Global.candidatelist.get(0).getEmail().toString()});
                         i.putExtra(Intent.EXTRA_SUBJECT, "");
-                        i.putExtra(Intent.EXTRA_TEXT   , "");
+                        i.putExtra(Intent.EXTRA_TEXT, "");
                         try {
                             startActivity(Intent.createChooser(i, "Send mail..."));
                         } catch (android.content.ActivityNotFoundException ex) {
@@ -325,13 +377,13 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
     }
 
 
-    public void savePdf(){
-        Snackbar.make(parentLayout,"Download Completed.!",Snackbar.LENGTH_SHORT).show();
+    public void savePdf() {
+        Snackbar.make(parentLayout, "Download Completed.!", Snackbar.LENGTH_SHORT).show();
         Date date = new Date();
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(date);
 
         String FILE = Environment.getExternalStorageDirectory().toString()
-                + "/JobPool/Resume/" + "Name"+ Global.candidatelist.get(position).getName() + timeStamp + ".pdf";
+                + "/JobPool/Resume/" + "Name" + Global.candidatelist.get(position).getName() + timeStamp + ".pdf";
         // Create New Blank Document
         Document document = new Document(PageSize.A4);
         // Create Directory in External Storage
@@ -377,11 +429,11 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         Font normal1 = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.NORMAL);
         Font titleFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 40, Font.BOLD);
 
-        String name= Global.candidatelist.get(position).getName();
+        String name = Global.candidatelist.get(position).getName();
 
         //Font titleFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 50, Font.BOLD);
         Paragraph p = new Paragraph();
-        p.add("RESUME –"+""+name+"\n"+"\n"+"\n"+"\n"+"\n"+"\n"+"\n");
+        p.add("RESUME –" + "" + name + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n");
         p.setAlignment(Element.ALIGN_CENTER);
         p.setFont(titleFont);
 
@@ -394,7 +446,7 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         prHead1.setFont(titleFont);
 
         // Add item into Paragraph
-        prHead1.add("RESUME –"+ Global.candidatelist.get(position).getName());
+        prHead1.add("RESUME –" + Global.candidatelist.get(position).getName());
 
         // Create Table into Document with 1 Row
         PdfPTable myTable = new PdfPTable(1);
@@ -404,63 +456,62 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         // Create New Cell into Table
         PdfPCell myCell = new PdfPCell(new Paragraph(""));
         //myCell.setBorder(Rectangle.BOTTOM);
-        String city="";
-        if(Global.candidatelist.get(position).getLocation().equals("null")){
+        String city = "";
+        if (Global.candidatelist.get(position).getLocation().equals("null")) {
             city = "";
-        }else {
-             city= Global.candidatelist.get(position).getLocation();
+        } else {
+            city = Global.candidatelist.get(position).getLocation();
         }
 
 
         myTable.getDefaultCell().setBorder(Rectangle.NO_BORDER);
         Phrase phrase = new Phrase();
         phrase.add(
-                new Chunk("\n"+"City:  ",  new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.BOLD))
+                new Chunk("\n" + "City:  ", new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.BOLD))
         );
-        phrase.add(new Chunk(""+city, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
+        phrase.add(new Chunk("" + city, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
 
 
-        String Skills=" ";
-        if(Global.candidatelist.get(position).getSkill().equals("null")){
+        String Skills = " ";
+        if (Global.candidatelist.get(position).getSkill().equals("null")) {
             Skills = "";
-        }else {
+        } else {
             Skills = Global.candidatelist.get(position).getSkill();
         }
         Phrase phrase1 = new Phrase();
 
         phrase1.add(
-                new Chunk("\n"+"Skills:  ",  new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD))
+                new Chunk("\n" + "Skills:  ", new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD))
         );
-        phrase1.add(new Chunk(""+Skills, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
+        phrase1.add(new Chunk("" + Skills, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
 
 
-        String Experience="";
-        if(Global.candidatelist.get(position).getExperience().equals("null")){
-            Experience =   "";
-        }else {
+        String Experience = "";
+        if (Global.candidatelist.get(position).getExperience().equals("null")) {
+            Experience = "";
+        } else {
             Experience = Global.candidatelist.get(position).getExperience();
         }
         Phrase phrase2 = new Phrase();
 
         phrase2.add(
-                new Chunk("\n"+"Experience: ",  new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD))
+                new Chunk("\n" + "Experience: ", new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD))
         );
-        phrase2.add(new Chunk(""+Experience, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
+        phrase2.add(new Chunk("" + Experience, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
 
 
-        String Address="173 Mig colony ,Indore";
-        if(Global.candidatelist.get(position).getAddress().toString().equals("null")){
-            Address ="";
-        }else {
-            Address= Global.candidatelist.get(position).getAddress().toString();
+        String Address = "173 Mig colony ,Indore";
+        if (Global.candidatelist.get(position).getAddress().toString().equals("null")) {
+            Address = "";
+        } else {
+            Address = Global.candidatelist.get(position).getAddress().toString();
         }
 
         Phrase phrase3 = new Phrase();
         phrase3.add(
-                new Chunk("\n"+"Address: ",  new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD))
+                new Chunk("\n" + "Address: ", new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD))
         );
-        phrase3.add(new Chunk(""+Address, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
-
+        phrase3.add(new Chunk("" + Address, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
 
 
         myTable.addCell(phrase);
@@ -470,19 +521,19 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
 
 
         document.add(myTable);
-        String about_detail="";
-        if(!Global.candidatelist.get(position).getBrief_description().equals("null")){
-           about_detail = Global.candidatelist.get(position).getBrief_description();
+        String about_detail = "";
+        if (!Global.candidatelist.get(position).getBrief_description().equals("null")) {
+            about_detail = Global.candidatelist.get(position).getBrief_description();
         }
         Paragraph prProfile = new Paragraph();
         prProfile.setFont(titleFont);
-        prProfile.add(""+"\n"+"\n");
+        prProfile.add("" + "\n" + "\n");
         prProfile.add("\n \n About us : \n ");
         prProfile.setLeading(30.0f);
 
         prProfile.setFont(normal1);
         prProfile
-                .add("\n"+about_detail);
+                .add("\n" + about_detail);
 
         prProfile.setFont(smallBold);
         document.add(prProfile);
@@ -573,13 +624,14 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
 
         private String downloadUrl = "", downloadFileName = "";
         private ProgressDialog progressDialog;
+
         public DownloadTask(Context context, String downloadUrl) {
             this.context = context;
 
             this.downloadUrl = downloadUrl;
 
 
-            downloadFileName = downloadUrl.substring(downloadUrl.lastIndexOf( '/' ),downloadUrl.length());//Create file name by picking download file name from URL
+            downloadFileName = downloadUrl.substring(downloadUrl.lastIndexOf('/'), downloadUrl.length());//Create file name by picking download file name from URL
             Log.e(TAG, downloadFileName);
 
             //Start Downloading Task
@@ -594,7 +646,7 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                progressDialog=new ProgressDialog(context);
+                progressDialog = new ProgressDialog(context);
                 progressDialog.setMessage("Downloading...");
                 progressDialog.show();
             }
