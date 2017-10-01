@@ -3,7 +3,7 @@ package utils;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.suraj.jobpool.AppController;
+import com.startupsoch.jobpool.AppController;
 
 public class SavedData {
     private static final String SELECT_PACKAGE = "selectPackage";

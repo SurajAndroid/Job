@@ -1,0 +1,282 @@
+package com.startupsoch.jobpool;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.Toast;
+
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
+import com.startupsoch.jobpool.R;
+
+import adapter.FilterAdapter;
+import adapter.FilterGenderAdapter;
+import utils.Constant;
+import utils.Global;
+import utils.RequestReceiver;
+import utils.WebserviceHelper;
+
+/**
+ * Created by chauhan on 5/23/2017.
+ */
+
+public class FilterActivity extends SlidingFragmentActivity implements RequestReceiver {
+
+    RequestReceiver receiver;
+    ListView fileterList;
+    LinearLayout genderLayout;
+    LinearLayout sortLayout, salaryLayout, locationLayout, roleLayout, educationLayout
+            ,industryLayout, departmentLayout, linearLayout;
+    SlidingMenu sm;
+    LinearLayout slidMenuLayout;
+    RadioButton maleRadio,femaleRadio;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.filter_activity);
+
+        init();
+        clickListener();
+
+        setBehindView();
+
+        sm = getSlidingMenu();
+        sm.setShadowWidthRes(R.dimen.shadow_width);
+        sm.setShadowDrawable(R.drawable.shadow);
+        sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        sm.setFadeDegree(0.35f);
+        sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        sm.setSlidingEnabled(false);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        overridePendingTransition(R.anim.stay, R.anim.slide_down);
+    }
+
+    private void setBehindView() {
+        setBehindContentView(R.layout.menu_slide);
+        //transaction fragment to sliding menu
+        transactionFragments(MenuFragment.newInstance(), R.id.menu_slide);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                toggle();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void transactionFragments(Fragment fragment, int viewResource) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(viewResource, fragment);
+        ft.commit();
+        toggle();
+    }
+
+    public  void init(){
+
+        receiver = this;
+
+        maleRadio = (RadioButton)findViewById(R.id.maleRadio);
+        femaleRadio = (RadioButton)findViewById(R.id.femaleRadio);
+
+        genderLayout = (LinearLayout)findViewById(R.id.genderLayout);
+        fileterList = (ListView)findViewById(R.id.fileterList);
+        slidMenuLayout = (LinearLayout)findViewById(R.id.slidMenuLayout);
+        sortLayout = (LinearLayout)findViewById(R.id. sortLayout);
+        salaryLayout = (LinearLayout)findViewById(R.id. salaryLayout);
+        locationLayout = (LinearLayout)findViewById(R.id. locationLayout);
+        roleLayout = (LinearLayout)findViewById(R.id. roleLayout);
+        educationLayout = (LinearLayout)findViewById(R.id. educationLayout);
+        industryLayout = (LinearLayout)findViewById(R.id. industryLayout);
+        departmentLayout = (LinearLayout)findViewById(R.id. departmentLayout);
+        linearLayout = (LinearLayout)findViewById(R.id. linearLayout);
+
+
+
+        getFilterAPI();
+    }
+
+
+
+    public void getFilterAPI() {
+        WebserviceHelper employer = new WebserviceHelper(receiver, FilterActivity.this);
+        employer.setAction(Constant.GET_FILTER_API);
+        employer.execute();
+    }
+
+    public void clickListener(){
+
+
+        maleRadio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(maleRadio.isChecked()){
+                    femaleRadio.setChecked(false);
+                }
+            }
+        });
+
+        femaleRadio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(femaleRadio.isChecked()){
+                    maleRadio.setChecked(false);
+                }
+            }
+        });
+
+
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"Coming Soon.!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        sortLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                genderLayout.setVisibility(View.GONE);
+                fileterList.setVisibility(View.VISIBLE);
+                sortLayout.setBackgroundResource(R.color.white);
+                salaryLayout.setBackgroundResource(R.color.yellow);
+                locationLayout.setBackgroundResource(R.color.yellow);
+                roleLayout.setBackgroundResource(R.color.yellow);
+                educationLayout.setBackgroundResource(R.color.yellow);
+                industryLayout.setBackgroundResource(R.color.yellow);
+                departmentLayout.setBackgroundResource(R.color.yellow);
+            }
+        });
+
+        salaryLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                genderLayout.setVisibility(View.GONE);
+                fileterList.setVisibility(View.VISIBLE);
+                sortLayout.setBackgroundResource(R.color.yellow);
+                salaryLayout.setBackgroundResource(R.color.white);
+                locationLayout.setBackgroundResource(R.color.yellow);
+                roleLayout.setBackgroundResource(R.color.yellow);
+                educationLayout.setBackgroundResource(R.color.yellow);
+                industryLayout.setBackgroundResource(R.color.yellow);
+                departmentLayout.setBackgroundResource(R.color.yellow);
+            }
+        });
+
+        locationLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                genderLayout.setVisibility(View.GONE);
+                fileterList.setVisibility(View.VISIBLE);
+                sortLayout.setBackgroundResource(R.color.yellow);
+                salaryLayout.setBackgroundResource(R.color.yellow);
+                locationLayout.setBackgroundResource(R.color.white);
+                roleLayout.setBackgroundResource(R.color.yellow);
+                educationLayout.setBackgroundResource(R.color.yellow);
+                industryLayout.setBackgroundResource(R.color.yellow);
+                departmentLayout.setBackgroundResource(R.color.yellow);
+                FilterAdapter filterAdapter = new FilterAdapter(FilterActivity.this, Global.cityList);
+                fileterList.setAdapter(filterAdapter);
+            }
+        });
+
+        roleLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                genderLayout.setVisibility(View.GONE);
+                fileterList.setVisibility(View.VISIBLE);
+                sortLayout.setBackgroundResource(R.color.yellow);
+                salaryLayout.setBackgroundResource(R.color.yellow);
+                locationLayout.setBackgroundResource(R.color.yellow);
+                roleLayout.setBackgroundResource(R.color.white);
+                educationLayout.setBackgroundResource(R.color.yellow);
+                industryLayout.setBackgroundResource(R.color.yellow);
+                departmentLayout.setBackgroundResource(R.color.yellow);
+                FilterAdapter filterAdapter = new FilterAdapter(FilterActivity.this, Global.roleList);
+                fileterList.setAdapter(filterAdapter);
+            }
+        });
+
+        educationLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                genderLayout.setVisibility(View.GONE);
+                fileterList.setVisibility(View.VISIBLE);
+                sortLayout.setBackgroundResource(R.color.yellow);
+                salaryLayout.setBackgroundResource(R.color.yellow);
+                locationLayout.setBackgroundResource(R.color.yellow);
+                roleLayout.setBackgroundResource(R.color.yellow);
+                educationLayout.setBackgroundResource(R.color.white);
+                industryLayout.setBackgroundResource(R.color.yellow);
+                departmentLayout.setBackgroundResource(R.color.yellow);
+                FilterAdapter filterAdapter = new FilterAdapter(FilterActivity.this, Global.educationList);
+                fileterList.setAdapter(filterAdapter);
+            }
+        });
+
+        industryLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                sortLayout.setBackgroundResource(R.color.yellow);
+                salaryLayout.setBackgroundResource(R.color.yellow);
+                locationLayout.setBackgroundResource(R.color.yellow);
+                roleLayout.setBackgroundResource(R.color.yellow);
+                educationLayout.setBackgroundResource(R.color.yellow);
+                industryLayout.setBackgroundResource(R.color.white);
+                departmentLayout.setBackgroundResource(R.color.yellow);
+                FilterGenderAdapter filterAdapter = new FilterGenderAdapter(FilterActivity.this);
+                fileterList.setAdapter(filterAdapter);
+            }
+        });
+
+        departmentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                genderLayout.setVisibility(View.GONE);
+                fileterList.setVisibility(View.VISIBLE);
+                sortLayout.setBackgroundResource(R.color.yellow);
+                salaryLayout.setBackgroundResource(R.color.yellow);
+                locationLayout.setBackgroundResource(R.color.yellow);
+                roleLayout.setBackgroundResource(R.color.yellow);
+                educationLayout.setBackgroundResource(R.color.yellow);
+                industryLayout.setBackgroundResource(R.color.yellow);
+                departmentLayout.setBackgroundResource(R.color.white);
+            }
+        });
+
+        slidMenuLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sm.toggle();
+            }
+        });
+
+    }
+
+    @Override
+    public void requestFinished(String[] result) throws Exception {
+        if(result[0].equals("1")){
+        FilterAdapter filterAdapter = new FilterAdapter(FilterActivity.this, Global.cityList);
+        fileterList.setAdapter(filterAdapter);
+        }
+    }
+}

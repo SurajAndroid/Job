@@ -9,7 +9,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.suraj.jobpool.R;
+
+import com.startupsoch.jobpool.R;
 
 import java.util.ArrayList;
 

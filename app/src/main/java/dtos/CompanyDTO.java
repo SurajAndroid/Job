@@ -8,10 +8,11 @@ public class CompanyDTO {
 
     String employer_id;
     String company_name;
-    String contact_person;
-    String email;
-    String phone;
-    String current_requirment;
+
+    String jobe_type;
+    String specilization;
+    String posted_job;
+
     String experience;
     String skill;
     String job_role;
@@ -22,6 +23,54 @@ public class CompanyDTO {
     String amount;
     String user_type;
     String emp_Image;
+    String no_of_requirment;
+
+    String contact_person;
+    String email;
+    String phone;
+
+    String current_requirment;
+
+
+
+
+
+
+    public String getNo_of_requirment() {
+        return no_of_requirment;
+    }
+
+    public void setNo_of_requirment(String no_of_requirment) {
+        this.no_of_requirment = no_of_requirment;
+    }
+
+
+    public String getPosted_job() {
+        return posted_job;
+    }
+
+    public void setPosted_job(String posted_job) {
+        this.posted_job = posted_job;
+    }
+
+
+    public String getSpecilization() {
+        return specilization;
+    }
+
+    public void setSpecilization(String specilization) {
+        this.specilization = specilization;
+    }
+
+    public String getJobe_type() {
+        return jobe_type;
+    }
+
+    public void setJobe_type(String jobe_type) {
+        this.jobe_type = jobe_type;
+    }
+
+
 
     public String getEmp_Image() {
         return emp_Image;

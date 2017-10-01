@@ -34,10 +34,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="15dp"
+                android:textColorHint="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:id="@+id/nameCompanyEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -50,11 +53,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:textColorHint="@color/white"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textStyle="bold"
                     android:id="@+id/contactPersonEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -69,9 +74,11 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
+                android:textColorHint="@color/white"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textStyle="bold"
                     android:id="@+id/email_idEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,10 +93,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
+                android:textColorHint="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textStyle="bold"
                     android:id="@+id/phoneEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -104,10 +113,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
+                android:textColorHint="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textStyle="bold"
                     android:id="@+id/passwordEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -141,6 +152,7 @@
                 android:paddingRight="10dp">
 
                 <RadioButton
+                    android:textStyle="bold"
                     android:id="@+id/itiRadio"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
@@ -151,6 +163,7 @@
                     android:textSize="@dimen/medium_font" />
 
                 <RadioButton
+                    android:textStyle="bold"
                     android:id="@+id/nonitRadio"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
@@ -168,6 +181,7 @@
                 android:orientation="horizontal">
 
                 <utils.TextviewFont
+                    android:textStyle="bold"
                     android:id="@+id/branchTxt"
                     android:layout_width="0sp"
                     android:layout_height="match_parent"
@@ -180,6 +194,8 @@
                     android:textSize="@dimen/medium_font" />
 
                 <Spinner
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:id="@+id/spinnerBranch"
                     android:layout_width="0sp"
                     android:layout_height="match_parent"
@@ -202,6 +218,7 @@
                 android:layout_marginTop="10sp">
 
                 <utils.TextviewFont
+                    android:textStyle="bold"
                     android:id="@+id/jobTxt"
                     android:layout_width="0sp"
                     android:layout_height="match_parent"
@@ -214,6 +231,8 @@
                     android:textSize="@dimen/medium_font" />
 
                 <Spinner
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:id="@+id/spinnerJobRaoll"
                     android:layout_width="0sp"
                     android:layout_height="45sp"
@@ -233,6 +252,8 @@
                 android:background="#Efedee" />
 
             <Spinner
+                android:textStyle="bold"
+                android:textColor="@color/white"
                 android:id="@+id/spinerExperience"
                 android:layout_width="match_parent"
                 android:layout_height="45sp"
@@ -257,6 +278,8 @@
                 android:paddingRight="10dp">
 
                 <RadioButton
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:id="@+id/maleRadio"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
@@ -264,9 +287,11 @@
                     android:buttonTint="@color/colorAccent"
                     android:padding="10sp"
                     android:text="Male"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/medium_font" />
 
                 <RadioButton
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:id="@+id/femaleRadio"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
@@ -274,7 +299,7 @@
                     android:buttonTint="@color/colorAccent"
                     android:padding="10sp"
                     android:text="Female"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/medium_font" />
 
             </LinearLayout>
 
@@ -285,9 +310,12 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
+                android:textColorHint="@color/white"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:id="@+id/skillesEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -303,9 +331,12 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
+                android:textColorHint="@color/white"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:id="@+id/noOfRquirmwntEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -325,6 +356,7 @@
                 android:visibility="gone">
 
                 <EditText
+                    android:textStyle="bold"
                     android:id="@+id/skillEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -361,6 +393,24 @@
                 android:visibility="gone" />
 
             <Spinner
+                android:textStyle="bold"
+                android:textSize="@dimen/medium_font"
+                android:textColor="@color/white"
+                android:id="@+id/spinnerCity"
+                android:layout_width="match_parent"
+                android:layout_height="45sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_marginTop="10sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8sp"
+                android:layout_marginLeft="13sp"
+                android:layout_marginRight="13sp"
+                android:background="#Efedee" />
+            <!--<Spinner
+                android:textStyle="bold"
                 android:id="@+id/spinnerCity"
                 android:layout_width="match_parent"
                 android:layout_height="45sp"
@@ -374,25 +424,27 @@
                 android:layout_height="0.8sp"
                 android:layout_marginLeft="13sp"
                 android:layout_marginRight="13sp"
-                android:background="#Efedee" />
+                android:background="#Efedee" />-->
 
             <android.support.design.widget.TextInputLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
+                android:textColorHint="@color/white"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:id="@+id/DiscriptionEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:hint="Job Details"
                     android:gravity="start"
                     android:padding="2dp"
-                    android:background="@drawable/baoudary"
+
                     android:textSize="@dimen/medium_font" />
             </android.support.design.widget.TextInputLayout>
 
@@ -428,7 +480,6 @@
                     android:layout_height="wrap_content"
                     android:buttonTint="@color/colorAccent"
                     android:text="I agree with Terms &amp; Conditions" />
-
             </LinearLayout>-->
 
             <RelativeLayout
@@ -452,7 +503,7 @@
                     android:layout_marginLeft="5sp"
                     android:layout_toRightOf="@id/termsCondiationCheck"
                     android:text="I agree to "
-                    android:textSize="18dp"
+                    android:textSize="@dimen/medium_font"
                     android:textStyle="bold"
                     android:visibility="visible" />
 
@@ -463,7 +514,7 @@
                     android:layout_marginLeft="5sp"
                     android:layout_toRightOf="@id/conditionTxtagree"
                     android:text="Terms &amp; Conditions"
-                    android:textSize="18dp"
+                   android:textSize="@dimen/medium_font"
                     android:autoLink="web"
                     android:textStyle="bold"
                     android:visibility="visible" />
@@ -475,7 +526,7 @@
                     android:layout_marginLeft="38sp"
                     android:layout_below="@id/conditionTxtterms"
                     android:text="and I have read the "
-                    android:textSize="18dp"
+                    android:textSize="@dimen/medium_font"
                     android:textStyle="bold"
                     android:visibility="visible" />
 
@@ -487,7 +538,7 @@
                     android:layout_toRightOf="@id/conditionTxtPrivacy"
                     android:layout_below="@+id/conditionTxtterms"
                     android:text="Privacy Policy"
-                    android:textSize="18dp"
+                    android:textSize="@dimen/medium_font"
                     android:autoLink="web"
                     android:textStyle="bold"
                     android:visibility="visible" />

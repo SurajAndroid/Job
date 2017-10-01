@@ -35,6 +35,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="15dp"
+                android:textColorHint="@color/white"
+                android:textStyle="bold"
+
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
@@ -43,7 +46,10 @@
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords"
                     android:textSize="@dimen/medium_font"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:hint="COMPANY NAME"
+
                     />
             </android.support.design.widget.TextInputLayout>
 
@@ -53,22 +59,30 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:paddingLeft="10dp"
+                android:textColorHint="@color/white"
+                android:textStyle="bold"
                 android:paddingRight="10dp">
 
                 <EditText android:id="@+id/contactPersonEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapWords"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/medium_font"
+
+                    android:textStyle="bold"
                     android:hint="CONTACT PERSON" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHint="@color/white"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:paddingLeft="10dp"
+
+                android:textStyle="bold"
                 android:paddingRight="10dp">
 
                 <EditText android:id="@+id/email_idEditTxt"
@@ -76,6 +90,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
                     android:textSize="@dimen/medium_font"
+
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:hint="EMAIL ID" />
             </android.support.design.widget.TextInputLayout>
 
@@ -86,6 +103,9 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:paddingLeft="10dp"
+                android:textColorHint="@color/white"
+                android:textStyle="bold"
+
                 android:paddingRight="10dp">
 
                 <EditText android:id="@+id/phoneEditTxt"
@@ -93,6 +113,8 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:hint="PHONE"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:maxLength="10"
                     android:textSize="@dimen/medium_font"/>
             </android.support.design.widget.TextInputLayout>

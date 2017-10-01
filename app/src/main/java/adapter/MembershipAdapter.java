@@ -9,9 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.suraj.jobpool.R;
-
+import com.startupsoch.jobpool.R;
 import java.util.ArrayList;
 
 import dtos.MembershipDTO;

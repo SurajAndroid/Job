@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-
-import com.suraj.jobpool.R;
+import com.startupsoch.jobpool.R;
 
 import java.util.ArrayList;
 

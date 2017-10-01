@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.suraj.jobpool.SearchActivity;
+import com.startupsoch.jobpool.SearchActivity;
 import org.json.JSONException;
 import org.json.JSONObject;
 import app.Config;

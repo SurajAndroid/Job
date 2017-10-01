@@ -4,10 +4,10 @@ package dtos;
  * Created by SURAJ on 9/4/2017.
  */
 
-public class PostDTO {
+public class    PostDTO {
 
     String id, emp_id, employer_name, image, industry_type, functional_area, job_role, designation,
-            skill, experience, country, state, city, discription, count, last_date, extand;
+            skill, experience, country, state, city, discription, count, last_date, extand,num_of_requirment;
 
     public String getId() {
         return id;
@@ -19,6 +19,14 @@ public class PostDTO {
 
     public String getEmp_id() {
         return emp_id;
+    }
+
+    public String getNum_of_requirment() {
+        return num_of_requirment;
+    }
+
+    public void setNum_of_requirment(String num_of_requirment) {
+        this.num_of_requirment = num_of_requirment;
     }
 
     public void setEmp_id(String emp_id) {

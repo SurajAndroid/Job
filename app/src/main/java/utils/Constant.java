@@ -92,6 +92,8 @@ public class Constant {
 	public static String DOCUMENT="";
 	public static String RESUME="";
 
+	public static boolean JobFlage;
+
 	/*SOCIAL LOGIN*/
 	public static String FB_ID="";
 	public static String GOOGLE_ID="";

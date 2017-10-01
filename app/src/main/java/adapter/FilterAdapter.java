@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.suraj.jobpool.R;
+import com.startupsoch.jobpool.R;
 
 import java.util.ArrayList;
 
@@ -23,6 +25,8 @@ import dtos.FilterDTO;
 public class FilterAdapter extends BaseAdapter {
 
     LayoutInflater layoutInflater;
+    LinearLayout genderLayout;
+
     Context context;
     ArrayList<FilterDTO> list;
 

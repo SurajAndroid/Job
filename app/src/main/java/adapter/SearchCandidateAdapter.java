@@ -15,9 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.suraj.jobpool.ProfileActivity;
-import com.suraj.jobpool.R;
-
+import com.startupsoch.jobpool.ProfileActivity;
+import com.startupsoch.jobpool.R;
 import java.util.ArrayList;
 
 import dtos.CandidateDTO;

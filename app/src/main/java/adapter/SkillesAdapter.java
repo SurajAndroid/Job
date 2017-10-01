@@ -10,11 +10,10 @@ import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 
-import com.suraj.jobpool.R;
+import com.startupsoch.jobpool.R;
 
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Optional;
+
 
 import dtos.SkillesDTO;
 import utils.Global;

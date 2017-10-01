@@ -1,10 +1,15 @@
 package adapter;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +17,12 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.suraj.jobpool.R;
+import com.startupsoch.jobpool.R;
 
 import java.util.ArrayList;
 
 import dtos.CompanyDTO;
+import utils.MarshMallowPermission;
 
 /**
  * Created by Suraj shakya on 11/8/16.
@@ -30,14 +34,16 @@ public class EmployeeSearchAdapter extends BaseAdapter {
     Context context;
     Activity activity;
     public ArrayList<CompanyDTO> companylist;
+    MarshMallowPermission marshMallowPermission;
 
     public EmployeeSearchAdapter(Context context, Activity activity, ArrayList<CompanyDTO> companylist){
         this.context = context;
         this.activity = activity;
         this.companylist = companylist;
+        marshMallowPermission = new MarshMallowPermission(activity);
     }
 
-    @Override
+ /*   @Override
     public int getViewTypeCount() {
         return getCount();
     }
@@ -45,7 +51,7 @@ public class EmployeeSearchAdapter extends BaseAdapter {
     @Override
     public int getItemViewType(int position) {
         return position;
-    }
+    }*/
 
     @Override
     public int getCount() {
@@ -73,6 +79,7 @@ public class EmployeeSearchAdapter extends BaseAdapter {
           holder.contactLayout = (LinearLayout)convertView.findViewById(R.id.contactLayout);
           holder.itiNonIti = (TextView)convertView.findViewById(R.id.itiNonIti);
           holder.specialization = (TextView)convertView.findViewById(R.id.specialization);
+          holder.postedJobTxt = (TextView)convertView.findViewById(R.id.postedJobTxt);
           holder.locationTxt = (TextView)convertView.findViewById(R.id.locationTxt);
           holder.expTxt = (TextView)convertView.findViewById(R.id.expTxt);
           holder.applyTxt = (TextView)convertView.findViewById(R.id.applyTxt);
@@ -85,14 +92,17 @@ public class EmployeeSearchAdapter extends BaseAdapter {
 
         holder.applyTxt.setText("Apply");
         holder.showInterestLayout.setVisibility(View.GONE);
-        holder.candidateName.setText(companylist.get(position).getCompany_name());
-        if(!companylist.get(position).getCurrent_requirment().equals("null")){
-            holder.itiNonIti.setText(companylist.get(position).getCurrent_requirment());
+        holder.candidateName.setText(companylist.get(position).getCompany_name().toUpperCase());
+
+
+
+        if(!companylist.get(position).getJobe_type().equals("null")){
+            holder.itiNonIti.setText(companylist.get(position).getJobe_type());
         }else {
             holder.itiNonIti.setText("");
         }
         if(!companylist.get(position).getExperience().equals("null")){
-            holder.expTxt.setText(companylist.get(position).getExperience()+" of year");
+            holder.expTxt.setText(companylist.get(position).getExperience()+" Year Experience");
         }else {
             holder.expTxt.setText("");
         }
@@ -101,6 +111,16 @@ public class EmployeeSearchAdapter extends BaseAdapter {
         }else {
             holder.locationTxt.setText("");
         }
+
+        if(!companylist.get(position).getSpecilization().equals("null")){
+            holder.specialization.setText(companylist.get(position).getSpecilization());
+        }else {
+            holder.specialization.setText("");
+        }
+
+        String[] date = companylist.get(position).getPosted_job().split(" ");
+        holder.postedJobTxt.setText("Posted Job on : "+date[0]);
+
 
         holder.showInterestLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,23 +138,22 @@ public class EmployeeSearchAdapter extends BaseAdapter {
                 final Dialog dialog = new Dialog(activity);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.share_dialog);
-                TextView mailTxt = (TextView)dialog.findViewById(R.id.mailTxt);
-                TextView messageTxt = (TextView)dialog.findViewById(R.id.messageTxt);
+                TextView mailTxt = (TextView) dialog.findViewById(R.id.mailTxt);
+                TextView messageTxt = (TextView) dialog.findViewById(R.id.messageTxt);
+
+
+                mailTxt.setText(companylist.get(position).getEmail());
+                messageTxt.setText(companylist.get(position).getPhone());
 
                 mailTxt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent i = new Intent(Intent.ACTION_SEND);
-                        i.setType("message/rfc822");
-                        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{companylist.get(position).getEmail().toString()});
-                        i.putExtra(Intent.EXTRA_SUBJECT, "");
-                        i.putExtra(Intent.EXTRA_TEXT   , "");
-                        try {
-                            activity.startActivity(Intent.createChooser(i, "Send mail..."));
-                        } catch (android.content.ActivityNotFoundException ex) {
-                            Toast.makeText(context, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
-                        }
-                        dialog.dismiss();
+
+                        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                                "mailto", companylist.get(position).getEmail(), null));
+                        intent.putExtra(Intent.EXTRA_SUBJECT, "");
+                        intent.putExtra(Intent.EXTRA_TEXT, "");
+                        activity.startActivity(Intent.createChooser(intent, "Choose an Email client :"));
                         dialog.dismiss();
                     }
                 });
@@ -142,8 +161,21 @@ public class EmployeeSearchAdapter extends BaseAdapter {
                 messageTxt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        activity.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"
-                                )));
+                        try {
+                            Intent callIntent = new Intent(Intent.ACTION_CALL);
+                            callIntent.setData(Uri.parse("tel:" + companylist.get(position).getPhone()));
+                            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+
+                                if(!marshMallowPermission.checkPermissionForCall()){
+                                    marshMallowPermission.requestPermissionForCall();
+                                }
+
+                                return;
+                            }
+                            activity.startActivity(callIntent);
+                        } catch (ActivityNotFoundException activityException) {
+                            Log.e("Calling a Phone Number", "Call failed", activityException);
+                        }
                         dialog.dismiss();
                     }
                 });
@@ -156,7 +188,7 @@ public class EmployeeSearchAdapter extends BaseAdapter {
     }
 
     class ViewHolder{
-        TextView itiNonIti,specialization, locationTxt, expTxt,candidateName, applyTxt;
+        TextView itiNonIti,specialization,postedJobTxt, locationTxt, expTxt,candidateName, applyTxt;
         LinearLayout showInterestLayout, contactLayout;
     }
 }

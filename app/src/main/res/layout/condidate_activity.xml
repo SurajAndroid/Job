@@ -22,16 +22,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
+                android:textColorHint="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:id="@+id/nameEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Name"
                     android:inputType="textCapWords"
                     android:textSize="@dimen/medium_font" />
+
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -76,10 +80,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
+                android:textColorHint="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:id="@+id/email_idEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -94,13 +101,16 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
+                android:textColorHint="@color/white"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textStyle="bold"
                     android:id="@+id/passwordEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
+                    android:textColor="@color/white"
                     android:inputType="textPassword"
                     android:textSize="@dimen/medium_font" />
             </android.support.design.widget.TextInputLayout>
@@ -111,14 +121,17 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
+                android:textColorHint="@color/white"
                 android:paddingRight="10dp">
 
                 <EditText
+                    android:textStyle="bold"
                     android:id="@+id/phoneEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Contact Number"
                     android:inputType="number"
+                    android:textColor="@color/white"
                     android:maxLength="10"
                     android:textSize="@dimen/medium_font" />
             </android.support.design.widget.TextInputLayout>
@@ -152,16 +165,19 @@
                 android:paddingRight="10dp">
 
                 <RadioButton
+                    android:textStyle="bold"
                     android:id="@+id/itiRadio"
                     android:layout_width="0sp"
+                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:buttonTint="@color/colorAccent"
                     android:padding="10sp"
                     android:text="ITI"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/medium_font" />
 
                 <RadioButton
+                    android:textStyle="bold"
                     android:id="@+id/nonitiRadio"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
@@ -169,7 +185,7 @@
                     android:buttonTint="@color/colorAccent"
                     android:padding="10sp"
                     android:text="Non-ITI"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/medium_font" />
 
             </LinearLayout>
 
@@ -179,6 +195,8 @@
                 android:orientation="horizontal">
 
                 <utils.TextviewFont
+
+                    android:textColor="@color/white"
                     android:id="@+id/branchTxt"
                     android:layout_width="0sp"
                     android:layout_height="match_parent"
@@ -186,9 +204,12 @@
                     android:gravity="center_vertical"
                     android:paddingLeft="15sp"
                     android:text="Select Branch"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/medium_font" />
 
                 <Spinner
+                    android:textStyle="bold"
+                    android:textSize="@dimen/medium_font"
+                    android:textColor="@color/white"
                     android:id="@+id/spinnerBranch"
                     android:layout_width="0sp"
                     android:layout_height="45sp"
@@ -219,10 +240,14 @@
                     android:layout_weight="5"
                     android:gravity="center_vertical"
                     android:paddingLeft="15sp"
+                    android:textColor="@color/white"
                     android:text="Select Job Role"
-                    android:textSize="18sp" />
+                    android:textSize="@dimen/medium_font" />
 
                 <Spinner
+                    android:textStyle="bold"
+                    android:textSize="@dimen/medium_font"
+                    android:textColor="@color/white"
                     android:id="@+id/spinnerJobRole"
                     android:layout_width="0sp"
                     android:layout_height="45sp"
@@ -240,6 +265,9 @@
                 android:background="#Efedee" />
 
             <Spinner
+                android:textStyle="bold"
+                android:textSize="@dimen/medium_font"
+                android:textColor="@color/white"
                 android:id="@+id/spinnerCity"
                 android:layout_width="match_parent"
                 android:layout_height="45sp"
@@ -255,6 +283,9 @@
                 android:background="#Efedee" />
 
             <Spinner
+                android:textStyle="bold"
+                android:textSize="@dimen/medium_font"
+                android:textColor="@color/white"
                 android:id="@+id/spinnerGender"
                 android:layout_width="match_parent"
                 android:layout_height="45sp"
@@ -327,18 +358,20 @@
                 android:gravity="center">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/ic_resume" />
 
                 <utils.TextviewSemiBold
+                    android:textColor="@color/white"
                     android:id="@+id/uploadTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10sp"
                     android:text="UPLOAD RESUME"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/large_font" />
 
             </LinearLayout>
 
@@ -356,17 +389,19 @@
                     android:textSize="18sp" />
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/conditionTxtagree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5sp"
                     android:layout_toRightOf="@id/termsCondiationCheck"
                     android:text="I agree to "
-                    android:textSize="18dp"
+                    android:textSize="@dimen/large_font"
                     android:textStyle="bold"
                     android:visibility="visible" />
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/conditionTxtterms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -374,22 +409,24 @@
                     android:layout_toRightOf="@id/conditionTxtagree"
                     android:autoLink="web"
                     android:text="Terms &amp; Conditions"
-                    android:textSize="18dp"
+                    android:textSize="@dimen/large_font"
                     android:textStyle="bold"
                     android:visibility="visible" />
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/conditionTxtPrivacy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/conditionTxtterms"
                     android:layout_marginLeft="38sp"
                     android:text="and I have read the "
-                    android:textSize="18dp"
+                    android:textSize="@dimen/large_font"
                     android:textStyle="bold"
                     android:visibility="visible" />
 
                 <TextView
+                    android:textColor="@color/white"
                     android:id="@+id/conditionTxtPolicy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -398,7 +435,7 @@
                     android:layout_toRightOf="@id/conditionTxtPrivacy"
                     android:autoLink="web"
                     android:text="Privacy Policy"
-                    android:textSize="18dp"
+                    android:textSize="@dimen/large_font"
                     android:textStyle="bold"
                     android:visibility="visible" />
             </RelativeLayout>

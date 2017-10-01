@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.suraj.jobpool">
+    package="com.startupsoch.jobpool">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -12,6 +12,7 @@
         android:name="android.hardware.camera.flash"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -20,14 +21,14 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name=".AppController"
+        android:name="com.startupsoch.jobpool.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashScreen"
+            android:name="com.startupsoch.jobpool.SplashScreen"
             android:theme="@style/AppTheme.Dark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,70 +37,70 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name="com.startupsoch.jobpool.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".CondidateRegisterActivity"
+            android:name="com.startupsoch.jobpool.CondidateRegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.startupsoch.jobpool.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".EmployerActivity"
+            android:name="com.startupsoch.jobpool.EmployerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".CandidatepackageActivity"
+            android:name="com.startupsoch.jobpool.CandidatepackageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".EmployerpackageActivity"
+            android:name="com.startupsoch.jobpool.EmployerpackageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CompleteProfileActivity"
+            android:name="com.startupsoch.jobpool.CompleteProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".RegistrationActivity"
+            android:name="com.startupsoch.jobpool.RegistrationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".SearchActivity"
+            android:name="com.startupsoch.jobpool.SearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".AllListActivity"
+            android:name="com.startupsoch.jobpool.AllListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".FilterActivity"
+            android:name="com.startupsoch.jobpool.FilterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".ProfileActivity"
+            android:name="com.startupsoch.jobpool.ProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".NotificationActivity"
+            android:name="com.startupsoch.jobpool.NotificationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".AboutUsActivity"
+            android:name="com.startupsoch.jobpool.AboutUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".PrivacyPolicyActivity"
+            android:name="com.startupsoch.jobpool.PrivacyPolicyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".TermsCondtionActivity"
+            android:name="com.startupsoch.jobpool.TermsCondtionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".EditProfileActivity"
+            android:name="com.startupsoch.jobpool.EditProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -107,45 +108,45 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".PaymentsActivity"
+            android:name="com.startupsoch.jobpool.PaymentsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".MerchantCheckoutActivity"
+            android:name="com.startupsoch.jobpool.MerchantCheckoutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".SelectPackageActivity"
+            android:name="com.startupsoch.jobpool.SelectPackageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".EditCandidateActivity"
+            android:name="com.startupsoch.jobpool.EditCandidateActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".EditemployeActivity"
+            android:name="com.startupsoch.jobpool.EditemployeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".WebViewActivity"
+            android:name="com.startupsoch.jobpool.WebViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".InitialScreenActivity"
+            android:name="com.startupsoch.jobpool.InitialScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark" />
-
-        <activity
-            android:name=".PostNewJobActivity"
+            android:name="com.startupsoch.jobpool.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
 
         <activity
-            android:name=".PostListaActivity"
+            android:name="com.startupsoch.jobpool.PostNewJobActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+
+        <activity
+            android:name="com.startupsoch.jobpool.PostListaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
 
@@ -161,11 +162,11 @@
         </service>
 
         <activity
-            android:name=".InitialActivity"
+            android:name="com.startupsoch.jobpool.InitialActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
 
-        <receiver android:name=".SmsReceiver">
+        <receiver android:name="com.startupsoch.jobpool.SmsReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
@@ -185,7 +186,7 @@
             android:value="@string/app_id" />
 
         <activity android:name=".Kotlin"></activity>
-        <activity android:name=".WebViewForTerms" />
+        <activity android:name="com.startupsoch.jobpool.WebViewForTerms" />
     </application>
 
 </manifest>

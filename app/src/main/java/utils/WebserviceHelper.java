@@ -1296,25 +1296,28 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                 JSONArray jsonArray = object.getJSONArray("data");
 
                                 for (int i = 0; i < jsonArray.length(); i++) {
-
                                     object = jsonArray.getJSONObject(i);
                                     CompanyDTO companyDTO = new CompanyDTO();
+
+
                                     companyDTO.setEmployer_id(object.getString("employer_id"));
                                     companyDTO.setCompany_name(object.getString("company_name"));
                                     companyDTO.setContact_person(object.getString("contact_person"));
                                     companyDTO.setEmail(object.getString("email"));
                                     companyDTO.setPhone(object.getString("phone"));
-                                    companyDTO.setCurrent_requirment(object.getString("current_requirment"));
                                     companyDTO.setExperience(object.getString("experience"));
+                                    companyDTO.setJobe_type(object.getString("job_type"));
+                                    companyDTO.setSpecilization(object.getString("specilaization"));
+
+                                    companyDTO.setJob_role(object.getString("job_role"));
                                     companyDTO.setSkill(object.getString("skill"));
+                                    companyDTO.setPosted_job(object.getString("posted_job"));
                                     companyDTO.setLocation(object.getString("location"));
                                     companyDTO.setAddress(object.getString("address"));
-                                    companyDTO.setEmppackage(object.getString("package"));
-                                    companyDTO.setAmount(object.getString("amount"));
-                                    companyDTO.setUser_type(object.getString("user_type"));
                                     companyDTO.setEmp_Image(object.getString("employer_image"));
-                                    Global.companylist.add(companyDTO);
+                                    companyDTO.setUser_type(object.getString("user_type"));
 
+                                    Global.companylist.add(companyDTO);
                                 }
 
                                 Log.e("", "List Size : " + Global.companylist.size());
@@ -1393,20 +1396,22 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     JSONObject jsonObject = array.getJSONObject(i);
                                     CandidateDTO candidateDTO = new CandidateDTO();
 
+
+
                                     candidateDTO.setUserId(jsonObject.getString("user_id"));
                                     candidateDTO.setName(jsonObject.getString("name"));
-                                    candidateDTO.setUserName(jsonObject.getString("user_name"));
+//                                    candidateDTO.setUserName(jsonObject.getString("user_name"));
                                     candidateDTO.setEmail(jsonObject.getString("email"));
                                     candidateDTO.setPhone(jsonObject.getString("phone"));
                                     candidateDTO.setGender(jsonObject.getString("gender"));
                                     candidateDTO.setLocation(jsonObject.getString("location"));
                                     candidateDTO.setUserImage(jsonObject.getString("image"));
-                                    candidateDTO.setBrief_description(jsonObject.getString("brief_description"));
-                                    candidateDTO.setSkill(jsonObject.getString("skill"));
-                                    candidateDTO.setAddress(jsonObject.getString("address"));
+//                                    candidateDTO.setBrief_description(jsonObject.getString("brief_description"));
+//                                    candidateDTO.setSkill(jsonObject.getString("skill"));
+//                                    candidateDTO.setAddress(jsonObject.getString("address"));
                                     candidateDTO.setUser_type(jsonObject.getString("user_type"));
                                     candidateDTO.setDesignation(jsonObject.getString("designation"));
-                                    candidateDTO.setExperience(jsonObject.getString("experience"));
+//                                    candidateDTO.setExperience(jsonObject.getString("experience"));
                                     candidateDTO.setResume(jsonObject.getString("resume"));
 
                                     candidateDTO.setJobRole(jsonObject.getString("job_role"));
@@ -2118,12 +2123,22 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     postDTO.setId(data.getString("id"));
                                     postDTO.setEmp_id(data.getString("emp_id"));
                                     postDTO.setEmployer_name(data.getString("employer_name"));
+                                    postDTO.setImage(data.getString("image"));
                                     postDTO.setIndustry_type(data.getString("industry_type"));
                                     postDTO.setFunctional_area(data.getString("functional_area"));
                                     postDTO.setJob_role(data.getString("job_role"));
-                                    postDTO.setExperience(data.getString("experience"));
-                                    postDTO.setSkill(data.getString("skill"));
+                                    postDTO.setNum_of_requirment(data.getString("num_of_requirment"));
                                     postDTO.setDesignation(data.getString("designation"));
+                                    postDTO.setSkill(data.getString("skill"));
+                                    postDTO.setExperience(data.getString("experience"));
+                                    postDTO.setCountry(data.getString("country"));
+                                    postDTO.setState(data.getString("state"));
+                                    postDTO.setCity(data.getString("city"));
+                                    postDTO.setDiscription(data.getString("discription"));
+                                    postDTO.setCount(data.getString("count"));
+                                    postDTO.setLast_date(data.getString("last_date"));
+                                    postDTO.setExtand(data.getString("extand"));
+
                                     Global.postJob_List.add(postDTO);
                                 }
 

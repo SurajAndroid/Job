@@ -13,6 +13,7 @@ public class MarshMallowPermission {
     public static final int EXTERNAL_STORAGE_PERMISSION_REQUEST_CODE = 2;
     public static final int CAMERA_PERMISSION_REQUEST_CODE = 3;
     public static final int LOCATION_PERMISSION_REQUEST_CODE=4;
+    public static final int CALL_PERMISSION_REQUEST_CODE=5;
     Activity activity;
 
     public MarshMallowPermission(Activity activity) {
@@ -46,6 +47,14 @@ public class MarshMallowPermission {
         }
     }
 
+    public boolean checkPermissionForCall(){
+        int result = ContextCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE);
+        if (result == PackageManager.PERMISSION_GRANTED){
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public boolean checkPermissionForLocation(){
         int result = ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION);
@@ -83,6 +92,13 @@ public class MarshMallowPermission {
         }
     }
 
+    public void requestPermissionForCall(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.CALL_PHONE)){
+            Toast.makeText(activity, "Camera permission needed. Please allow in App Settings for additional functionality.", Toast.LENGTH_LONG).show();
+        } else {
+            ActivityCompat.requestPermissions(activity,new String[]{Manifest.permission.CALL_PHONE},CALL_PERMISSION_REQUEST_CODE);
+        }
+    }
 
     public void requestPermissionForLocation(){
         if (ActivityCompat.shouldShowRequestPermissionRationale(activity, Manifest.permission.ACCESS_FINE_LOCATION)){
