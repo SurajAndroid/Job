@@ -50,6 +50,13 @@ public class Constant {
 	//Sohel
 	public static final int GET_PACK_LIST = 25;
 	public static final int SELECT_PACK = 26;
+
+	public static final int UPDATE_POST = 27;
+	public static final int DELETE_POST = 28;
+
+	public static final int APPLY_FILTER = 29;
+	public static final int APPLY_CUSTOMER_FILTER = 30;
+
 //	public static String BASE_URL ="http://smtgroup.in/jobpools/wdiapi/index.php/";
 	public static String BASE_URL ="http://jobpool.in/jobpoolapi/index.php/";
 
@@ -78,7 +85,10 @@ public class Constant {
 	public static String GET_ALL_JOBLIST_URL = BASE_URL+"alljobrole";
 	public static String GET_ALL_MEMBERSHIP_URL = BASE_URL+"allmembership";
 	public static String SELECT_MEMBERSHIP_URL = BASE_URL+"update_membership";
-//	public static String GET_ALL_JOBLIST_URL = BASE_URL+"alljobrole";
+	public static String UPDATE_POST_URL = BASE_URL+"updatepostjob";
+	public static String DELETE_POST_URL = BASE_URL+"deletepostjob";
+	public static String APPLY_FILTTER_URL = BASE_URL+"singalfilter";
+	public static String APPLY_CUSTOMER_FILTTER_URL = BASE_URL+"employerfilter";
 
 	public static String NAME="";
 	public static String USER_NAME="";
@@ -98,6 +108,7 @@ public class Constant {
 	public static String FB_ID="";
 	public static String GOOGLE_ID="";
 	public static String COMPANY_ID="";
+	public static String JOB_ID="";
 
 	/*EMPLOYER REGISTER*/
 	public static String COMPANY_NAME="";

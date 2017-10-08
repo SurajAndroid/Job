@@ -6,8 +6,34 @@ package dtos;
 
 public class    PostDTO {
 
-    String id, emp_id, employer_name, image, industry_type, functional_area, job_role, designation,
-            skill, experience, country, state, city, discription, count, last_date, extand,num_of_requirment;
+    String id;
+    String emp_id;
+    String employer_name;
+    String image;
+    String industry_type;
+    String functional_area;
+    String job_role;
+    String designation;
+    String gender;
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    String skill;
+    String experience;
+    String country;
+    String state;
+    String city;
+    String discription;
+    String count;
+    String last_date;
+    String extand;
+    String num_of_requirment;
 
     public String getId() {
         return id;

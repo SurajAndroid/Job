@@ -18,6 +18,7 @@ import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.startupsoch.jobpool.R;
 
@@ -38,6 +39,7 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
     ScrollView parentLayout;
     TextView branchTxt, jobTxt;
     int pos;
+    
     SharedPreferences sharedPreferences;
     int Postion;
 
@@ -113,8 +115,23 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
 
     public void setData(){
 
+            Constant.JOB_ID  = Global.postJob_List.get(Postion).getId();
+
+            if(Global.postJob_List.get(Postion).getGender().equalsIgnoreCase("male")){
+                maleRadio.setChecked(true);
+            }else {
+                femaleRadio.setChecked(true);
+            }
+
             if(Global.postJob_List.get(Postion).getIndustry_type().equals("ITI")){
                 itiRadio.setChecked(true);
+                int position = -1;
+                position = Global.getFilterList.indexOf(Global.postJob_List.get(Postion).getFunctional_area());
+                Toast.makeText(getApplicationContext(),""+position,Toast.LENGTH_SHORT).show();
+                branchTxt.setVisibility(View.GONE);
+                jobTxt.setVisibility(View.GONE);
+                spinnerBranch.setSelection(position);
+
             }else {
                 nonitRadio.setChecked(true);
             }
@@ -125,16 +142,17 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
                     break;
                 }
             }
-        for(int i =0;i<citys.length;i++){
-            if(Global.postJob_List.get(Postion).getCity().equals(citys[i])){
-                spinnerCity.setSelection(i+1);
-                break;
-            }
-        }
 
-        skillesEditTxt.setText(Global.postJob_List.get(Postion).getSkill());
-        noOfRquirmwntEditTxt.setText(Global.postJob_List.get(Postion).getNum_of_requirment());
-        DiscriptionEditTxt.setText(Global.postJob_List.get(Postion).getDiscription());
+            for(int i =0;i<citys.length;i++){
+                if(Global.postJob_List.get(Postion).getCity().equals(citys[i])){
+                    spinnerCity.setSelection(i+1);
+                    break;
+                }
+            }
+
+            skillesEditTxt.setText(Global.postJob_List.get(Postion).getSkill());
+            noOfRquirmwntEditTxt.setText(Global.postJob_List.get(Postion).getNum_of_requirment());
+            DiscriptionEditTxt.setText(Global.postJob_List.get(Postion).getDiscription());
 
     }
 
@@ -254,7 +272,12 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
                                 Constant.DISCRIPTION = DiscriptionEditTxt.getText().toString();
                                 Constant.NO_OF_REQUIRMENT = noOfRquirmwntEditTxt.getText().toString();
                                 Constant.SKILLES = skillesEditTxt.getText().toString();
-                                callSerivice();
+                                if(Constant.JobFlage){
+                                    updateSerivice();
+                                }else {
+                                    callSerivice();
+                                }
+
                             }else {
                                 Snackbar.make(parentLayout,"Select City.",Snackbar.LENGTH_SHORT).show();
                             }
@@ -279,6 +302,12 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
         WebserviceHelper employer = new WebserviceHelper(receiver, PostNewJobActivity.this);
         employer.setAction(Constant.POST_JOB);
         employer.execute();
+    }
+
+    public void updateSerivice() {
+        WebserviceHelper update_post = new WebserviceHelper(receiver, PostNewJobActivity.this);
+        update_post.setAction(Constant.UPDATE_POST);
+        update_post.execute();
     }
 
     @Override

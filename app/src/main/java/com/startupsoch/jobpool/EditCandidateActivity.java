@@ -11,15 +11,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.startupsoch.jobpool.R;
 
+import adapter.BranchAdapter;
+import adapter.JobRollAdapter;
 import utils.Constant;
 import utils.Global;
 import utils.RequestReceiver;
@@ -27,15 +29,20 @@ import utils.WebserviceHelper;
 
 public class EditCandidateActivity extends Activity implements RequestReceiver {
 
-    Button saveandcontinue;
-    ScrollView parentLayout;
+
+    RelativeLayout parentLayout;
     RequestReceiver receiver;
     LinearLayout submitNowlayout;
-    EditText nameEditTxt, phoneEditTxt, locationEdit, experienceEditTxt, skillEditTxt,strenghtEdit, salaryEdit,addressEditTxt,objectiveEdit,briefDesEdit,email_idEditTxt;
+    EditText nameEditTxt  ,email_idEditTxt, phoneEditTxt;
+    RadioButton itiRadio, nonitiRadio;
+    Spinner spinnerBranch, spinnerJobRole,spinnerCity;
+    TextView   jobrolTxt, branchTxt;
+
     EditProfileActivity candidateActivity;
     SharedPreferences sharedPreferences;
-    Spinner spinner;
-    String[] citys = {"Select City", "Bengaluru", "Bidar","Delhi","Hyderabad","Indore", "Kalaburagi","Pune"};
+    int pos;
+    String[] citys = {"Select City", "Bengaluru", "Bidar", "Delhi", "Hyderabad", "Indore", "Kalaburagi", "Pune"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,28 +60,39 @@ public class EditCandidateActivity extends Activity implements RequestReceiver {
         sharedPreferences = getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
         Constant.EMAIL = sharedPreferences.getString("email","");
 
-        submitNowlayout = (LinearLayout)findViewById(R.id.submitNowlayout);
         nameEditTxt = (EditText)findViewById(R.id.nameEditTxt);
         phoneEditTxt = (EditText)findViewById(R.id.phoneEditTxt);
-        locationEdit = (EditText)findViewById(R.id.locationEdit);
-        experienceEditTxt = (EditText)findViewById(R.id.experienceEditTxt);
-        skillEditTxt = (EditText)findViewById(R.id.skillEditTxt);
-        strenghtEdit = (EditText)findViewById(R.id.strenghtEdit);
-        salaryEdit = (EditText)findViewById(R.id.salaryEdit);
-        addressEditTxt = (EditText)findViewById(R.id.addressEditTxt);
-        objectiveEdit = (EditText)findViewById(R.id.objectiveEdit);
-        briefDesEdit = (EditText)findViewById(R.id.briefDesEdit);
+        submitNowlayout = (LinearLayout)findViewById(R.id.registerNowLayout) ;
+
         email_idEditTxt = (EditText)findViewById(R.id.email_idEditTxt);
-        parentLayout = (ScrollView)findViewById(R.id.parentLayout);
-        spinner = (Spinner)findViewById(R.id.spinner);
+        parentLayout = (RelativeLayout)findViewById(R.id.parentLayout);
+
+        spinnerBranch = (Spinner)findViewById(R.id.spinnerBranch);
+        spinnerJobRole = (Spinner)findViewById(R.id.spinnerJobRole);
+        spinnerCity = (Spinner)findViewById(R.id.spinnerCity);
+
+        itiRadio = (RadioButton)findViewById(R.id.itiRadio);
+        nonitiRadio = (RadioButton)findViewById(R.id.nonitiRadio);
+
+        jobrolTxt = (TextView) findViewById(R.id.jobrolTxt);
+        branchTxt = (TextView) findViewById(R.id.branchTxt);
+
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, citys);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+        dataAdapter.setDropDownViewResource(R.layout.spinner_txt);
+        spinnerCity.setAdapter(dataAdapter);
 
-//        setprofileData();
-        getCandidateSerivice();
+//      setprofileData();
+        callSerivice();
+
+    }
+
+
+    public void callSerivice() {
+        WebserviceHelper employer = new WebserviceHelper(receiver, EditCandidateActivity.this);
+        employer.setAction(Constant.GET_FILTER_DATA);
+        employer.execute();
     }
 
     public void updateprofile() {
@@ -101,53 +119,44 @@ public class EditCandidateActivity extends Activity implements RequestReceiver {
             }else {
                 phoneEditTxt.setText("");
             }
-            if(!Global.candidatelist.get(0).getLocation().equals("null")){
-                locationEdit.setText(Global.candidatelist.get(0).getLocation());
-            }else {
-                locationEdit.setText("");
-            }
-            if(!Global.candidatelist.get(0).getExperience().equals("null")){
-                experienceEditTxt.setText(Global.candidatelist.get(0).getExperience());
-            }else {
-                experienceEditTxt.setText("");
-            }
-            if(!Global.candidatelist.get(0).getSkill().equals("null")){
-                skillEditTxt.setText(Global.candidatelist.get(0).getSkill());
-            }else {
-                skillEditTxt.setText("");
-            }
-            if(!Global.candidatelist.get(0).getStrength().equals("null")){
-                strenghtEdit.setText(Global.candidatelist.get(0).getStrength());
-            }else {
-                strenghtEdit.setText("");
-            }
-            if(!Global.candidatelist.get(0).getExpected_salary().equals("null")){
-                salaryEdit.setText(Global.candidatelist.get(0).getExpected_salary());
-            }else {
-                salaryEdit.setText("");
-            }
 
-            if(!Global.candidatelist.get(0).getAddress().equals("null")){
-                addressEditTxt.setText(Global.candidatelist.get(0).getAddress());
-            }else {
-                addressEditTxt.setText("");
-            }
-            if(!Global.candidatelist.get(0).getObjective().equals("null")){
-                objectiveEdit.setText(Global.candidatelist.get(0).getObjective());
-            }else {
-                objectiveEdit.setText("");
-            }
-            if(!Global.candidatelist.get(0).getBrief_description().equals("null")){
-                briefDesEdit.setText(Global.candidatelist.get(0).getBrief_description());
-            }else {
-                briefDesEdit.setText("");
-            }
             if(!Global.candidatelist.get(0).getEmail().equals("null")){
                 email_idEditTxt.setText(Global.candidatelist.get(0).getEmail());
             }else {
                 email_idEditTxt.setText("");
             }
 
+            if(Global.candidatelist.get(0).getJobType().equalsIgnoreCase("iti")) {
+                itiRadio.setChecked(true);
+                nonitiRadio.setChecked(false);
+                jobrolTxt.setVisibility(View.GONE);
+                branchTxt.setVisibility(View.GONE);
+
+                Constant.JOB_TYPE = itiRadio.getText().toString();
+                BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Global.getFilterList);
+                spinnerBranch.setAdapter(adapter);
+                spinnerBranch.setEnabled(true);
+            }else {
+                nonitiRadio.setChecked(true);
+
+                jobrolTxt.setVisibility(View.GONE);
+                branchTxt.setVisibility(View.GONE);
+
+                Constant.JOB_TYPE = nonitiRadio.getText().toString();
+                BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Global.getFilterList);
+                spinnerBranch.setAdapter(adapter);
+                spinnerBranch.setSelection(Global.getFilterList.size() - 1);
+                spinnerBranch.setEnabled(false);
+
+
+            }
+
+            for(int i =0;i<citys.length;i++){
+                if(Global.candidatelist.get(0).getLocation().equals(citys[i])){
+                    spinnerCity.setSelection(i);
+                    break;
+                }
+            }
 
         }catch (Exception e){
             e.printStackTrace();
@@ -156,7 +165,66 @@ public class EditCandidateActivity extends Activity implements RequestReceiver {
 
     public void clickListener(){
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        spinnerBranch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Constant.SPECILIZATION = Global.getFilterList.get(position).getIndustry();
+                pos = position;
+
+                JobRollAdapter adapter = new JobRollAdapter(getApplicationContext(), Global.getFilterList.get(position).getJobRolllist());
+                spinnerJobRole.setAdapter(adapter);
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        spinnerJobRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Constant.JOBROLL = Global.getFilterList.get(pos).getJobRolllist().get(position).getTitle().toString();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+
+        itiRadio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(itiRadio.isChecked()){
+                    nonitiRadio.setChecked(false);
+                    jobrolTxt.setVisibility(View.GONE);
+                    branchTxt.setVisibility(View.GONE);
+
+                    Constant.JOB_TYPE = itiRadio.getText().toString();
+                    BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Global.getFilterList);
+                    spinnerBranch.setAdapter(adapter);
+                    spinnerBranch.setEnabled(true);
+                }
+            }
+        });
+
+        nonitiRadio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(nonitiRadio.isChecked()){
+                    itiRadio.setChecked(false);
+                    itiRadio.setChecked(false);
+                    jobrolTxt.setVisibility(View.GONE);
+                    branchTxt.setVisibility(View.GONE);
+
+                    Constant.JOB_TYPE = nonitiRadio.getText().toString();
+                    BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Global.getFilterList);
+                    spinnerBranch.setAdapter(adapter);
+                    spinnerBranch.setSelection(Global.getFilterList.size() - 1);
+                    spinnerBranch.setEnabled(false);
+                }
+            }
+        });
+
+        spinnerCity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Constant.LOCATION = parent.getItemAtPosition(position).toString();
             }
@@ -172,67 +240,32 @@ public class EditCandidateActivity extends Activity implements RequestReceiver {
                     if(phoneEditTxt.getText().length()!=0){
                         if(phoneEditTxt.getText().length()>=10){
                             if(!Constant.LOCATION.equalsIgnoreCase("Location")){
-                                if(experienceEditTxt.getText().length()!=0){
-                                    if(skillEditTxt.getText().length()!=0){
-                                        if(strenghtEdit.getText().length()!=0){
-                                            if(salaryEdit.getText().length()!=0){
-                                                if(addressEditTxt.getText().length()!=0){
-                                                    if(objectiveEdit.getText().length()!=0){
-                                                        if(briefDesEdit.getText().length()!=0){
-                                                            if(email_idEditTxt.getText().length()!=0){
-                                                                if(Constant.emailValidation(email_idEditTxt.getText().toString())){
+                                if(email_idEditTxt.getText().length()!=0){
+                                    if(Constant.emailValidation(email_idEditTxt.getText().toString())){
 
-                                                                    Constant.USER_NAME = nameEditTxt.getText().toString();
-                                                                    Constant.PHONE_NUMBER = phoneEditTxt.getText().toString();
-                                                                    Constant.LOCATION = locationEdit.getText().toString();
-                                                                    Constant.EXPERIENCE = experienceEditTxt.getText().toString();
-                                                                    Constant.SKILLES = skillEditTxt.getText().toString();
-                                                                    Constant.STRENGHT = strenghtEdit.getText().toString();
-                                                                    Constant.EXP_SALARY= salaryEdit.getText().toString();
-                                                                    Constant.ADDRESS = addressEditTxt.getText().toString();
-                                                                    Constant.OBJECTIVE = objectiveEdit.getText().toString();
-                                                                    Constant.BRIEFDESCRIPTION = briefDesEdit.getText().toString();
-                                                                    Constant.EMAIL= email_idEditTxt.getText().toString();
-                                                                    updateprofile();
+                                        Constant.USER_NAME = nameEditTxt.getText().toString();
+                                        Constant.PHONE_NUMBER = phoneEditTxt.getText().toString();
 
-                                                                }else {
-                                                                    Snackbar.make(parentLayout,"Enter valid email.!",Snackbar.LENGTH_SHORT).show();
-                                                                }
-                                                            }else {
-                                                                Snackbar.make(parentLayout,"Enter email.!",Snackbar.LENGTH_SHORT).show();
-                                                            }
-                                                        }else {
-                                                            Snackbar.make(parentLayout,"Enter about your self.!",Snackbar.LENGTH_SHORT).show();
-                                                        }
-                                                    }else {
-                                                        Snackbar.make(parentLayout,"Enter your objective.!",Snackbar.LENGTH_SHORT).show();
-                                                    }
-                                                }else {
-                                                    Snackbar.make(parentLayout,"Enter your address.!",Snackbar.LENGTH_SHORT).show();
-                                                }
-                                            }else {
-                                                Snackbar.make(parentLayout,"Enter your salary expectation.!",Snackbar.LENGTH_SHORT).show();
-                                            }
-                                        }else {
-                                            Snackbar.make(parentLayout,"Enter your strength.!",Snackbar.LENGTH_SHORT).show();
-                                        }
+                                        Constant.EMAIL= email_idEditTxt.getText().toString();
+                                        updateprofile();
+
                                     }else {
-                                        Snackbar.make(parentLayout,"Enter skilles.!",Snackbar.LENGTH_SHORT).show();
+                                        Snackbar.make(parentLayout,"Enter valid email.",Snackbar.LENGTH_SHORT).show();
                                     }
                                 }else {
-                                    Snackbar.make(parentLayout,"Enter youe work experience.!",Snackbar.LENGTH_SHORT).show();
+                                    Snackbar.make(parentLayout,"Enter email.",Snackbar.LENGTH_SHORT).show();
                                 }
                             }else {
-                                Snackbar.make(parentLayout,"Select location.!",Snackbar.LENGTH_SHORT).show();
+                                Snackbar.make(parentLayout,"Select location.",Snackbar.LENGTH_SHORT).show();
                             }
                         }else {
-                            Snackbar.make(parentLayout,"Enter valid phone number.!",Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(parentLayout,"Enter valid phone number.",Snackbar.LENGTH_SHORT).show();
                         }
                     }else {
-                        Snackbar.make(parentLayout,"Enter phone number.!",Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(parentLayout,"Enter phone number.",Snackbar.LENGTH_SHORT).show();
                     }
                 }else {
-                    Snackbar.make(parentLayout,"Enter name.!",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(parentLayout,"Enter name.",Snackbar.LENGTH_SHORT).show();
                 }
 
             }
@@ -267,6 +300,8 @@ public class EditCandidateActivity extends Activity implements RequestReceiver {
                 }
             });
 
+        }else if(result[0].equals("01")){
+            getCandidateSerivice();
         }else if(result[0].equals("001")){
             setprofileData();
         }

@@ -47,7 +47,7 @@
                     android:inputType="textCapWords"
                     android:textSize="@dimen/medium_font"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
+
                     android:hint="COMPANY NAME"
 
                     />
@@ -70,7 +70,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/medium_font"
 
-                    android:textStyle="bold"
+
                     android:hint="CONTACT PERSON" />
             </android.support.design.widget.TextInputLayout>
 
@@ -91,7 +91,7 @@
                     android:inputType="textEmailAddress"
                     android:textSize="@dimen/medium_font"
 
-                    android:textStyle="bold"
+
                     android:textColor="@color/white"
                     android:hint="EMAIL ID" />
             </android.support.design.widget.TextInputLayout>
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:hint="PHONE"
-                    android:textStyle="bold"
+
                     android:textColor="@color/white"
                     android:maxLength="10"
                     android:textSize="@dimen/medium_font"/>

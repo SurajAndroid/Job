@@ -869,16 +869,12 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                 candidateDTO.setPhone(object1.getString("phone"));
                                 candidateDTO.setGender(object1.getString("gender"));
                                 candidateDTO.setLocation(object1.getString("location"));
-                                candidateDTO.setExperience(object1.getString("experience"));
-                                candidateDTO.setSkill(object1.getString("skill"));
-                                candidateDTO.setStrength(object1.getString("strength"));
-                                candidateDTO.setExpected_salary(object1.getString("expected_salary"));
-                                candidateDTO.setAddress(object1.getString("address"));
-                                candidateDTO.setPrefered_location(object1.getString("prefered_location"));
-                                candidateDTO.setObjective(object1.getString("objective"));
-                                candidateDTO.setBrief_description(object1.getString("brief_description"));
+                                candidateDTO.setJobType(object1.getString("job_type"));
+                                candidateDTO.setJobRole(object1.getString("job_role"));
+                                candidateDTO.setSpecialization(object1.getString("specilaization"));
                                 candidateDTO.setEmail(object1.getString("email"));
                                 candidateDTO.setUser_type(object1.getString("user_type"));
+
                                 Global.candidatelist.add(candidateDTO);
                                 Log.e("", "Size of list : " + Global.candidatelist.size());
                             } catch (Exception e) {
@@ -1393,27 +1389,19 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                             try {
                                 JSONArray array = object.getJSONArray("data");
                                 for (int i = 0; i < array.length(); i++) {
+
                                     JSONObject jsonObject = array.getJSONObject(i);
                                     CandidateDTO candidateDTO = new CandidateDTO();
-
-
-
                                     candidateDTO.setUserId(jsonObject.getString("user_id"));
                                     candidateDTO.setName(jsonObject.getString("name"));
-//                                    candidateDTO.setUserName(jsonObject.getString("user_name"));
                                     candidateDTO.setEmail(jsonObject.getString("email"));
                                     candidateDTO.setPhone(jsonObject.getString("phone"));
                                     candidateDTO.setGender(jsonObject.getString("gender"));
                                     candidateDTO.setLocation(jsonObject.getString("location"));
                                     candidateDTO.setUserImage(jsonObject.getString("image"));
-//                                    candidateDTO.setBrief_description(jsonObject.getString("brief_description"));
-//                                    candidateDTO.setSkill(jsonObject.getString("skill"));
-//                                    candidateDTO.setAddress(jsonObject.getString("address"));
                                     candidateDTO.setUser_type(jsonObject.getString("user_type"));
                                     candidateDTO.setDesignation(jsonObject.getString("designation"));
-//                                    candidateDTO.setExperience(jsonObject.getString("experience"));
                                     candidateDTO.setResume(jsonObject.getString("resume"));
-
                                     candidateDTO.setJobRole(jsonObject.getString("job_role"));
                                     candidateDTO.setJobType(jsonObject.getString("job_type"));
                                     candidateDTO.setSpecialization(jsonObject.getString("specilaization"));
@@ -1499,26 +1487,22 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                 JSONArray array = object.getJSONArray("data");
                                 for (int i = 0; i < array.length(); i++) {
                                     JSONObject object1 = array.getJSONObject(i);
-                                    CandidateDTO candidateDTO = new CandidateDTO();
-                                    candidateDTO.setUserId(object1.getString("user_id"));
-                                    candidateDTO.setName(object1.getString("name"));
-                                    candidateDTO.setUserName(object1.getString("user_name"));
-                                    candidateDTO.setEmail(object1.getString("email"));
-                                    candidateDTO.setPhone(object1.getString("phone"));
-                                    candidateDTO.setGender(object1.getString("gender"));
-                                    candidateDTO.setLocation(object1.getString("location"));
-                                    candidateDTO.setUserImage(object1.getString("image"));
-                                    candidateDTO.setBrief_description(object1.getString("brief_description"));
-                                    candidateDTO.setSkill(object1.getString("skill"));
-                                    candidateDTO.setAddress(object1.getString("address"));
-                                    candidateDTO.setUser_type(object1.getString("user_type"));
-                                    candidateDTO.setDesignation(object1.getString("designation"));
-                                    candidateDTO.setExperience(object1.getString("experience"));
 
-                                    candidateDTO.setJobRole(object1.getString("job_role"));
-                                    candidateDTO.setJobType(object1.getString("job_type"));
-                                    candidateDTO.setSpecialization(object1.getString("specilaization"));
-//                                    candidateDTO.setResume(object1.getString("resume"));
+                                    JSONObject jsonObject = array.getJSONObject(i);
+                                    CandidateDTO candidateDTO = new CandidateDTO();
+                                    candidateDTO.setUserId(jsonObject.getString("user_id"));
+                                    candidateDTO.setName(jsonObject.getString("name"));
+                                    candidateDTO.setEmail(jsonObject.getString("email"));
+                                    candidateDTO.setPhone(jsonObject.getString("phone"));
+                                    candidateDTO.setGender(jsonObject.getString("gender"));
+                                    candidateDTO.setLocation(jsonObject.getString("location"));
+                                    candidateDTO.setUserImage(jsonObject.getString("image"));
+                                    candidateDTO.setUser_type(jsonObject.getString("user_type"));
+                                    candidateDTO.setDesignation(jsonObject.getString("designation"));
+                                    candidateDTO.setResume(jsonObject.getString("resume"));
+                                    candidateDTO.setJobRole(jsonObject.getString("job_role"));
+                                    candidateDTO.setJobType(jsonObject.getString("job_type"));
+                                    candidateDTO.setSpecialization(jsonObject.getString("specilaization"));
 
                                     Global.searchcandidatelist.add(candidateDTO);
                                 }
@@ -1606,19 +1590,23 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     JSONObject object1 = array.getJSONObject(i);
                                     companyDTO = new CompanyDTO();
 
+
                                     companyDTO.setEmployer_id(object1.getString("user_id"));
                                     companyDTO.setCompany_name(object1.getString("company_name"));
                                     companyDTO.setContact_person(object1.getString("contact_person"));
                                     companyDTO.setEmail(object1.getString("email"));
                                     companyDTO.setPhone(object1.getString("phone"));
-                                    companyDTO.setCurrent_requirment(object1.getString("current_requirment"));
                                     companyDTO.setExperience(object1.getString("experience"));
-                                    companyDTO.setSkill(object1.getString("skill"));
-                                    companyDTO.setJob_role(object1.getString("job_role"));
                                     companyDTO.setLocation(object1.getString("location"));
+
+                                    companyDTO.setJobe_type(object1.getString("job_type"));
+                                    companyDTO.setSpecilization(object1.getString("specilaization"));
+                                    companyDTO.setJob_role(object1.getString("job_role"));
+                                    companyDTO.setNo_of_requirment(object1.getString("num_of_requirment"));
                                     companyDTO.setAddress(object1.getString("address"));
                                     companyDTO.setEmp_Image(object1.getString("picture"));
                                     companyDTO.setExp_date(object1.getString("exp_date"));
+                                    companyDTO.setPosted_job(object1.getString("job_posted_at"));
 
                                     Global.companySearchlist.add(companyDTO);
                                 }
@@ -1841,7 +1829,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                             try {
                                 JSONArray city = object.getJSONArray("city");
                                 JSONArray role = object.getJSONArray("role");
-                                JSONArray education = object.getJSONArray("education");
+                                JSONArray education = object.getJSONArray("industry");
                                 JSONArray industry = object.getJSONArray("industry");
 
                                 for (int i = 0; i < city.length(); i++) {
@@ -1862,7 +1850,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                 for (int i = 0; i < education.length(); i++) {
                                     JSONObject object1 = education.getJSONObject(i);
                                     FilterDTO filterDTO = new FilterDTO();
-                                    filterDTO.setFilterString(object1.getString("education"));
+                                    filterDTO.setFilterString(object1.getString("industry"));
                                     filterDTO.setFlage(false);
                                     Global.educationList.add(filterDTO);
                                 }
@@ -2004,6 +1992,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                         jsonData.accumulate("job_role", Constant.JOBROLL);
                         jsonData.accumulate("skill", Constant.SKILLES);
                         jsonData.accumulate("experience", Constant.EXPERIENCE);
+                        jsonData.accumulate("gender", Constant.GENDER);
                         jsonData.accumulate("job_type", Constant.JOB_TYPE);
                         jsonData.accumulate("specilaization", Constant.SPECILIZATION);
                         jsonData.accumulate("location", Constant.LOCATION);
@@ -2059,6 +2048,80 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                         break;
                     }
                     return postJOb;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
+
+            case Constant.UPDATE_POST:
+                String[] updatepost = new String[3];
+                httppost = new HttpPost(Constant.UPDATE_POST_URL);
+                try {
+                    try {
+
+                        jsonData.accumulate("job_id", Constant.JOB_ID);
+                        jsonData.accumulate("company_name", Constant.COMPANY_NAME);
+                        jsonData.accumulate("job_role", Constant.JOBROLL);
+                        jsonData.accumulate("skill", Constant.SKILLES);
+                        jsonData.accumulate("experience", Constant.EXPERIENCE);
+                        jsonData.accumulate("gender", Constant.GENDER);
+                        jsonData.accumulate("job_type", Constant.JOB_TYPE);
+                        jsonData.accumulate("specilaization", Constant.SPECILIZATION);
+                        jsonData.accumulate("location", Constant.LOCATION);
+                        jsonData.accumulate("discription", Constant.DISCRIPTION);
+
+
+                        Log.e("", "URL " + Constant.UPDATE_POST_URL);
+                        Log.e("Json : ", "" + jsonData.toString());
+                        StringEntity se = new StringEntity(jsonData.toString());
+                        httppost.setEntity(se);
+                        httppost.setHeader("Accept", "application/json");
+                        httppost.setHeader("Content-type", "application/json");
+                        try {
+                            response1 = httpclient.execute(httppost);
+                            response1.getStatusLine().getStatusCode();
+                            Log.e("myapp", "response statau.." + response1.getStatusLine().getStatusCode());
+                            Log.e("myapp", "response.. " + response1.getEntity());
+
+                        } catch (ClientProtocolException e) {
+                            e.printStackTrace();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                    InputStream inputStream = response1.getEntity().getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF8"), 8);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(reader.readLine() + "\n");
+                    String line = "0";
+                    String result = "";
+                    JSONObject object = null;
+
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line + "\n");
+                        result = sb.toString();
+                        Log.e("", "encodeRes : " + result);
+
+                        try {
+                            object = new JSONObject(result);
+                            Log.d("", "jsonObj responce... " + object);
+                            updatepost[0] = "00" + object.getString("success");
+                            updatepost[1] = object.getString("message");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            updatepost[0] = "0" + object.getString("success");
+                            updatepost[1] = object.getString("message");
+                        }
+                        break;
+                    }
+                    return updatepost;
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -2138,6 +2201,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     postDTO.setCount(data.getString("count"));
                                     postDTO.setLast_date(data.getString("last_date"));
                                     postDTO.setExtand(data.getString("extand"));
+                                    postDTO.setGender(data.getString("gender"));
 
                                     Global.postJob_List.add(postDTO);
                                 }
@@ -2156,6 +2220,106 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                         break;
                     }
                     return getpost;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
+
+            case Constant.DELETE_POST:
+                String[] deletepost = new String[3];
+                httppost = new HttpPost(Constant.DELETE_POST_URL);
+                try {
+                    try {
+
+                        jsonData.accumulate("job_id", Constant.JOB_ID);
+                        jsonData.accumulate("emp_id", Constant.COMPANY_ID);
+
+                        Log.e("", "URL " + Constant.DELETE_POST_URL);
+                        Log.e("Json : ", "" + jsonData.toString());
+                        StringEntity se = new StringEntity(jsonData.toString());
+                        httppost.setEntity(se);
+                        httppost.setHeader("Accept", "application/json");
+                        httppost.setHeader("Content-type", "application/json");
+                        try {
+                            response1 = httpclient.execute(httppost);
+                            response1.getStatusLine().getStatusCode();
+                            Log.e("myapp", "response statau.." + response1.getStatusLine().getStatusCode());
+                            Log.e("myapp", "response.. " + response1.getEntity());
+
+                        } catch (ClientProtocolException e) {
+                            e.printStackTrace();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                    InputStream inputStream = response1.getEntity().getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF8"), 8);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(reader.readLine() + "\n");
+                    String line = "0";
+                    String result = "";
+                    JSONObject object = null;
+                    PostDTO postDTO = null;
+                    Global.postJob_List.clear();
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line + "\n");
+                        result = sb.toString();
+                        Log.e("", "encodeRes : " + result);
+
+                        try {
+                            object = new JSONObject(result);
+                            Log.d("", "jsonObj responce... " + object);
+                            deletepost[0] = "0" + object.getString("success");
+                            deletepost[1] = object.getString("message");
+                            try {
+                                JSONArray array = object.getJSONArray("data");
+                                for (int i = 0; i < array.length(); i++) {
+                                    JSONObject data = array.getJSONObject(i);
+                                    postDTO = new PostDTO();
+
+                                    postDTO.setId(data.getString("id"));
+                                    postDTO.setEmp_id(data.getString("emp_id"));
+                                    postDTO.setEmployer_name(data.getString("employer_name"));
+                                    postDTO.setImage(data.getString("image"));
+                                    postDTO.setIndustry_type(data.getString("industry_type"));
+                                    postDTO.setFunctional_area(data.getString("functional_area"));
+                                    postDTO.setJob_role(data.getString("job_role"));
+                                    postDTO.setNum_of_requirment(data.getString("num_of_requirment"));
+                                    postDTO.setDesignation(data.getString("designation"));
+                                    postDTO.setSkill(data.getString("skill"));
+                                    postDTO.setExperience(data.getString("experience"));
+                                    postDTO.setCountry(data.getString("country"));
+                                    postDTO.setState(data.getString("state"));
+                                    postDTO.setCity(data.getString("city"));
+                                    postDTO.setDiscription(data.getString("discription"));
+                                    postDTO.setCount(data.getString("count"));
+                                    postDTO.setLast_date(data.getString("last_date"));
+                                    postDTO.setExtand(data.getString("extand"));
+                                    postDTO.setGender(data.getString("gender"));
+
+                                    Global.postJob_List.add(postDTO);
+                                }
+
+                                Log.e("", "List SIze :" + Global.postJob_List.size());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                deletepost[0] = "0" + object.getString("success");
+                                deletepost[1] = object.getString("message");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            deletepost[0] = "0" + object.getString("success");
+                            deletepost[1] = object.getString("message");
+                        }
+                        break;
+                    }
+                    return deletepost;
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -2324,7 +2488,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                     e.printStackTrace();
                 }
                 break;
-//Sohel
+
             case Constant.SELECT_PACK:
                 String[] selectPack = new String[3];
                 httppost = new HttpPost(Constant.SELECT_MEMBERSHIP_URL);
@@ -2393,6 +2557,286 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                     e.printStackTrace();
                 }
                 break;
+
+            case Constant.APPLY_FILTER:
+                String[] apply_filter = new String[3];
+                httppost = new HttpPost(Constant.APPLY_FILTTER_URL);
+                try {
+                    try {
+                        JSONArray city = new JSONArray();
+                        JSONArray role = new JSONArray();
+                        JSONArray specilization = new JSONArray();
+                        JSONArray gender = new JSONArray();
+                        JSONArray experience = new JSONArray();
+
+                        for(int i=0;i<Global.cityList.size();i++){
+                            if(Global.cityList.get(i).isFlage()){
+                                city.put(Global.cityList.get(i).getFilterString());
+                            }
+                        }
+                        for(int i=0;i<Global.roleList.size();i++){
+                            if(Global.roleList.get(i).isFlage()){
+                                role.put(Global.roleList.get(i).getFilterString());
+                            }
+                        }
+                        for(int i=0;i<Global.educationList.size();i++){
+                            if(Global.educationList.get(i).isFlage()){
+                                specilization.put(Global.educationList.get(i).getFilterString());
+                            }
+                        }
+
+                        for(int i=0;i<Global.experienceList.size();i++){
+                            if(Global.experienceList.get(i).isFlage()){
+                                experience.put(Global.experienceList.get(i).getYear());
+                            }
+                        }
+
+                        for(int i=0;i<Global.genderList.size();i++){
+                            if(Global.genderList.get(i).isFlage()){
+                                gender.put(Global.genderList.get(i).getGender());
+                            }
+                        }
+
+                        jsonData.accumulate("location", city);
+                        jsonData.accumulate("job_role", role);
+                        jsonData.accumulate("specilization", specilization);
+                        jsonData.accumulate("experience",experience );
+                        jsonData.accumulate("gender", gender);
+
+                        Log.e("", "URL " + Constant.APPLY_FILTTER_URL);
+                        Log.e("Json : ", "" + jsonData.toString(12));
+                        StringEntity se = new StringEntity(jsonData.toString());
+                        httppost.setEntity(se);
+                        httppost.setHeader("Accept", "application/json");
+                        httppost.setHeader("Content-type", "application/json");
+                        try {
+                            response1 = httpclient.execute(httppost);
+                            if (response1 != null) {
+                                Log.e("", "responce");
+                                jsonData.has("success");
+                            } else {
+                                Log.e("", "Null responce");
+                            }
+                            response1.getStatusLine().getStatusCode();
+                            StatusLine statusLine = response1.getStatusLine();
+                            Log.e("myapp", "response statau.." + response1.getStatusLine().getStatusCode());
+                            Log.e("myapp", "response.. " + response1.getEntity());
+
+                        } catch (ClientProtocolException e) {
+                            e.printStackTrace();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                    InputStream inputStream = response1.getEntity().getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF8"), 8);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(reader.readLine() + "\n");
+                    String line = "0";
+                    String result = "";
+                    JSONObject object = null;
+                    CompanyDTO companyDTO = null;
+                    Global.companylist.clear();
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line + "\n");
+                        result = sb.toString();
+                        Log.e("", "encodeRes : " + result);
+
+                        try {
+                            object = new JSONObject(result);
+                            Log.d("", "jsonObj responce... " + object);
+                            apply_filter[0] = "000" + object.getString("success");
+                            apply_filter[1] = object.getString("message");
+
+                            try {
+                                JSONArray array = object.getJSONArray("data");
+                                for (int i = 0; i < array.length(); i++) {
+                                    JSONObject object1 = array.getJSONObject(i);
+                                    companyDTO = new CompanyDTO();
+
+                                    companyDTO.setEmployer_id(object1.getString("user_id"));
+                                    companyDTO.setCompany_name(object1.getString("company_name"));
+                                    companyDTO.setContact_person(object1.getString("contact_person"));
+                                    companyDTO.setEmail(object1.getString("email"));
+                                    companyDTO.setPhone(object1.getString("phone"));
+                                    companyDTO.setExperience(object1.getString("experience"));
+                                    companyDTO.setLocation(object1.getString("location"));
+
+                                    companyDTO.setJobe_type(object1.getString("job_type"));
+                                    companyDTO.setSpecilization(object1.getString("specilaization"));
+                                    companyDTO.setJob_role(object1.getString("job_role"));
+                                    companyDTO.setNo_of_requirment(object1.getString("num_of_requirment"));
+                                    companyDTO.setAddress(object1.getString("address"));
+                                    companyDTO.setEmp_Image(object1.getString("picture"));
+                                    companyDTO.setExp_date(object1.getString("exp_date"));
+                                    companyDTO.setPosted_job(object1.getString("job_posted_at"));
+
+                                    Global.companylist.add(companyDTO);
+                                }
+                                Log.e("", "Lit Size  companySearchlist " + Global.companylist.size());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                apply_filter[0] = "000" + object.getString("success");
+                                apply_filter[1] = object.getString("message");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            apply_filter[0] = "000" + object.getString("success");
+                            apply_filter[1] = object.getString("message");
+                        }
+                        break;
+                    }
+                    return apply_filter;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
+
+            case Constant.APPLY_CUSTOMER_FILTER:
+                String[] apply_customer_filter = new String[3];
+                httppost = new HttpPost(Constant.APPLY_CUSTOMER_FILTTER_URL);
+                try {
+                    try {
+                        JSONArray city = new JSONArray();
+                        JSONArray role = new JSONArray();
+                        JSONArray specilization = new JSONArray();
+                        JSONArray gender = new JSONArray();
+                        JSONArray experience = new JSONArray();
+
+                        for(int i=0;i<Global.cityList.size();i++){
+                            if(Global.cityList.get(i).isFlage()){
+                                city.put(Global.cityList.get(i).getFilterString());
+                            }
+                        }
+                        for(int i=0;i<Global.roleList.size();i++){
+                            if(Global.roleList.get(i).isFlage()){
+                                role.put(Global.roleList.get(i).getFilterString());
+                            }
+                        }
+                        for(int i=0;i<Global.educationList.size();i++){
+                            if(Global.educationList.get(i).isFlage()){
+                                specilization.put(Global.educationList.get(i).getFilterString());
+                            }
+                        }
+
+                        for(int i=0;i<Global.experienceList.size();i++){
+                            if(Global.experienceList.get(i).isFlage()){
+                                experience.put(Global.experienceList.get(i).getYear());
+                            }
+                        }
+
+                        for(int i=0;i<Global.genderList.size();i++){
+                            if(Global.genderList.get(i).isFlage()){
+                                gender.put(Global.genderList.get(i).getGender());
+                            }
+                        }
+
+                        jsonData.accumulate("location", city);
+                        jsonData.accumulate("job_role", role);
+                        jsonData.accumulate("specilization", specilization);
+                        jsonData.accumulate("experience",experience );
+                        jsonData.accumulate("gender", gender);
+
+                        Log.e("", "URL " + Constant.APPLY_FILTTER_URL);
+                        Log.e("Json : ", "" + jsonData.toString(12));
+                        StringEntity se = new StringEntity(jsonData.toString());
+                        httppost.setEntity(se);
+                        httppost.setHeader("Accept", "application/json");
+                        httppost.setHeader("Content-type", "application/json");
+                        try {
+                            response1 = httpclient.execute(httppost);
+                            if (response1 != null) {
+                                Log.e("", "responce");
+                                jsonData.has("success");
+                            } else {
+                                Log.e("", "Null responce");
+                            }
+                            response1.getStatusLine().getStatusCode();
+                            StatusLine statusLine = response1.getStatusLine();
+                            Log.e("myapp", "response statau.." + response1.getStatusLine().getStatusCode());
+                            Log.e("myapp", "response.. " + response1.getEntity());
+
+                        } catch (ClientProtocolException e) {
+                            e.printStackTrace();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                    InputStream inputStream = response1.getEntity().getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF8"), 8);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(reader.readLine() + "\n");
+                    String line = "0";
+                    String result = "";
+                    JSONObject object = null;
+                    CompanyDTO companyDTO = null;
+                    Global.companylist.clear();
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line + "\n");
+                        result = sb.toString();
+                        Log.e("", "encodeRes : " + result);
+
+                        try {
+                            object = new JSONObject(result);
+                            Log.d("", "jsonObj responce... " + object);
+                            apply_customer_filter[0] = "000" + object.getString("success");
+                            apply_customer_filter[1] = object.getString("message");
+
+                            try {
+                                JSONArray array = object.getJSONArray("data");
+                                for (int i = 0; i < array.length(); i++) {
+                                    JSONObject object1 = array.getJSONObject(i);
+                                    companyDTO = new CompanyDTO();
+
+                                    companyDTO.setEmployer_id(object1.getString("user_id"));
+                                    companyDTO.setCompany_name(object1.getString("company_name"));
+                                    companyDTO.setContact_person(object1.getString("contact_person"));
+                                    companyDTO.setEmail(object1.getString("email"));
+                                    companyDTO.setPhone(object1.getString("phone"));
+                                    companyDTO.setExperience(object1.getString("experience"));
+                                    companyDTO.setLocation(object1.getString("location"));
+
+                                    companyDTO.setJobe_type(object1.getString("job_type"));
+                                    companyDTO.setSpecilization(object1.getString("specilaization"));
+                                    companyDTO.setJob_role(object1.getString("job_role"));
+                                    companyDTO.setNo_of_requirment(object1.getString("num_of_requirment"));
+                                    companyDTO.setAddress(object1.getString("address"));
+                                    companyDTO.setEmp_Image(object1.getString("picture"));
+                                    companyDTO.setExp_date(object1.getString("exp_date"));
+                                    companyDTO.setPosted_job(object1.getString("job_posted_at"));
+
+                                    Global.companylist.add(companyDTO);
+                                }
+                                Log.e("", "Lit Size  companySearchlist " + Global.companylist.size());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                apply_customer_filter[0] = "000" + object.getString("success");
+                                apply_customer_filter[1] = object.getString("message");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            apply_customer_filter[0] = "000" + object.getString("success");
+                            apply_customer_filter[1] = object.getString("message");
+                        }
+                        break;
+                    }
+                    return apply_customer_filter;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
 
             default:
                 break;

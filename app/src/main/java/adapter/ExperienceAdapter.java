@@ -11,34 +11,28 @@ import android.widget.TextView;
 
 import com.startupsoch.jobpool.R;
 
+import utils.Global;
 
 
 /**
  * Created by Suraj shakya on 11/8/16.
  * shakyasuraj08@mail.com
  */
-public class FilterGenderAdapter extends BaseAdapter {
+public class ExperienceAdapter extends BaseAdapter {
 
     LayoutInflater layoutInflater;
     Context context;
     String Tag;
 
-    String[] gender = {"Male", "Female"};
-    String[] exp = {"0","1","2","3","4","5","6","7","8","9","10+"};
 
-    public FilterGenderAdapter(Context context,String Tag){
+    public ExperienceAdapter(Context context){
         this.context = context;
         this.Tag = Tag;
     }
 
     @Override
     public int getCount() {
-        if(Tag.equals("Exp")){
-            return exp.length;
-        }else {
-            return gender.length;
-        }
-
+      return Global.experienceList.size();
     }
 
     @Override
@@ -66,11 +60,22 @@ public class FilterGenderAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        if(Tag.equals("Exp")){
-            holder.textView14.setText(exp[position]);
-        }else {
-            holder.textView14.setText(gender[position]);
+        holder.textView14.setText(Global.experienceList.get(position).getYear().toString()+" Year");
+
+        if(Global.experienceList.get(position).isFlage()){
+            holder.checkBox2.setChecked(true);
         }
+
+        holder.checkBox2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b){
+                    Global.experienceList.get(position).setFlage(true);
+                }else {
+                    Global.experienceList.get(position).setFlage(false);
+                }
+            }
+        });
 
         return convertView;
     }

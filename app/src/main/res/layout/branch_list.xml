@@ -16,7 +16,8 @@
 
 
 
-        <utils.TextviewFont
+        <TextView
+
             android:singleLine="true"
             android:textColor="#ffffff"
             android:textSize="@dimen/medium_font"

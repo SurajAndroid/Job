@@ -14,7 +14,7 @@
 
     <dimen name="header_font">16dp</dimen>
     <dimen name="large_font">14dp</dimen>
-    <dimen name="medium_font">14dp</dimen>
+    <dimen name="medium_font">16dp</dimen>
     <dimen name="small_font">12dp</dimen>
     <dimen name="extra_small_width">9dp</dimen>
 </resources>

@@ -98,12 +98,12 @@ public class CondidateRegisterActivity extends Activity implements RequestReceiv
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, citys);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter.setDropDownViewResource(R.layout.spinner_txt);
         spinnerCity.setAdapter(dataAdapter);
 
         ArrayAdapter<String> spinnergender = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, gender);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnergender.setDropDownViewResource(R.layout.spinner_txt);
         spinnerGender.setAdapter(spinnergender);
 
         conditionTxtterms.setOnClickListener(new View.OnClickListener() {

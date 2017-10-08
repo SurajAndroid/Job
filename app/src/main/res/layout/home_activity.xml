@@ -177,6 +177,7 @@
         -->
 
         <Spinner
+            android:textSize="@dimen/medium_font"
             android:id="@+id/spinnerJobroll"
             android:layout_width="match_parent"
             android:layout_height="40sp"
@@ -211,6 +212,7 @@
             android:visibility="gone" />
 
         <Spinner
+            android:textSize="@dimen/medium_font"
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="40sp"

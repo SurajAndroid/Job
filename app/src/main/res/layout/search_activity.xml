@@ -3,12 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/parentLayout"
     android:layout_width="match_parent"
-
     android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/layout"
-
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
@@ -99,10 +97,10 @@
         android:id="@+id/belwTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:orientation="vertical"
         android:layout_below="@+id/topView"
-        android:orientation="vertical">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <!--  <android.support.design.widget.TextInputLayout
               android:layout_width="match_parent"
@@ -123,6 +121,7 @@
             android:inputType="textCapWords"
             android:textSize="15dp"
             android:visibility="gone" />
+
         <!--  </android.support.design.widget.TextInputLayout>-->
 
         <Spinner
@@ -157,7 +156,7 @@
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="45sp"
-            android:layout_marginLeft="35sp"
+            android:layout_marginLeft="30sp"
             android:layout_marginRight="35sp"
             android:layout_marginTop="10sp"></Spinner>
 

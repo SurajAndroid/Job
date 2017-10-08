@@ -233,12 +233,11 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this,android.R.layout.simple_list_item_1,skilles);
+                (this,R.layout.spinner_txt,skilles);
         lookingJob.setAdapter(adapter);
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, citys);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.spinner_txt, citys);
         spinner.setAdapter(dataAdapter);
 
         if (Build.VERSION.SDK_INT >= 23) {
@@ -621,8 +620,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
             GetJobRollSerivice();
         }else if(result[0].equals("701")) {
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_spinner_item, Global.jobroll_List);
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    R.layout.spinner_txt, Global.jobroll_List);
             spinnerJobroll.setAdapter(dataAdapter);
         }else {
             Snackbar.make(parentLayout,""+result[1],Snackbar.LENGTH_SHORT).show();

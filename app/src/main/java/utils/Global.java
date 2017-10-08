@@ -6,9 +6,11 @@ import dtos.CandidateDTO;
 import dtos.CompanyDTO;
 import dtos.FilterDTO;
 import dtos.GetFillterDTO;
+import dtos.MaleDTO;
 import dtos.MembershipDTO;
 import dtos.NotificationDTO;
 import dtos.PostDTO;
+import dtos.YearDTO;
 
 
 /**
@@ -33,4 +35,8 @@ public class Global {
     public static ArrayList<MembershipDTO> membershipPack_List = new ArrayList<>();
 
     public static ArrayList<GetFillterDTO> getFilterList = new ArrayList<>();
+
+    public static ArrayList<YearDTO> experienceList = new ArrayList<>();
+    public static ArrayList<MaleDTO> genderList = new ArrayList<>();
+
 }

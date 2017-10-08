@@ -85,12 +85,12 @@ public class EmployerActivity extends AppCompatActivity implements RequestReceiv
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, expirence);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapter.setDropDownViewResource(R.layout.spinner_txt);
         spinerExperience.setAdapter(dataAdapter);
 
         ArrayAdapter<String> cty = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, citys);
-        cty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cty.setDropDownViewResource(R.layout.spinner_txt);
         spinnerCity.setAdapter(cty);
 
 
@@ -321,6 +321,7 @@ public class EmployerActivity extends AppCompatActivity implements RequestReceiv
 
             dialog.show();
         } else {
+            if(!result[1].equalsIgnoreCase("Branch list"))
             Snackbar.make(parentLayout, "" + result[1], Snackbar.LENGTH_SHORT).show();
         }
     }

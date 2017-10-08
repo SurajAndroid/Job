@@ -52,7 +52,7 @@
                 android:paddingRight="10dp">
 
                 <RadioButton
-                    android:textStyle="bold"
+
                     android:textColor="@color/white"
                     android:id="@+id/itiRadio"
                     android:layout_width="0sp"
@@ -64,7 +64,7 @@
                     android:textSize="@dimen/medium_font" />
 
                 <RadioButton
-                    android:textStyle="bold"
+
                     android:textColor="@color/white"
                     android:id="@+id/nonitRadio"
                     android:layout_width="0sp"
@@ -82,8 +82,8 @@
                 android:layout_height="45sp"
                 android:orientation="horizontal">
 
-                <utils.TextviewFont
-                    android:textStyle="bold"
+                <TextView
+
                     android:textColor="@color/white"
                     android:id="@+id/branchTxt"
                     android:layout_width="0sp"
@@ -120,8 +120,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="10sp">
 
-                <utils.TextviewFont
-                    android:textStyle="bold"
+                <TextView
+
                     android:textColor="@color/white"
                     android:id="@+id/jobTxt"
                     android:layout_width="0sp"
@@ -134,7 +134,7 @@
                     android:textSize="@dimen/medium_font" />
 
                 <Spinner
-                    android:textStyle="bold"
+
                     android:textColor="@color/white"
                     android:id="@+id/spinnerJobRaoll"
                     android:layout_width="0sp"
@@ -156,7 +156,7 @@
 
 
             <Spinner
-                android:textStyle="bold"
+
                 android:textColor="@color/white"
                 android:id="@+id/spinerExperience"
                 android:layout_width="match_parent"
@@ -182,7 +182,7 @@
                 android:paddingRight="10dp">
 
                 <RadioButton
-                    android:textStyle="bold"
+
                     android:textColor="@color/white"
                     android:id="@+id/maleRadio"
                     android:layout_width="0sp"
@@ -194,7 +194,7 @@
                     android:textSize="@dimen/medium_font" />
 
                 <RadioButton
-                    android:textStyle="bold"
+
                     android:textColor="@color/white"
                     android:id="@+id/femaleRadio"
                     android:layout_width="0sp"
@@ -214,12 +214,12 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:paddingLeft="10dp"
-                android:textStyle="bold"
+
                 android:textColorHint="@color/white"
                 android:paddingRight="10dp">
 
                 <EditText
-                    android:textStyle="bold"
+
                     android:textColor="@color/white"
                     android:id="@+id/skillesEditTxt"
                     android:layout_width="match_parent"
@@ -235,13 +235,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
-                android:textStyle="bold"
                 android:textColorHint="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
 
                 <EditText
-                    android:textStyle="bold"
+
                     android:textColor="@color/white"
                     android:id="@+id/noOfRquirmwntEditTxt"
                     android:layout_width="match_parent"
@@ -289,7 +288,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <Spinner
-                android:textStyle="bold"
+
                 android:textColor="@color/white"
                 android:id="@+id/spinnerCity"
                 android:layout_width="match_parent"
@@ -306,12 +305,14 @@
                 android:background="#Efedee" />
 
             <android.support.design.widget.TextInputLayout
-
+                android:layout_marginLeft="12sp"
+                android:layout_marginRight="12sp"
+                android:background="@drawable/baoudary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+
                 android:textColorHint="@color/white"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp">
@@ -320,12 +321,13 @@
                     android:id="@+id/DiscriptionEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:textStyle="bold"
+
                     android:textColor="@color/white"
                     android:gravity="start"
                     android:hint="Job Details"
                     android:padding="2dp"
                     android:textSize="@dimen/medium_font" />
+
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout

@@ -125,8 +125,7 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         lookingJob.setAdapter(adapter);
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, citys);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                R.layout.spinner_txt, citys);
         spinner.setAdapter(dataAdapter);
         Constant.EMAIL = sharedPreferences.getString("email", "");
         if (sharedPreferences.getString("user_type", "").equals("candidate")) {
@@ -193,7 +192,6 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
     }
 
     public void clickListener() {
-
 
         lookingJob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -376,7 +374,7 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
             startActivity(intent);
         } else if (result[0].equals("701")) {
             ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                    (this, android.R.layout.simple_list_item_1, Global.jobroll_List);
+                    (this, R.layout.spinner_txt, Global.jobroll_List);
             spinnerJobroll.setAdapter(adapter);
         } else {
             Snackbar.make(parentLayout, "" + result[1], Snackbar.LENGTH_SHORT).show();

@@ -129,9 +129,14 @@ public class MenuFragment extends Fragment implements RequestReceiver {
             postLayout.setVisibility(View.GONE);
             postview1.setVisibility(View.GONE);
             postview2.setVisibility(View.GONE);
-            profileViewTxt.setText("My Profile Views");
-            resumeDownloadTxt.setText("My Resume Download");
+            profileViewTxt.setText("Companies showed interest in you - 03");
+            resumeDownloadTxt.setText("No. of Jobs Applied - 06");
             searchCandidate.setText("Search Company");
+            if (SavedData.getPack()!=null){
+                userMemPackTxt.setText(SavedData.getPack());
+            }else {
+                userMemPackTxt.setText("Free Member");
+            }
             userNameTxt.setText(sharedPreferences.getString("user_name", ""));
             try {
                 Picasso.with(getActivity()).load(sharedPreferences.getString("user_Image", "")).placeholder(R.drawable.placeholder).into(userImage);
@@ -144,7 +149,7 @@ public class MenuFragment extends Fragment implements RequestReceiver {
             }else {
                 userMemPackTxt.setText("Trial Pack");
             }
-            profileViewTxt.setText("Downloaded Resumes 06/10");
+            profileViewTxt.setText("Downloaded Resumes - 06/10");
             resumeDownloadTxt.setText("Posted Job - 2");
             profileText.setText("Employee Profile");
             postLayout.setVisibility(View.VISIBLE);

@@ -28,7 +28,7 @@
 
                 <EditText
                     android:textColor="@color/white"
-                    android:textStyle="bold"
+
                     android:id="@+id/nameEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
 
                 <EditText
                     android:textColor="@color/white"
-                    android:textStyle="bold"
+
                     android:id="@+id/email_idEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
                 android:paddingRight="10dp">
 
                 <EditText
-                    android:textStyle="bold"
+
                     android:id="@+id/passwordEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                 android:paddingRight="10dp">
 
                 <EditText
-                    android:textStyle="bold"
+
                     android:id="@+id/phoneEditTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -165,7 +165,7 @@
                 android:paddingRight="10dp">
 
                 <RadioButton
-                    android:textStyle="bold"
+
                     android:id="@+id/itiRadio"
                     android:layout_width="0sp"
                     android:textColor="@color/white"
@@ -177,7 +177,7 @@
                     android:textSize="@dimen/medium_font" />
 
                 <RadioButton
-                    android:textStyle="bold"
+
                     android:id="@+id/nonitiRadio"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
@@ -194,8 +194,7 @@
                 android:layout_height="45sp"
                 android:orientation="horizontal">
 
-                <utils.TextviewFont
-
+                <TextView
                     android:textColor="@color/white"
                     android:id="@+id/branchTxt"
                     android:layout_width="0sp"
@@ -207,7 +206,7 @@
                     android:textSize="@dimen/medium_font" />
 
                 <Spinner
-                    android:textStyle="bold"
+
                     android:textSize="@dimen/medium_font"
                     android:textColor="@color/white"
                     android:id="@+id/spinnerBranch"
@@ -233,7 +232,7 @@
                 android:orientation="horizontal">
 
 
-                <utils.TextviewFont
+                <TextView
                     android:id="@+id/jobrolTxt"
                     android:layout_width="0sp"
                     android:layout_height="match_parent"
@@ -245,7 +244,7 @@
                     android:textSize="@dimen/medium_font" />
 
                 <Spinner
-                    android:textStyle="bold"
+
                     android:textSize="@dimen/medium_font"
                     android:textColor="@color/white"
                     android:id="@+id/spinnerJobRole"
@@ -265,7 +264,7 @@
                 android:background="#Efedee" />
 
             <Spinner
-                android:textStyle="bold"
+
                 android:textSize="@dimen/medium_font"
                 android:textColor="@color/white"
                 android:id="@+id/spinnerCity"
@@ -283,7 +282,7 @@
                 android:background="#Efedee" />
 
             <Spinner
-                android:textStyle="bold"
+
                 android:textSize="@dimen/medium_font"
                 android:textColor="@color/white"
                 android:id="@+id/spinnerGender"

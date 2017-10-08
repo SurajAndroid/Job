@@ -52,6 +52,13 @@ public class PostListaActivity extends Activity implements RequestReceiver{
         getALLPOSTSerivice();
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getALLPOSTSerivice();
+    }
+
     public void getALLPOSTSerivice() {
         WebserviceHelper employer = new WebserviceHelper(receiver, PostListaActivity.this);
         employer.setAction(Constant.GET_ALL_POST);
@@ -74,7 +81,7 @@ public class PostListaActivity extends Activity implements RequestReceiver{
     @Override
     public void requestFinished(String[] result) throws Exception {
             if(result[0].equals("01")){
-                PostAdapter postListaActivity = new PostAdapter(PostListaActivity.this,PostListaActivity.this, Global.postJob_List);
+                PostAdapter postListaActivity = new PostAdapter(PostListaActivity.this,PostListaActivity.this,receiver, Global.postJob_List);
                 postListVIew.setAdapter(postListaActivity);
             }else {
                 Snackbar.make(parentLayout,result[1],Snackbar.LENGTH_SHORT).show();
