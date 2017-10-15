@@ -2,6 +2,7 @@ package adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.startupsoch.jobpool.InitialActivity;
 import com.startupsoch.jobpool.R;
 import java.util.ArrayList;
 
@@ -113,6 +116,10 @@ public class MembershipAdapter extends BaseAdapter {
         holder.selectLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /*Intent intent=new Intent(context,InitialActivity.class);
+                intent.putExtra("pay_amount",""+candidateList.get(position).getPackage_price());
+                context.startActivity(intent);*/
                 if (customButtonListener != null) {
                     customButtonListener.onButtonClick(position, "btn_click");
                 }
@@ -123,7 +130,6 @@ public class MembershipAdapter extends BaseAdapter {
     }
 
     class ViewHolder {
-
         TextView packName, CandidatesCount, postJobCount, packPrice, packDesc, validFor;
         LinearLayout selectLayout;
         TextviewSemiBold selectedPackBtn;

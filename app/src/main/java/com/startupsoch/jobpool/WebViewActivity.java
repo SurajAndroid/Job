@@ -726,6 +726,9 @@ public class WebViewActivity extends ActionBarActivity implements  Communicator 
 
     }
 
+
+
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     public void actionSelected(String data) {

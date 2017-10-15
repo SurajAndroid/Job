@@ -19,8 +19,6 @@ public class SavedData {
         return prefs;
     }
 
-
-
     public static String getPack() {
         return getInstance().getString(SELECT_PACKAGE, null);
     }

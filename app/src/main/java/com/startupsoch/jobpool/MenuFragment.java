@@ -119,7 +119,6 @@ public class MenuFragment extends Fragment implements RequestReceiver {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(),SelectPackageActivity.class);
-//                Intent intent=new Intent(getActivity(),InitialActivity.class);
                 startActivity(intent);
             }
         });
@@ -146,6 +145,7 @@ public class MenuFragment extends Fragment implements RequestReceiver {
         } else {
             if (SavedData.getPack()!=null){
                 userMemPackTxt.setText(SavedData.getPack());
+                userMemPackTxt.setText("Trial Pack");
             }else {
                 userMemPackTxt.setText("Trial Pack");
             }

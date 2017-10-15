@@ -19,6 +19,7 @@ public class InitialActivity extends ActionBarActivity {
 
     private EditText accessCode, merchantId, currency, amount, orderId, rsaKeyUrl, redirectUrl, cancelUrl;
     private void init(){
+
         accessCode = (EditText) findViewById(R.id.accessCode);
         merchantId = (EditText) findViewById(R.id.merchantId);
         orderId  = (EditText) findViewById(R.id.orderId);
@@ -27,6 +28,10 @@ public class InitialActivity extends ActionBarActivity {
         rsaKeyUrl = (EditText) findViewById(R.id.rsaUrl);
         redirectUrl = (EditText) findViewById(R.id.redirectUrl);
         cancelUrl = (EditText) findViewById(R.id.cancelUrl);
+
+
+
+
     }
 
     @Override
@@ -37,9 +42,14 @@ public class InitialActivity extends ActionBarActivity {
         //generating order number
         Integer randomNum = ServiceUtility.randInt(0, 9999999);
         orderId.setText(randomNum.toString());
-    }
 
-    public void onClick(View view) {
+        Bundle bundle = getIntent().getExtras();
+
+        if(bundle.getString("pay_amount")!= null)
+        {
+            amount.setText(bundle.getString("pay_amount"));
+        }
+
         String vAccessCode = ServiceUtility.chkNull(accessCode.getText()).toString().trim();
         String vMerchantId = ServiceUtility.chkNull(merchantId.getText()).toString().trim();
         String vCurrency = ServiceUtility.chkNull(currency.getText()).toString().trim();
@@ -51,15 +61,20 @@ public class InitialActivity extends ActionBarActivity {
             intent.putExtra(AvenuesParams.ORDER_ID, ServiceUtility.chkNull(orderId.getText()).toString().trim());
             intent.putExtra(AvenuesParams.CURRENCY, ServiceUtility.chkNull(currency.getText()).toString().trim());
             intent.putExtra(AvenuesParams.AMOUNT, ServiceUtility.chkNull(amount.getText()).toString().trim());
-
             intent.putExtra(AvenuesParams.REDIRECT_URL, ServiceUtility.chkNull(redirectUrl.getText()).toString().trim());
             intent.putExtra(AvenuesParams.CANCEL_URL, ServiceUtility.chkNull(cancelUrl.getText()).toString().trim());
             intent.putExtra(AvenuesParams.RSA_KEY_URL, ServiceUtility.chkNull(rsaKeyUrl.getText()).toString().trim());
-
             startActivity(intent);
+            finish();
         }else{
             showToast("All parameters are mandatory.");
         }
+
+    }
+
+    public void onClick(View view) {
+
+
     }
 
 

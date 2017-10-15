@@ -52,7 +52,7 @@ public class CandidateSearchAdapter extends BaseAdapter {
         marshMallowPermission =new MarshMallowPermission(activity);
     }
 
-    @Override
+/*    @Override
     public int getViewTypeCount() {
         return getCount();
     }
@@ -60,7 +60,7 @@ public class CandidateSearchAdapter extends BaseAdapter {
     @Override
     public int getItemViewType(int position) {
         return position;
-    }
+    }*/
 
     @Override
     public int getCount() {

@@ -511,6 +511,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
                         /*get all profile data*/
                         Constant.FB_ID = profile.getId();
                         Constant.USER_NAME = profile.getFirstName()+" "+profile.getLastName();
+
                         try {
                             Constant.USER_IMAGE = profile.getProfilePictureUri(200,200).toString();
                         }catch (Exception e){
