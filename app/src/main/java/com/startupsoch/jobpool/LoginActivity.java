@@ -192,6 +192,12 @@ public class LoginActivity extends AppCompatActivity implements RequestReceiver 
             editor.putString("location", "" + Constant.LOCATION);
             editor.putString("user_type", "" + Constant.USER_TYPE);
             editor.putString("user_Image", "" + Constant.USER_IMAGE);
+
+            editor.putString("out_of_download", "" + Constant.OUT_OF_DOWNLOAD);
+            editor.putString("no_of_download", "" + Constant.NOOF_DOWNLOAD);
+            editor.putString("out_of_post", "" + Constant.OUT_OF_POST);
+            editor.putString("no_of_post", "" + Constant.NO_OF_POST);
+
             editor.commit();
 
             Intent intent = new Intent(LoginActivity.this, SearchActivity.class);

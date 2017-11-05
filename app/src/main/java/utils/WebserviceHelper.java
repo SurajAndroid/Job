@@ -360,6 +360,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     Constant.USER_TYPE = data.getString("user_type");
                                 } catch (Exception e) {
                                     Log.e("", "Company");
+
                                     Constant.USER_ID = data.getString("user_id");
                                     Constant.COMPANY_NAME = data.getString("company_name");
                                     Constant.USER_IMAGE = data.getString("company_image");
@@ -367,6 +368,11 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     Constant.PHONE_NUMBER = data.getString("phone");
                                     Constant.LOCATION = data.getString("location");
                                     Constant.USER_TYPE = data.getString("user_type");
+
+                                    Constant.OUT_OF_DOWNLOAD = data.getString("out of download");
+                                    Constant.NOOF_DOWNLOAD = data.getString("no.of download");
+                                    Constant.OUT_OF_POST = data.getString("out_of_post_job");
+                                    Constant.NO_OF_POST = data.getString("posted_job");
 
                                     e.printStackTrace();
                                 }
@@ -2798,7 +2804,11 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     JSONObject object1 = array.getJSONObject(i);
                                     companyDTO = new CompanyDTO();
 
-                                    companyDTO.setEmployer_id(object1.getString("user_id"));
+                                    try{
+                                        companyDTO.setEmployer_id(object1.getString("user_id"));
+                                    }catch (Exception e){
+                                        e.printStackTrace();
+                                    }
                                     companyDTO.setCompany_name(object1.getString("company_name"));
                                     companyDTO.setContact_person(object1.getString("contact_person"));
                                     companyDTO.setEmail(object1.getString("email"));

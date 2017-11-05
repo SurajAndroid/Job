@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
-        <utils.TextviewSemiBold
+        <TextView
             android:id="@+id/downloadTxtView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,7 +26,7 @@
             android:textColor="#000000"
             android:textSize="@dimen/header_font" />
 
-        <utils.TextviewSemiBold
+        <TextView
             android:id="@+id/contactTxtView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -115,6 +115,7 @@
     </RelativeLayout>
 
     <ScrollView
+        android:layout_above="@+id/bottomLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -507,7 +508,6 @@
                 android:visibility="gone">
 
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="About Us: "
@@ -523,10 +523,7 @@
                     android:text="A results-driven, customer-focused, articulate and analytical Senior Software Engineer who can think “out of the box”. Strong in design and integration problem-solving skills. Expert in Java, C#, .NET, and T-SQL with database analysis and design. Skilled in developing business plans, requirements specifications, user documentation, and architectural systems research. "
                     android:textColor="#808080" />
 
-
             </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
 

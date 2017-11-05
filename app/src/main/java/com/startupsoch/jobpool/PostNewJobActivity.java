@@ -43,7 +43,7 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
     SharedPreferences sharedPreferences;
     int Postion;
 
-    String[] citys = {"Select City", "Bengaluru", "Bidar","Delhi","Hydrabad","Indore", "Kalaburagi","Pune"};
+    String[] citys = {"Select City", "Bidar", "Gulbarga", "Indore", "Bengaluru", "Jabalpur"};
     String[] expirence = {"Select Experience", "0", "1","2","3","4", "5","6","7","8","9", "10+"};
 
     @Override
@@ -109,6 +109,7 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
         callgetSerivice();
 
         if(Constant.JobFlage){
+            Constant.JobFlage = false;
             setData();
         }
     }
@@ -124,13 +125,14 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
             }
 
             if(Global.postJob_List.get(Postion).getIndustry_type().equals("ITI")){
+
                 itiRadio.setChecked(true);
-                int position = -1;
-                position = Global.getFilterList.indexOf(Global.postJob_List.get(Postion).getFunctional_area());
-                Toast.makeText(getApplicationContext(),""+position,Toast.LENGTH_SHORT).show();
                 branchTxt.setVisibility(View.GONE);
                 jobTxt.setVisibility(View.GONE);
-                spinnerBranch.setSelection(position);
+
+                BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Global.getFilterList);
+                spinnerBranch.setAdapter(adapter);
+
 
             }else {
                 nonitRadio.setChecked(true);
@@ -138,14 +140,14 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
 
             for(int i =0;i<expirence.length;i++){
                 if(Global.postJob_List.get(Postion).getExperience().equals(expirence[i])){
-                    spinerExperience.setSelection(i+1);
+                    spinerExperience.setSelection(i);
                     break;
                 }
             }
 
             for(int i =0;i<citys.length;i++){
                 if(Global.postJob_List.get(Postion).getCity().equals(citys[i])){
-                    spinnerCity.setSelection(i+1);
+                    spinnerCity.setSelection(i);
                     break;
                 }
             }
@@ -171,6 +173,7 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(itiRadio.isChecked()){
+
                     nonitRadio.setChecked(false);
                     Constant.JOB_TYPE = itiRadio.getText().toString();
                     branchTxt.setVisibility(View.GONE);
@@ -178,6 +181,7 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
                     BranchAdapter adapter = new BranchAdapter(getApplicationContext(), Global.getFilterList);
                     spinnerBranch.setAdapter(adapter);
                     spinnerBranch.setEnabled(true);
+
                 }
             }
         });
@@ -186,6 +190,7 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(nonitRadio.isChecked()){
+
                     itiRadio.setChecked(false);
                     branchTxt.setVisibility(View.GONE);
                     jobTxt.setVisibility(View.GONE);
@@ -194,6 +199,7 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
                     spinnerBranch.setAdapter(adapter);
                     spinnerBranch.setSelection(Global.getFilterList.size()-1);
                     spinnerBranch.setEnabled(false);
+
                 }
             }
         });

@@ -86,7 +86,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
     RelativeLayout parentLayout;
     EditText skillesediTxt, locationEdit;
     Spinner spinner;
-    String[] citys = {"Select City", "Bengaluru", "Bidar","Delhi","Hyderabad","Indore", "Kalaburagi","Pune"};
+    String[] citys = {"Select City", "Bidar", "Gulbarga", "Indore", "Bengaluru", "Jabalpur"};
     String [] skilles = {"Android","PHP","Xamarin",".Net","iOS","Ionic","Angular JS","Node JS","ASP .Net","MVC","React Native"};
     SkillesDTO skillesDTO;
     ArrayList<SkillesDTO> list = new ArrayList<>();

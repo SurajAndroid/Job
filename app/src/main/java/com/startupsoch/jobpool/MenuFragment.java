@@ -143,14 +143,15 @@ public class MenuFragment extends Fragment implements RequestReceiver {
                 e.printStackTrace();
             }
         } else {
+
             if (SavedData.getPack()!=null){
                 userMemPackTxt.setText(SavedData.getPack());
                 userMemPackTxt.setText("Trial Pack");
             }else {
                 userMemPackTxt.setText("Trial Pack");
             }
-            profileViewTxt.setText("Downloaded Resumes - 06/10");
-            resumeDownloadTxt.setText("Posted Job - 2");
+            profileViewTxt.setText("Downloaded Resumes - " +sharedPreferences.getString("no_of_download", "")+"/"+sharedPreferences.getString("out_of_download", ""));
+            resumeDownloadTxt.setText("Posted Job - " +sharedPreferences.getString("no_of_post", "")+"/"+sharedPreferences.getString("out_of_post", ""));
             profileText.setText("Employee Profile");
             postLayout.setVisibility(View.VISIBLE);
             postview1.setVisibility(View.VISIBLE);

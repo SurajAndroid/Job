@@ -124,6 +124,7 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         slidMenuLayout = (LinearLayout) findViewById(R.id.slidMenuLayout);
         downloadTxtView = (TextView) findViewById(R.id.downloadTxtView);
         contactTxtView = (TextView) findViewById(R.id.contactTxtView);
+
         candidateName = (TextView) findViewById(R.id.candidateName);
 
         ProfileImage = (ImageView) findViewById(R.id.ProfileImage);
@@ -140,11 +141,9 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         profileJobRole = (EditText) findViewById(R.id.profileJobRole);
         profileCity = (EditText) findViewById(R.id.profileCity);
 
-        viewProfileService();
         setProfielData();
 
     }
-
 
     public void viewProfileService() {
         WebserviceHelper employer = new WebserviceHelper(receiver, ProfileActivity.this);
@@ -183,23 +182,6 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
             } else {
                 CityTxt.setText("");
                 profileCity.setText("");
-            }
-            if (!Global.searchcandidatelist.get(position).getSkill().equals("null")) {
-                SkillesTxt.setText(Global.searchcandidatelist.get(position).getSkill());
-            } else {
-                SkillesTxt.setText("");
-            }
-
-            if (!Global.searchcandidatelist.get(position).getExperience().equals("null")) {
-                ExpirenceTxt.setText(Global.searchcandidatelist.get(position).getExperience());
-            } else {
-                ExpirenceTxt.setText("");
-            }
-
-            if (Global.searchcandidatelist.get(position).getUserName().equals("null")) {
-                userIDTxt.setText("");
-            } else {
-                userIDTxt.setText(Global.searchcandidatelist.get(position).getUserName());
             }
 
             if (!Global.searchcandidatelist.get(position).getName().equals("null")) {
@@ -246,31 +228,8 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
             } else {
                 CityTxt.setText("");
             }
-      /*      if (!Global.candidatelist.get(position).getSkill().equals("null")) {
-                SkillesTxt.setText(Global.candidatelist.get(position).getSkill());
-            } else {
-                SkillesTxt.setText("");
-            }*/
 
-           /* if (!Global.candidatelist.get(position).getExperience().equals("null")) {
-                ExpirenceTxt.setText(Global.candidatelist.get(position).getExperience());
-            } else {
-                ExpirenceTxt.setText("");
-            }
-
-            if (Global.candidatelist.get(position).getUserName().equals("null")) {
-                userIDTxt.setText("");
-            } else {
-                userIDTxt.setText(Global.candidatelist.get(position).getUserName());
-            }
-
-            if (!Global.candidatelist.get(position).getName().equals("null")) {
-                userNameTxt.setText(Global.candidatelist.get(position).getName().toUpperCase());
-            } else {
-                userNameTxt.setText("");
-            }*/
-
-            try {
+              try {
                 Picasso.with(getApplicationContext()).load(Global.candidatelist.get(position).getUserImage())
                         .placeholder(R.drawable.placeholder).into(ProfileImage);
             } catch (Exception e) {
@@ -281,18 +240,28 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
     }
 
     public void clickListenr() {
+
         slidMenuLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sm.toggle();
             }
         });
+
+
+        contactTxtView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"ContACT",Toast.LENGTH_SHORT).show();
+            }
+        });
+
         downloadTxtView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 downloadTxtView.setBackgroundResource(R.color.yellow);
                 contactTxtView.setBackgroundResource(R.color.colorAccent);
-//                savePdf();
                 new DownloadTask(ProfileActivity.this, Global.candidatelist.get(position).getResume());
             }
         });
@@ -300,9 +269,6 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         contactTxtView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Toast.makeText(getApplicationContext(),"Click Listener",Toast.LENGTH_SHORT).show();
-
                 downloadTxtView.setBackgroundResource(R.color.colorAccent);
                 contactTxtView.setBackgroundResource(R.color.yellow);
                 final Dialog dialog = new Dialog(ProfileActivity.this);
@@ -323,11 +289,11 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
                 mailTxt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        /*Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
                                 "mailto","", null));
                         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "ConTact");
                         emailIntent.putExtra(Intent.EXTRA_TEXT,  "");
-                        startActivity(Intent.createChooser(emailIntent, "Send Email..."));*/
+                        startActivity(Intent.createChooser(emailIntent, "Send Email..."));
                         Intent i = new Intent(Intent.ACTION_SEND);
                         i.setType("message/rfc822");
                         i.putExtra(Intent.EXTRA_EMAIL, new String[]{Global.candidatelist.get(0).getEmail().toString()});
@@ -381,244 +347,10 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
     }
 
 
-    public void savePdf() {
-        Snackbar.make(parentLayout, "Download Completed.!", Snackbar.LENGTH_SHORT).show();
-        Date date = new Date();
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(date);
-
-        String FILE = Environment.getExternalStorageDirectory().toString()
-                + "/JobPool/Resume/" + "Name" + Global.candidatelist.get(position).getName() + timeStamp + ".pdf";
-        // Create New Blank Document
-        Document document = new Document(PageSize.A4);
-        // Create Directory in External Storage
-        String root = Environment.getExternalStorageDirectory().toString();
-        myDir = new File(root + "/JobPool/Resume");
-        myDir.mkdirs();
-        // Create Pdf Writer for Writting into New Created Document
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream(FILE));
-            // Open Document for Writting into document
-            document.open();
-            // User Define Method
-            addMetaData(document);
-            addTitlePage(document);
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (DocumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        // Close Document after writting all content
-        document.close();
-
-    }
-
-    // Set PDF document Properties
-    public void addMetaData(Document document)
-
-    {
-        document.addTitle("RESUME");
-        document.addSubject("Person Info");
-        document.addKeywords("Personal,	Education, Skills");
-        document.addAuthor("TAG");
-        document.addCreator("TAG");
-    }
-
-    public void addTitlePage(Document document) throws DocumentException {
-        // Font Style for Document
-
-        Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.BOLD);
-        Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-        Font normal1 = new Font(Font.FontFamily.TIMES_ROMAN, 20, Font.NORMAL);
-        Font titleFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 40, Font.BOLD);
-
-        String name = Global.candidatelist.get(position).getName();
-
-        //Font titleFont1 = new Font(Font.FontFamily.TIMES_ROMAN, 50, Font.BOLD);
-        Paragraph p = new Paragraph();
-        p.add("RESUME –" + "" + name + "\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\n");
-        p.setAlignment(Element.ALIGN_CENTER);
-        p.setFont(titleFont);
-
-        document.add(p);
-
-
-        // Start New Paragraph
-        Paragraph prHead1 = new Paragraph();
-        // Set Font in this Paragraph
-        prHead1.setFont(titleFont);
-
-        // Add item into Paragraph
-        prHead1.add("RESUME –" + Global.candidatelist.get(position).getName());
-
-        // Create Table into Document with 1 Row
-        PdfPTable myTable = new PdfPTable(1);
-        // 100.0f mean width of table is same as Document size
-        myTable.setWidthPercentage(100.0f);
-
-        // Create New Cell into Table
-        PdfPCell myCell = new PdfPCell(new Paragraph(""));
-        //myCell.setBorder(Rectangle.BOTTOM);
-        String city = "";
-        if (Global.candidatelist.get(position).getLocation().equals("null")) {
-            city = "";
-        } else {
-            city = Global.candidatelist.get(position).getLocation();
-        }
-
-
-        myTable.getDefaultCell().setBorder(Rectangle.NO_BORDER);
-        Phrase phrase = new Phrase();
-        phrase.add(
-                new Chunk("\n" + "City:  ", new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.BOLD))
-        );
-        phrase.add(new Chunk("" + city, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
-
-
-        String Skills = " ";
-        if (Global.candidatelist.get(position).getSkill().equals("null")) {
-            Skills = "";
-        } else {
-            Skills = Global.candidatelist.get(position).getSkill();
-        }
-        Phrase phrase1 = new Phrase();
-
-        phrase1.add(
-                new Chunk("\n" + "Skills:  ", new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD))
-        );
-        phrase1.add(new Chunk("" + Skills, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
-
-
-        String Experience = "";
-        if (Global.candidatelist.get(position).getExperience().equals("null")) {
-            Experience = "";
-        } else {
-            Experience = Global.candidatelist.get(position).getExperience();
-        }
-        Phrase phrase2 = new Phrase();
-
-        phrase2.add(
-                new Chunk("\n" + "Experience: ", new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD))
-        );
-        phrase2.add(new Chunk("" + Experience, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
-
-
-        String Address = "173 Mig colony ,Indore";
-        if (Global.candidatelist.get(position).getAddress().toString().equals("null")) {
-            Address = "";
-        } else {
-            Address = Global.candidatelist.get(position).getAddress().toString();
-        }
-
-        Phrase phrase3 = new Phrase();
-        phrase3.add(
-                new Chunk("\n" + "Address: ", new Font(Font.FontFamily.TIMES_ROMAN, 25, Font.BOLD))
-        );
-        phrase3.add(new Chunk("" + Address, new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.NORMAL)));
-
-
-        myTable.addCell(phrase);
-        myTable.addCell(phrase1);
-        myTable.addCell(phrase2);
-        myTable.addCell(phrase3);
-
-
-        document.add(myTable);
-        String about_detail = "";
-        if (!Global.candidatelist.get(position).getBrief_description().equals("null")) {
-            about_detail = Global.candidatelist.get(position).getBrief_description();
-        }
-        Paragraph prProfile = new Paragraph();
-        prProfile.setFont(titleFont);
-        prProfile.add("" + "\n" + "\n");
-        prProfile.add("\n \n About us : \n ");
-        prProfile.setLeading(30.0f);
-
-        prProfile.setFont(normal1);
-        prProfile
-                .add("\n" + about_detail);
-
-        prProfile.setFont(smallBold);
-        document.add(prProfile);
-
-        // Create new Page in PDF
-        document.newPage();
-    }
-
     @Override
     public void requestFinished(String[] result) throws Exception {
-
     }
 
-    // usually, subclasses of AsyncTask are declared inside the activity class.
-// that way, you can easily modify the UI thread from here
-/*    private class DownloadTask extends AsyncTask<String, Integer, String> {
-
-        private Context context;
-        private PowerManager.WakeLock mWakeLock;
-
-        public DownloadTask(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        protected String doInBackground(String... sUrl) {
-            InputStream input = null;
-            OutputStream output = null;
-            HttpURLConnection connection = null;
-            try {
-                URL url = new URL(sUrl[0]);
-                connection = (HttpURLConnection) url.openConnection();
-                connection.connect();
-
-                // expect HTTP 200 OK, so we don't mistakenly save error report
-                // instead of the file
-                if (connection.getResponseCode() != HttpURLConnection.HTTP_OK) {
-                    return "Server returned HTTP " + connection.getResponseCode()
-                            + " " + connection.getResponseMessage();
-                }
-
-                // this will be useful to display download percentage
-                // might be -1: server did not report the length
-                int fileLength = connection.getContentLength();
-
-                // download the file
-                input = connection.getInputStream();
-                output = new FileOutputStream("/sdcard/resume.doc");
-
-                byte data[] = new byte[4096];
-                long total = 0;
-                int count;
-                while ((count = input.read(data)) != -1) {
-                    // allow canceling with back button
-                    if (isCancelled()) {
-                        input.close();
-                        return null;
-                    }
-                    total += count;
-                    // publishing the progress....
-                    if (fileLength > 0) // only if total length is known
-                        publishProgress((int) (total * 100 / fileLength));
-                    output.write(data, 0, count);
-                }
-            } catch (Exception e) {
-                return e.toString();
-            } finally {
-                try {
-                    if (output != null)
-                        output.close();
-                    if (input != null)
-                        input.close();
-                } catch (IOException ignored) {
-                }
-
-                if (connection != null)
-                    connection.disconnect();
-            }
-            return null;
-        }
-    }*/
 
 
     public class DownloadTask {
@@ -759,7 +491,6 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         //Check If SD Card is present or not method
         public boolean isSDCardPresent() {
             if (Environment.getExternalStorageState().equals(
-
                     Environment.MEDIA_MOUNTED)) {
                 return true;
             }

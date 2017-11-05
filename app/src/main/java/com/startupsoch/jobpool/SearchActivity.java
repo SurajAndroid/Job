@@ -60,7 +60,7 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
     Spinner spinner, spinnerJobroll;
     String TAG;
     AutoCompleteTextView lookingJob;
-    String[] citys = {"Select City", "Bengaluru", "Bidar", "Delhi", "Hyderabad", "Indore", "Kalaburagi", "Pune"};
+    String[] citys = {"Select City", "Bidar", "Gulbarga", "Indore", "Bengaluru", "Jabalpur"};
     String[] skilles = {"Android", "PHP", "Xamarin", ".Net", "iOS", "Ionic", "Angular JS", "Node JS", "ASP .Net", "MVC", "React Native"};
     SkillesDTO skillesDTO;
     ArrayList<SkillesDTO> list = new ArrayList<>();

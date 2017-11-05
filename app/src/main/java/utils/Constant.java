@@ -135,6 +135,14 @@ public class Constant {
 	public static String OBJECTIVE="";
 	public static String BRIEFDESCRIPTION="";
 
+	/*Maintain Posted jobs*/
+	public static String OUT_OF_DOWNLOAD="";
+	public static String NOOF_DOWNLOAD = "";
+	public static String OUT_OF_POST = "";
+	public static String NO_OF_POST = "";
+
+
+
 	public static String SELECTED_PACK="";
 
 	public static String EMAIL_PETTERN = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9][.com])?)*$";

@@ -45,7 +45,6 @@ public class AllListActivity extends SlidingFragmentActivity {
 
         setBehindView();
 
-
         sm = getSlidingMenu();
         sm.setShadowWidthRes(R.dimen.shadow_width);
         sm.setShadowDrawable(R.drawable.shadow);
@@ -90,19 +89,21 @@ public class AllListActivity extends SlidingFragmentActivity {
     public  void init(){
 
         String TAG = AllListActivity.class.getSimpleName();
+
         parentLayout = (RelativeLayout)findViewById(R.id.parentLayout);
         slidMenuLayout = (LinearLayout)findViewById(R.id.slidMenuLayout);
         searchListView = (ListView)findViewById(R.id.searchListView);
+
         sharedPreferences = this.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
 
         if(sharedPreferences.getString("user_type","").equals("candidate")){
             employeeSearchAdapter = new EmployeeSearchAdapter(getApplicationContext(),AllListActivity.this, Global.companySearchlist);
             searchListView.setAdapter(employeeSearchAdapter);
-
             }else {
             adapter = new CandidateSearchAdapter(AllListActivity.this,AllListActivity.this, Global.searchcandidatelist, TAG);
             searchListView.setAdapter(adapter);
         }
+
     }
 
     public void clickListener(){

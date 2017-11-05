@@ -152,59 +152,67 @@ public class CandidateSearchAdapter extends BaseAdapter {
             public void onClick(View view) {
 
                 if (sharedPreferences.getString("status", "").equals("1")) {
-                    final Dialog dialog = new Dialog(activity);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setContentView(R.layout.share_dialog);
-                    TextView mailTxt = (TextView) dialog.findViewById(R.id.mailTxt);
-                    TextView messageTxt = (TextView) dialog.findViewById(R.id.messageTxt);
 
-                    mailTxt.setText(candidateList.get(position).getEmail());
-                    messageTxt.setText(candidateList.get(position).getPhone());
-
-
-                    mailTxt.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                                    "mailto", candidateList.get(position).getEmail(), null));
-                            intent.putExtra(Intent.EXTRA_SUBJECT, "");
-                            intent.putExtra(Intent.EXTRA_TEXT, "");
-                            activity.startActivity(Intent.createChooser(intent, "Choose an Email client :"));
-                            dialog.dismiss();
-                        }
-                    });
-
-                    messageTxt.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            try {
-                                Intent callIntent = new Intent(Intent.ACTION_CALL);
-                                callIntent.setData(Uri.parse("tel:" + candidateList.get(position).getPhone()));
-                                if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-
-
-                                    if(!marshMallowPermission.checkPermissionForCall()){
-                                        marshMallowPermission.requestPermissionForCall();
-                                    }
-                                    return;
-                                }
-                                activity.startActivity(callIntent);
-
-                            } catch (ActivityNotFoundException activityException) {
-                                Log.e("Calling a Phone Number", "Call failed", activityException);
+                    if(sharedPreferences.getString("out_of_download", "").equals(sharedPreferences.getString("no_of_download", ""))){
+                        final Dialog dialog = new Dialog(activity);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.login_alert);
+                        dialog.show();
+                        TextView takePhotoTxt = (TextView)dialog.findViewById(R.id.takePhotoTxt);
+                        takePhotoTxt.setText("Please update your packge.");
+                        TextView cancelTxt = (TextView) dialog.findViewById(R.id.cancelTxt);
+                        cancelTxt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
                             }
-                            dialog.dismiss();
-                        }
-                    });
+                        });
+                    }else {
+                        final Dialog dialog = new Dialog(activity);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.share_dialog);
+                        TextView mailTxt = (TextView) dialog.findViewById(R.id.mailTxt);
+                        TextView messageTxt = (TextView) dialog.findViewById(R.id.messageTxt);
+                        mailTxt.setText(candidateList.get(position).getEmail());
+                        messageTxt.setText(candidateList.get(position).getPhone());
+                        mailTxt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                                        "mailto", candidateList.get(position).getEmail(), null));
+                                intent.putExtra(Intent.EXTRA_SUBJECT, "");
+                                intent.putExtra(Intent.EXTRA_TEXT, "");
+                                activity.startActivity(Intent.createChooser(intent, "Choose an Email client :"));
+                                dialog.dismiss();
+                            }
+                        });
+                        messageTxt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                try {
+                                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                    callIntent.setData(Uri.parse("tel:" + candidateList.get(position).getPhone()));
+                                    if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                        if(!marshMallowPermission.checkPermissionForCall()){
+                                            marshMallowPermission.requestPermissionForCall();
+                                        }
+                                        return;
+                                    }
+                                    activity.startActivity(callIntent);
+                                } catch (ActivityNotFoundException activityException) {
+                                    Log.e("Calling a Phone Number", "Call failed", activityException);
+                                }
+                                dialog.dismiss();
+                            }
+                        });
 
-                    dialog.show();
+                        dialog.show();
+                    }
                 }else {
                     final Dialog dialog = new Dialog(activity);
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.login_alert);
                     dialog.show();
-
                     TextView cancelTxt = (TextView) dialog.findViewById(R.id.cancelTxt);
                     cancelTxt.setOnClickListener(new View.OnClickListener() {
                         @Override

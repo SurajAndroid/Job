@@ -48,7 +48,7 @@ public class CondidateRegisterActivity extends Activity implements RequestReceiv
     LinearLayout registerNowLayout;
     RequestReceiver receiver;
     TextView conditionTxt, conditionTxtterms, conditionTxtPolicy;
-    String[] citys = {"Select City", "Bengaluru", "Bidar", "Delhi", "Hyderabad", "Indore", "Kalaburagi", "Pune"};
+    String[] citys = {"Select City", "Bidar", "Gulbarga", "Indore", "Bengaluru", "Jabalpur"};
     String[] gender = {"Gender", "Male", "Female"};
     LinearLayout uploadLayout;
     TextView uploadTxt, jobrolTxt, branchTxt;

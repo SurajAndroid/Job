@@ -94,8 +94,6 @@ public class EmployeeSearchAdapter extends BaseAdapter {
         holder.showInterestLayout.setVisibility(View.GONE);
         holder.candidateName.setText(companylist.get(position).getCompany_name().toUpperCase());
 
-
-
         if(!companylist.get(position).getJobe_type().equals("null")){
             holder.itiNonIti.setText(companylist.get(position).getJobe_type());
         }else {
