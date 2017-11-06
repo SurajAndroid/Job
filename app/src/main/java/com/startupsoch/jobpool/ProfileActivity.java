@@ -239,6 +239,14 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
 
     }
 
+
+    public void DownloadSerivice() {
+        WebserviceHelper searchAPI = new WebserviceHelper(receiver, ProfileActivity.this);
+        searchAPI.setAction(Constant.UPDATE_DWONLOAD);
+        searchAPI.execute();
+    }
+
+
     public void clickListenr() {
 
         slidMenuLayout.setOnClickListener(new View.OnClickListener() {
@@ -262,7 +270,9 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
 
                 downloadTxtView.setBackgroundResource(R.color.yellow);
                 contactTxtView.setBackgroundResource(R.color.colorAccent);
-                new DownloadTask(ProfileActivity.this, Global.candidatelist.get(position).getResume());
+                DownloadSerivice();
+
+
             }
         });
 
@@ -349,6 +359,19 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
 
     @Override
     public void requestFinished(String[] result) throws Exception {
+
+        if(result[0].equals("001")){
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("out_of_download", "" + Constant.OUT_OF_DOWNLOAD);
+            editor.putString("no_of_download", "" + Constant.NOOF_DOWNLOAD);
+            editor.commit();
+            MenuFragment.SetPostedvalue();
+            new DownloadTask(ProfileActivity.this, Global.candidatelist.get(position).getResume());
+
+        }else {
+            Toast.makeText(getApplicationContext(),""+result[1],Toast.LENGTH_SHORT).show();
+        }
     }
 
 

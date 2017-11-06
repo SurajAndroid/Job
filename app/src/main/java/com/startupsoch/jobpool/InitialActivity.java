@@ -28,10 +28,6 @@ public class InitialActivity extends ActionBarActivity {
         rsaKeyUrl = (EditText) findViewById(R.id.rsaUrl);
         redirectUrl = (EditText) findViewById(R.id.redirectUrl);
         cancelUrl = (EditText) findViewById(R.id.cancelUrl);
-
-
-
-
     }
 
     @Override
@@ -48,6 +44,7 @@ public class InitialActivity extends ActionBarActivity {
         if(bundle.getString("pay_amount")!= null)
         {
             amount.setText(bundle.getString("pay_amount"));
+
         }
 
         String vAccessCode = ServiceUtility.chkNull(accessCode.getText()).toString().trim();

@@ -319,6 +319,14 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
     @Override
     public void requestFinished(String[] result) throws Exception {
             if(result[0].equals("001")){
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("out_of_post", "" + Constant.OUT_OF_POST);
+                editor.putString("no_of_post", "" + Constant.NO_OF_POST);
+                editor.commit();
+
+                MenuFragment.SetPostedvalue();
+
                 final Dialog dialog = new Dialog(PostNewJobActivity.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.alertpopup);
@@ -334,6 +342,23 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
                 });
 
                 dialog.show();
+            }else if(result[0].equals("000")){
+
+                final Dialog dialog = new Dialog(PostNewJobActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.alertpopup);
+                TextView massageTxtView = (TextView) dialog.findViewById(R.id.massageTxtView);
+                massageTxtView.setText(result[1]);
+                LinearLayout submitLayout = (LinearLayout)dialog.findViewById(R.id.submitLayout);
+                submitLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+
+                    }
+                });
+                dialog.show();
+
             }else {
 
             }

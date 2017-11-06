@@ -118,6 +118,7 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
             SharedPreferences sharedPreferences = getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
             Constant.USER_ID = sharedPreferences.getString("user_id", "");
             callSerivice();*/
+
             Intent intent=new Intent(SelectPackageActivity.this,InitialActivity.class);
             intent.putExtra("pay_amount",""+Global.membershipPack_List.get(position).getPackage_price());
             startActivity(intent);

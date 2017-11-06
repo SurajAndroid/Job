@@ -56,6 +56,7 @@ public class Constant {
 
 	public static final int APPLY_FILTER = 29;
 	public static final int APPLY_CUSTOMER_FILTER = 30;
+	public static final int UPDATE_DWONLOAD = 31;
 
 //	public static String BASE_URL ="http://smtgroup.in/jobpools/wdiapi/index.php/";
 	public static String BASE_URL ="http://jobpool.in/jobpoolapi/index.php/";
@@ -89,6 +90,7 @@ public class Constant {
 	public static String DELETE_POST_URL = BASE_URL+"deletepostjob";
 	public static String APPLY_FILTTER_URL = BASE_URL+"singalfilter";
 	public static String APPLY_CUSTOMER_FILTTER_URL = BASE_URL+"employerfilter";
+	public static String UPDATE_DOWNLOAD_URL = BASE_URL+"update_download";
 
 	public static String NAME="";
 	public static String USER_NAME="";

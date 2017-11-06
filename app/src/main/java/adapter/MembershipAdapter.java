@@ -120,9 +120,12 @@ public class MembershipAdapter extends BaseAdapter {
                 /*Intent intent=new Intent(context,InitialActivity.class);
                 intent.putExtra("pay_amount",""+candidateList.get(position).getPackage_price());
                 context.startActivity(intent);*/
+
                 if (customButtonListener != null) {
                     customButtonListener.onButtonClick(position, "btn_click");
+                    Constant.SELECTED_PACK = candidateList.get(position).getPackage_name();
                 }
+
             }
         });
 

@@ -2,6 +2,7 @@ package utils;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -2003,6 +2004,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                         jsonData.accumulate("specilaization", Constant.SPECILIZATION);
                         jsonData.accumulate("location", Constant.LOCATION);
                         jsonData.accumulate("discription", Constant.DISCRIPTION);
+                        jsonData.accumulate("no_of_requirement", Constant.NO_OF_REQUIRMENT);
 
 
                         Log.e("", "URL " + Constant.POST_JOB_URL);
@@ -2045,10 +2047,15 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                             Log.d("", "jsonObj responce... " + object);
                             postJOb[0] = "00" + object.getString("success");
                             postJOb[1] = object.getString("message");
+                            JSONObject object1 = object.getJSONObject("data");
+                            Constant.OUT_OF_POST = object1.getString("out_of_post_job");
+                            Constant.NO_OF_POST = object1.getString("posted_job");
+
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            postJOb[0] = "0" + object.getString("success");
+                            postJOb[0] = "00" + object.getString("success");
                             postJOb[1] = object.getString("message");
                         }
                         break;
@@ -2552,7 +2559,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                             Log.e("sohel   ", "selected pack -- " + Constant.SELECTED_PACK);
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            selectPack[0] = "0" + object.getString("success");
+                            selectPack[0] = "00" + object.getString("success");
                             selectPack[1] = object.getString("message");
                         }
                         break;
@@ -2847,6 +2854,71 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                 }
                 break;
 
+
+            case Constant.UPDATE_DWONLOAD:
+                String[] update_download = new String[3];
+                httppost = new HttpPost(Constant.UPDATE_DOWNLOAD_URL);
+                try {
+                    try {
+
+                        jsonData.accumulate("employee_id", Constant.USER_ID);
+
+                        Log.e("", "URL " + Constant.UPDATE_DOWNLOAD_URL);
+                        Log.e("Json : ", "" + jsonData.toString());
+                        StringEntity se = new StringEntity(jsonData.toString());
+                        httppost.setEntity(se);
+                        httppost.setHeader("Accept", "application/json");
+                        httppost.setHeader("Content-type", "application/json");
+                        try {
+                            response1 = httpclient.execute(httppost);
+                            response1.getStatusLine().getStatusCode();
+                            Log.e("myapp", "response statau.." + response1.getStatusLine().getStatusCode());
+                            Log.e("myapp", "response.. " + response1.getEntity());
+
+                        } catch (ClientProtocolException e) {
+                            e.printStackTrace();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    InputStream inputStream = response1.getEntity().getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF8"), 8);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(reader.readLine() + "\n");
+                    String line = "0";
+                    String result = "";
+                    JSONObject object = null;
+
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line + "\n");
+                        result = sb.toString();
+                        Log.e("", "encodeRes : " + result);
+
+                        try {
+                            object = new JSONObject(result);
+                            Log.e("", "jsonObj responce... " + object);
+                            update_download[0] = "00" + object.getString("success");
+                            update_download[1] = object.getString("message");
+                            JSONObject data = object.getJSONObject("data");
+                            Constant.OUT_OF_DOWNLOAD = data.getString("out_of_download");
+                            Constant.NOOF_DOWNLOAD = data.getString("download");
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            update_download[0] = "00" + object.getString("success");
+                            update_download[1] = object.getString("message");
+                        }
+                        break;
+                    }
+                    return update_download;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
 
             default:
                 break;

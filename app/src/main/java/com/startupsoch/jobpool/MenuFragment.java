@@ -54,7 +54,7 @@ public class MenuFragment extends Fragment implements RequestReceiver {
     private View rootView;
     LinearLayout selectLayout, profileLayout, searchLayout, notificationLayout, aboutusLayout,
             change_passwordLayout, privacyPolicyLayout, termsLayout, logoutLayout, paymentLayout, postLayout;
-    TextView searchCandidate, userTxt, profileViewTxt, resumeDownloadTxt, profileText;
+    public static  TextView searchCandidate, userTxt, profileViewTxt, resumeDownloadTxt, profileText;
     static TextView userNameTxt, userMemPackTxt;
     RequestReceiver receiver;
     static SharedPreferences sharedPreferences;
@@ -166,6 +166,12 @@ public class MenuFragment extends Fragment implements RequestReceiver {
             }
         }
         return rootView;
+    }
+
+
+    public static void SetPostedvalue(){
+        profileViewTxt.setText("Downloaded Resumes - " +sharedPreferences.getString("no_of_download", "")+"/"+sharedPreferences.getString("out_of_download", ""));
+        resumeDownloadTxt.setText("Posted Job - " +sharedPreferences.getString("no_of_post", "")+"/"+sharedPreferences.getString("out_of_post", ""));
     }
 
     public void candidateSerivice() {

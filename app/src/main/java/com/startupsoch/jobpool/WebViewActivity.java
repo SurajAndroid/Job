@@ -1,6 +1,7 @@
 package com.startupsoch.jobpool;
 
 import android.annotation.TargetApi;
+import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
@@ -8,6 +9,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -16,11 +18,14 @@ import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
 import android.webkit.JavascriptInterface;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.startupsoch.jobpool.R;
@@ -39,12 +44,15 @@ import java.util.TimerTask;
 import utils.AvenuesParams;
 import utils.Constant;
 import utils.RSAUtility;
+import utils.RequestReceiver;
 import utils.ServiceHandler;
 import utils.ServiceUtility;
+import utils.WebserviceHelper;
 
 
-public class WebViewActivity extends ActionBarActivity implements  Communicator {
+public class WebViewActivity extends ActionBarActivity implements  Communicator, RequestReceiver {
 
+    RequestReceiver receiver;
     private ProgressDialog dialog;
     Intent mainIntent;
     String html, encVal;
@@ -61,6 +69,29 @@ public class WebViewActivity extends ActionBarActivity implements  Communicator 
     final Handler handler = new Handler();
     public int loadCounter = 0;
     int MyDeviceAPI;
+    SharedPreferences sharedPreferences;
+
+    @Override
+    public void requestFinished(String[] result) throws Exception {
+
+        if(result[0].equals("001")){
+                        final Dialog dialog = new Dialog(WebViewActivity.this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.login_alert);
+                        dialog.show();
+                        TextView takePhotoTxt = (TextView)dialog.findViewById(R.id.takePhotoTxt);
+                        takePhotoTxt.setText("Your packge update Successfully");
+                        TextView cancelTxt = (TextView) dialog.findViewById(R.id.cancelTxt);
+                        cancelTxt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                finish();
+                            }
+                        });
+        }
+
+    }
 
     /**
      * Async task class to get json by making HTTP call
@@ -123,6 +154,22 @@ public class WebViewActivity extends ActionBarActivity implements  Communicator 
                     if(html.indexOf("Failure")!=-1){
                         status = "Transaction Declined!";
                     }else if(html.indexOf("Success")!=-1){
+//                        Toast.makeText(getApplicationContext(),"Success....",Toast.LENGTH_SHORT).show();
+                        /*final Dialog dialog = new Dialog(WebViewActivity.this);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.login_alert);
+                        dialog.show();
+                        TextView takePhotoTxt = (TextView)dialog.findViewById(R.id.takePhotoTxt);
+                        takePhotoTxt.setText("Your packge update Successfully");
+                        TextView cancelTxt = (TextView) dialog.findViewById(R.id.cancelTxt);
+                        cancelTxt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                finish();
+                            }
+                        });*/
+
                         status = "Transaction Successful!";
                     }else if(html.indexOf("Aborted")!=-1){
                         status = "Transaction Cancelled!";
@@ -130,9 +177,9 @@ public class WebViewActivity extends ActionBarActivity implements  Communicator 
                         status = "Status Not Known!";
                     }
                     //Toast.makeText(getApplicationContext(), status, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(),StatusActivity.class);
+                    /*Intent intent = new Intent(getApplicationContext(),StatusActivity.class);
                     intent.putExtra("transStatus", status);
-                    startActivity(intent);
+                    startActivity(intent);*/
                 }
             }
 
@@ -149,7 +196,10 @@ public class WebViewActivity extends ActionBarActivity implements  Communicator 
                 public void onPageFinished(WebView view, String url) {
                     super.onPageFinished(myBrowser, url);
                     if(url.indexOf("/ccavResponseHandler.jsp")!=-1){
-                        myBrowser.loadUrl("javascript:window.HTMLOUT.processHTML('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
+//                        myBrowser.loadUrl("javascript:window.HTMLOUT.processHTML('<head>'+document.getElementsByTagName('html')[0].innerHTML+'</head>');");
+//                        finish();
+
+                        updatePackegeSerivice();
                     }
                     // calling load Waiting for otp fragment
                     if(loadCounter < 1){
@@ -219,6 +269,12 @@ public class WebViewActivity extends ActionBarActivity implements  Communicator 
     }
 
 
+    public void updatePackegeSerivice() {
+        WebserviceHelper employer = new WebserviceHelper(receiver, WebViewActivity.this);
+        employer.setAction(Constant.SELECT_PACK);
+        employer.execute();
+    }
+
     @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -230,6 +286,9 @@ public class WebViewActivity extends ActionBarActivity implements  Communicator 
         webSettings = myBrowser.getSettings();
         webSettings.setJavaScriptEnabled(true);
         MyDeviceAPI = Build.VERSION.SDK_INT;
+
+        sharedPreferences = WebViewActivity.this.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
+        Constant.USER_ID = sharedPreferences.getString("user_id","");
 
         // Calling async task to get display content
         new RenderView().execute();
