@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:text="4YRUXLSRO20O8NIH" >
+                android:text="AVKN71EF59CE45NKEC" >
                 <requestFocus />
             </EditText>
 
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:text="2"
+                android:text="139168"
                 />
 
             <TextView
