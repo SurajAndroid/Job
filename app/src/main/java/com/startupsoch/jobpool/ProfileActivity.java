@@ -1,16 +1,20 @@
 package com.startupsoch.jobpool;
 
+import android.*;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -53,6 +57,7 @@ import java.util.Date;
 
 import utils.Constant;
 import utils.Global;
+import utils.MarshMallowPermission;
 import utils.RequestReceiver;
 import utils.WebserviceHelper;
 
@@ -75,6 +80,7 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
     String TAG;
     RequestReceiver receiver;
     SharedPreferences sharedPreferences;
+    MarshMallowPermission marshMallowPermission;
 
     EditText profileJobType, profileSpecialization, profileJobRole, profileCity;
 
@@ -107,6 +113,7 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
 
     public void init() {
 
+        marshMallowPermission = new MarshMallowPermission(ProfileActivity.this);
         receiver = this;
         String data = getIntent().getExtras().getString("position", "");
         TAG = getIntent().getExtras().getString("Tag", "");
@@ -268,12 +275,9 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
         downloadTxtView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 downloadTxtView.setBackgroundResource(R.color.yellow);
                 contactTxtView.setBackgroundResource(R.color.colorAccent);
                 DownloadSerivice();
-
-
             }
         });
 
@@ -282,7 +286,65 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
             public void onClick(View view) {
                 downloadTxtView.setBackgroundResource(R.color.colorAccent);
                 contactTxtView.setBackgroundResource(R.color.yellow);
-                final Dialog dialog = new Dialog(ProfileActivity.this);
+
+                if(sharedPreferences.getString("out_of_download", "").equals(sharedPreferences.getString("no_of_download", ""))){
+                    final Dialog dialog = new Dialog(ProfileActivity.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.login_alert);
+                    dialog.show();
+                    TextView takePhotoTxt = (TextView)dialog.findViewById(R.id.takePhotoTxt);
+                    takePhotoTxt.setText("Please update your packge.");
+                    TextView cancelTxt = (TextView) dialog.findViewById(R.id.cancelTxt);
+                    cancelTxt.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });
+                }else {
+                    final Dialog dialog = new Dialog(ProfileActivity.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.share_dialog);
+                    TextView mailTxt = (TextView) dialog.findViewById(R.id.mailTxt);
+                    TextView messageTxt = (TextView) dialog.findViewById(R.id.messageTxt);
+                    mailTxt.setText(Global.candidatelist.get(position).getEmail());
+                    messageTxt.setText(Global.candidatelist.get(position).getPhone());
+                    mailTxt.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                                    "mailto", Global.candidatelist.get(position).getEmail(), null));
+                            intent.putExtra(Intent.EXTRA_SUBJECT, "");
+                            intent.putExtra(Intent.EXTRA_TEXT, "");
+                             startActivity(Intent.createChooser(intent, "Choose an Email client :"));
+                            dialog.dismiss();
+                        }
+                    });
+                    messageTxt.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            try {
+                                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                                callIntent.setData(Uri.parse("tel:" + Global.candidatelist.get(position).getPhone()));
+                                if (ActivityCompat.checkSelfPermission(ProfileActivity.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                                    if(!marshMallowPermission.checkPermissionForCall()){
+                                        marshMallowPermission.requestPermissionForCall();
+                                    }
+                                    return;
+                                }
+                                startActivity(callIntent);
+                            } catch (ActivityNotFoundException activityException) {
+                                Log.e("Calling a Phone Number", "Call failed", activityException);
+                            }
+                            dialog.dismiss();
+                        }
+                    });
+
+                    dialog.show();
+                }
+
+
+                /*final Dialog dialog = new Dialog(ProfileActivity.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.share_dialog);
                 TextView mailTxt = (TextView) dialog.findViewById(R.id.mailTxt);
@@ -329,7 +391,7 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
                     }
                 });
 
-                dialog.show();
+                dialog.show();*/
             }
         });
     }

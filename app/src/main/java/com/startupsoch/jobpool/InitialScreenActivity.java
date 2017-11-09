@@ -18,6 +18,7 @@ public class InitialScreenActivity extends Activity {
     private EditText accessCode, merchantId, currency, amount, customerIdentifier;
 
     private void init(){
+        
         accessCode = (EditText) findViewById(R.id.accessCode);
         merchantId = (EditText) findViewById(R.id.merchantId);
         currency = (EditText) findViewById(R.id.currency);
@@ -42,6 +43,7 @@ public class InitialScreenActivity extends Activity {
         String vAmount = ServiceUtility.chkNull(amount.getText()).toString().trim();
         if(!vAccessCode.equals("") && !vMerchantId.equals("") && !vCurrency.equals("") && !vAmount.equals("")){
             Intent intent = new Intent(this,BillingShippingActivity.class);
+
             intent.putExtra(AvenuesParams.ACCESS_CODE, ServiceUtility.chkNull(accessCode.getText()).toString().trim());
             intent.putExtra(AvenuesParams.MERCHANT_ID, ServiceUtility.chkNull(merchantId.getText()).toString().trim());
             intent.putExtra(AvenuesParams.CURRENCY, ServiceUtility.chkNull(currency.getText()).toString().trim());

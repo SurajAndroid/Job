@@ -1309,16 +1309,16 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     companyDTO.setEmail(object.getString("email"));
                                     companyDTO.setPhone(object.getString("phone"));
                                     companyDTO.setExperience(object.getString("experience"));
+                                    companyDTO.setLocation(object.getString("location"));
                                     companyDTO.setJobe_type(object.getString("job_type"));
                                     companyDTO.setSpecilization(object.getString("specilaization"));
-
                                     companyDTO.setJob_role(object.getString("job_role"));
-                                    companyDTO.setSkill(object.getString("skill"));
-                                    companyDTO.setPosted_job(object.getString("posted_job"));
-                                    companyDTO.setLocation(object.getString("location"));
+                                    companyDTO.setNo_of_requirment(object.getString("num_of_requirment"));
                                     companyDTO.setAddress(object.getString("address"));
-                                    companyDTO.setEmp_Image(object.getString("employer_image"));
-                                    companyDTO.setUser_type(object.getString("user_type"));
+                                    companyDTO.setPosted_job(object.getString("job_posted_at"));
+                                    companyDTO.setEmp_Image(object.getString("picture"));
+
+
 
                                     Global.companylist.add(companyDTO);
                                 }
@@ -1597,8 +1597,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     JSONObject object1 = array.getJSONObject(i);
                                     companyDTO = new CompanyDTO();
 
-
-                                    companyDTO.setEmployer_id(object1.getString("user_id"));
+                                    companyDTO.setEmployer_id(object1.getString("employer_id"));
                                     companyDTO.setCompany_name(object1.getString("company_name"));
                                     companyDTO.setContact_person(object1.getString("contact_person"));
                                     companyDTO.setEmail(object1.getString("email"));
@@ -2653,7 +2652,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                     String result = "";
                     JSONObject object = null;
                     CompanyDTO companyDTO = null;
-                    Global.companylist.clear();
+                    Global.searchcandidatelist.clear();
                     while ((line = reader.readLine()) != null) {
                         sb.append(line + "\n");
                         result = sb.toString();
@@ -2669,28 +2668,30 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                 JSONArray array = object.getJSONArray("data");
                                 for (int i = 0; i < array.length(); i++) {
                                     JSONObject object1 = array.getJSONObject(i);
-                                    companyDTO = new CompanyDTO();
 
-                                    companyDTO.setEmployer_id(object1.getString("user_id"));
-                                    companyDTO.setCompany_name(object1.getString("company_name"));
-                                    companyDTO.setContact_person(object1.getString("contact_person"));
-                                    companyDTO.setEmail(object1.getString("email"));
-                                    companyDTO.setPhone(object1.getString("phone"));
-                                    companyDTO.setExperience(object1.getString("experience"));
-                                    companyDTO.setLocation(object1.getString("location"));
+                                    JSONObject jsonObject = array.getJSONObject(i);
+                                    CandidateDTO candidateDTO = new CandidateDTO();
 
-                                    companyDTO.setJobe_type(object1.getString("job_type"));
-                                    companyDTO.setSpecilization(object1.getString("specilaization"));
-                                    companyDTO.setJob_role(object1.getString("job_role"));
-                                    companyDTO.setNo_of_requirment(object1.getString("num_of_requirment"));
-                                    companyDTO.setAddress(object1.getString("address"));
-                                    companyDTO.setEmp_Image(object1.getString("picture"));
-                                    companyDTO.setExp_date(object1.getString("exp_date"));
-                                    companyDTO.setPosted_job(object1.getString("job_posted_at"));
 
-                                    Global.companylist.add(companyDTO);
+                                    candidateDTO.setUserId(jsonObject.getString("user_id"));
+                                    candidateDTO.setName(jsonObject.getString("name"));
+                                    candidateDTO.setEmail(jsonObject.getString("email"));
+                                    candidateDTO.setPhone(jsonObject.getString("phone"));
+                                    candidateDTO.setGender(jsonObject.getString("gender"));
+                                    candidateDTO.setLocation(jsonObject.getString("location"));
+                                    candidateDTO.setUserImage(jsonObject.getString("image"));
+                                    candidateDTO.setUser_type(jsonObject.getString("user_type"));
+                                    candidateDTO.setDesignation(jsonObject.getString("designation"));
+                                    candidateDTO.setExperience(jsonObject.getString("experience"));
+                                    candidateDTO.setJobRole(jsonObject.getString("job_role"));
+                                    candidateDTO.setJobType(jsonObject.getString("job_type"));
+                                    candidateDTO.setSpecialization(jsonObject.getString("specilaization"));
+
+                                    Global.searchcandidatelist.add(candidateDTO);
                                 }
-                                Log.e("", "Lit Size  companySearchlist " + Global.companylist.size());
+
+                                Log.e("", "Size : " + Global.searchcandidatelist.size());
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 apply_filter[0] = "000" + object.getString("success");
@@ -2756,7 +2757,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                         jsonData.accumulate("experience",experience );
                         jsonData.accumulate("gender", gender);
 
-                        Log.e("", "URL " + Constant.APPLY_FILTTER_URL);
+                        Log.e("", "URL " + Constant.APPLY_CUSTOMER_FILTTER_URL);
                         Log.e("Json : ", "" + jsonData.toString(12));
                         StringEntity se = new StringEntity(jsonData.toString());
                         httppost.setEntity(se);
@@ -2794,6 +2795,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                     JSONObject object = null;
                     CompanyDTO companyDTO = null;
                     Global.companylist.clear();
+                    Global.candidatelist.clear();
                     while ((line = reader.readLine()) != null) {
                         sb.append(line + "\n");
                         result = sb.toString();
@@ -2811,28 +2813,46 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     JSONObject object1 = array.getJSONObject(i);
                                     companyDTO = new CompanyDTO();
 
-                                    try{
+                                    /*try{
                                         companyDTO.setEmployer_id(object1.getString("user_id"));
                                     }catch (Exception e){
                                         e.printStackTrace();
-                                    }
+                                    }*/
+
+
+                                    companyDTO.setEmployer_id(object1.getString("emp_id"));
                                     companyDTO.setCompany_name(object1.getString("company_name"));
-                                    companyDTO.setContact_person(object1.getString("contact_person"));
                                     companyDTO.setEmail(object1.getString("email"));
                                     companyDTO.setPhone(object1.getString("phone"));
-                                    companyDTO.setExperience(object1.getString("experience"));
                                     companyDTO.setLocation(object1.getString("location"));
-
+                                    companyDTO.setExperience(object1.getString("experience"));
+                                    companyDTO.setEmp_Image(object1.getString("image"));
                                     companyDTO.setJobe_type(object1.getString("job_type"));
                                     companyDTO.setSpecilization(object1.getString("specilaization"));
                                     companyDTO.setJob_role(object1.getString("job_role"));
-                                    companyDTO.setNo_of_requirment(object1.getString("num_of_requirment"));
-                                    companyDTO.setAddress(object1.getString("address"));
-                                    companyDTO.setEmp_Image(object1.getString("picture"));
-                                    companyDTO.setExp_date(object1.getString("exp_date"));
-                                    companyDTO.setPosted_job(object1.getString("job_posted_at"));
+
+
+
 
                                     Global.companylist.add(companyDTO);
+
+                                    /*JSONObject jsonObject = array.getJSONObject(i);
+                                    CandidateDTO candidateDTO = new CandidateDTO();
+                                    candidateDTO.setUserId(jsonObject.getString("user_id"));
+                                    candidateDTO.setName(jsonObject.getString("name"));
+                                    candidateDTO.setEmail(jsonObject.getString("email"));
+                                    candidateDTO.setPhone(jsonObject.getString("phone"));
+                                    candidateDTO.setGender(jsonObject.getString("gender"));
+                                    candidateDTO.setLocation(jsonObject.getString("location"));
+                                    candidateDTO.setUserImage(jsonObject.getString("image"));
+                                    candidateDTO.setUser_type(jsonObject.getString("user_type"));
+                                    candidateDTO.setDesignation(jsonObject.getString("designation"));
+                                    candidateDTO.setResume(jsonObject.getString("resume"));
+                                    candidateDTO.setJobRole(jsonObject.getString("job_role"));
+                                    candidateDTO.setJobType(jsonObject.getString("job_type"));
+                                    candidateDTO.setSpecialization(jsonObject.getString("specilaization"));
+
+                                    Global.candidatelist.add(candidateDTO);*/
                                 }
                                 Log.e("", "Lit Size  companySearchlist " + Global.companylist.size());
                             } catch (Exception e) {
