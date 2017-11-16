@@ -143,6 +143,7 @@ public class Constant {
 	public static String OUT_OF_POST = "";
 	public static String NO_OF_POST = "";
 
+	public static String PACKAGE_NAME = "";
 
 
 	public static String SELECTED_PACK="";

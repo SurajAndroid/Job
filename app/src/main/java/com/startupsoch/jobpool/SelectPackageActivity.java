@@ -74,6 +74,7 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
     }
 
     public void init() {
+
         listViewMemberShip = (ListView) findViewById(R.id.listViewMemberShip);
         membershipBtnBack = (ImageView) findViewById(R.id.membershipBtnBack);
 
@@ -118,7 +119,9 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
             SharedPreferences sharedPreferences = getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
             Constant.USER_ID = sharedPreferences.getString("user_id", "");
             callSerivice();*/
-
+            sharedPreferences = getApplicationContext().getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
+            Constant.USER_ID = sharedPreferences.getString("user_id","");
+            Constant.PACKAGE_NAME = Global.membershipPack_List.get(position).getPackage_name();
             Intent intent=new Intent(SelectPackageActivity.this,InitialActivity.class);
             intent.putExtra("pay_amount",""+Global.membershipPack_List.get(position).getPackage_price());
             startActivity(intent);

@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.startupsoch.jobpool.LoginActivity;
 import com.startupsoch.jobpool.ProfileActivity;
 import com.startupsoch.jobpool.R;
 
@@ -218,6 +219,10 @@ public class CandidateSearchAdapter extends BaseAdapter {
                         @Override
                         public void onClick(View v) {
                             dialog.dismiss();
+                            Intent intent = new Intent(activity, LoginActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            activity.startActivity(intent);
+
                         }
                     });
                 }

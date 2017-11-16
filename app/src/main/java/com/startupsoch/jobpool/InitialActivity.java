@@ -35,6 +35,8 @@ public class InitialActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_initial);
         init();
+
+
         //generating order number
         Integer randomNum = ServiceUtility.randInt(0, 9999999);
         orderId.setText(randomNum.toString());
@@ -44,7 +46,7 @@ public class InitialActivity extends ActionBarActivity {
         if(bundle.getString("pay_amount")!= null)
         {
             amount.setText(bundle.getString("pay_amount"));
-            amount.setText("1");
+            amount.setText("0.1");
         }
 
         String vAccessCode = ServiceUtility.chkNull(accessCode.getText()).toString().trim();

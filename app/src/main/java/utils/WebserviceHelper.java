@@ -2667,11 +2667,10 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                             try {
                                 JSONArray array = object.getJSONArray("data");
                                 for (int i = 0; i < array.length(); i++) {
-                                    JSONObject object1 = array.getJSONObject(i);
+
 
                                     JSONObject jsonObject = array.getJSONObject(i);
                                     CandidateDTO candidateDTO = new CandidateDTO();
-
 
                                     candidateDTO.setUserId(jsonObject.getString("user_id"));
                                     candidateDTO.setName(jsonObject.getString("name"));

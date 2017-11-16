@@ -146,7 +146,7 @@ public class MenuFragment extends Fragment implements RequestReceiver {
 
             if (SavedData.getPack()!=null){
                 userMemPackTxt.setText(SavedData.getPack());
-                userMemPackTxt.setText("Trial Pack");
+//                userMemPackTxt.setText("Trial Pack");
             }else {
                 userMemPackTxt.setText("Trial Pack");
             }
