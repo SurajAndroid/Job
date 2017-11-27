@@ -80,7 +80,7 @@
                 android:text="JOBPOOL is a mobile application that connects job seekers with employers. JOBPOOL is a venture of Inkcraft Creations LLP that was founded in 2015, and is headquartered at Bidar (Karnataka). The LLP’s services include the following: Skill Development, Startup Training, Website, logo and Infographic design, Content writing, Recruitment based services, and Online branding. The Company was founded with a noble cause of providing affordable online services to its clients. Its Startup Training Services under the flagship name of ‘Startup Soch’ is transforming the lives of Engineering Students."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textView4" />
+                android:id="@+id/firstTxt" />
 
             <utils.TextviewSemiBold
                 android:textColor="@color/black_one"

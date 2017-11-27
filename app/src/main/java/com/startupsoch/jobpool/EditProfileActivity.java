@@ -75,7 +75,7 @@ public class EditProfileActivity extends SlidingFragmentActivity implements Requ
         sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
         sm.setFadeDegree(0.35f);
         sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        sm.setSlidingEnabled(false);
+        sm.setSlidingEnabled(true);
 
         init();
         clickListener();

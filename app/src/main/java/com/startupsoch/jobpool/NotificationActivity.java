@@ -54,7 +54,7 @@ public class NotificationActivity extends SlidingFragmentActivity implements Req
         sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
         sm.setFadeDegree(0.35f);
         sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        sm.setSlidingEnabled(false);
+        sm.setSlidingEnabled(true);
 
      }
 

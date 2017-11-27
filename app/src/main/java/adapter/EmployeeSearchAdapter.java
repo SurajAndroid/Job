@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
@@ -17,12 +18,17 @@ import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.startupsoch.jobpool.LoginActivity;
 import com.startupsoch.jobpool.R;
 
 import java.util.ArrayList;
 
 import dtos.CompanyDTO;
+import utils.Constant;
 import utils.MarshMallowPermission;
+import utils.RequestReceiver;
+import utils.WebserviceHelper;
 
 /**
  * Created by Suraj shakya on 11/8/16.
@@ -32,15 +38,20 @@ public class EmployeeSearchAdapter extends BaseAdapter {
 
     LayoutInflater layoutInflater;
     Context context;
+    RequestReceiver receiver;
     Activity activity;
     public ArrayList<CompanyDTO> companylist;
     MarshMallowPermission marshMallowPermission;
+    SharedPreferences sharedPreferences;
 
-    public EmployeeSearchAdapter(Context context, Activity activity, ArrayList<CompanyDTO> companylist){
+    public EmployeeSearchAdapter(Context context, Activity activity, ArrayList<CompanyDTO> companylist, RequestReceiver receiver){
         this.context = context;
         this.activity = activity;
         this.companylist = companylist;
+        this.receiver = receiver;
         marshMallowPermission = new MarshMallowPermission(activity);
+        sharedPreferences = context.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
+        Constant.USER_ID = sharedPreferences.getString("user_id","");
     }
 
  /*   @Override
@@ -84,6 +95,7 @@ public class EmployeeSearchAdapter extends BaseAdapter {
           holder.expTxt = (TextView)convertView.findViewById(R.id.expTxt);
           holder.applyTxt = (TextView)convertView.findViewById(R.id.applyTxt);
           holder.candidateName = (TextView)convertView.findViewById(R.id.candidateName);
+          holder.view = (LinearLayout)convertView.findViewById(R.id.view);
           convertView.setTag(holder);
 
         }else {
@@ -116,21 +128,33 @@ public class EmployeeSearchAdapter extends BaseAdapter {
             holder.specialization.setText("");
         }
 
-        String[] date = companylist.get(position).getPosted_job().split(" ");
-        holder.postedJobTxt.setText("Posted Job on : "+date[0]);
-
+        try{
+            String[] date = companylist.get(position).getPosted_job().split(" ");
+            holder.postedJobTxt.setText("Posted Job on : "+date[0]);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         holder.showInterestLayout.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+
                 /*Intent intent = new Intent(activity, ProfileActivity.class);
                 intent.putExtra("position",""+position);
                 activity.startActivity(intent);*/
+
             }
         });
 
-
         holder.contactLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Update_applicantSerivice();
+            }
+        });
+
+        holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Dialog dialog = new Dialog(activity);
@@ -185,8 +209,14 @@ public class EmployeeSearchAdapter extends BaseAdapter {
         return convertView;
     }
 
+    public void Update_applicantSerivice() {
+        WebserviceHelper Update_applicant = new WebserviceHelper(receiver, activity);
+        Update_applicant.setAction(Constant.UPDATE_APPLICANT);
+        Update_applicant.execute();
+    }
+
     class ViewHolder{
         TextView itiNonIti,specialization,postedJobTxt, locationTxt, expTxt,candidateName, applyTxt;
-        LinearLayout showInterestLayout, contactLayout;
+        LinearLayout showInterestLayout, contactLayout, view;
     }
 }

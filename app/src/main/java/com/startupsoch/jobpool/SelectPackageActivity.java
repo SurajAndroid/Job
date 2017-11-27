@@ -27,8 +27,10 @@ import com.startupsoch.jobpool.R;
 import org.json.JSONException;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 import adapter.MembershipAdapter;
+import dtos.MembershipDTO;
 import listners.CustomButtonListener;
 import paypal.PayPalConfig;
 import utils.Constant;
@@ -49,6 +51,7 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
     ImageView membershipBtnBack;
 
     SharedPreferences sharedPreferences;
+    ArrayList<MembershipDTO> pacakgeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +77,7 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
     }
 
     public void init() {
-
+        sharedPreferences = getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
         listViewMemberShip = (ListView) findViewById(R.id.listViewMemberShip);
         membershipBtnBack = (ImageView) findViewById(R.id.membershipBtnBack);
 
@@ -102,9 +105,33 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
             }, 1000);
         } else {
             if (result[0].equals("01")) {
-                MembershipAdapter membershipAdapter = new MembershipAdapter(SelectPackageActivity.this, SelectPackageActivity.this, Global.membershipPack_List);
-                listViewMemberShip.setAdapter(membershipAdapter);
-                membershipAdapter.setCustomListener(SelectPackageActivity.this);
+
+                if (sharedPreferences.getString("user_type", "").equals("candidate")) {
+                    Constant.PACKAGE_TYPE = sharedPreferences.getString("user_type", "");
+                    pacakgeList = new ArrayList<>();
+                    for(int i=0;i<Global.membershipPack_List.size();i++){
+                        if(Global.membershipPack_List.get(i).getPackage_type().equals("candidate")){
+                            pacakgeList.add(Global.membershipPack_List.get(i));
+                        }
+                    }
+                    MembershipAdapter membershipAdapter = new MembershipAdapter(SelectPackageActivity.this, SelectPackageActivity.this, pacakgeList);
+                    listViewMemberShip.setAdapter(membershipAdapter);
+                    membershipAdapter.setCustomListener(SelectPackageActivity.this);
+                } else {
+                    Constant.PACKAGE_TYPE = sharedPreferences.getString("user_type", "");
+                    pacakgeList = new ArrayList<>();
+                    for(int i=0;i<Global.membershipPack_List.size();i++){
+                        if(Global.membershipPack_List.get(i).getPackage_type().equals("employer")){
+                            pacakgeList.add(Global.membershipPack_List.get(i));
+                        }
+                    }
+                    MembershipAdapter membershipAdapter = new MembershipAdapter(SelectPackageActivity.this, SelectPackageActivity.this, pacakgeList);
+                    listViewMemberShip.setAdapter(membershipAdapter);
+                    membershipAdapter.setCustomListener(SelectPackageActivity.this);
+                }
+
+
+
             } else {
                 Snackbar.make(listViewMemberShip, result[1], Snackbar.LENGTH_SHORT).show();
             }

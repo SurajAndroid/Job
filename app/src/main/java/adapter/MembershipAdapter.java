@@ -39,7 +39,7 @@ public class MembershipAdapter extends BaseAdapter {
         this.activity = activity;
         this.candidateList = candidateList;
         sharedPreferences = context.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
-        ;
+
     }
 
     public void setCustomListener(CustomButtonListener customButtonListener) {
@@ -95,13 +95,23 @@ public class MembershipAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        holder.packName.setText(candidateList.get(position).getPackage_name());
-        holder.CandidatesCount.setText(candidateList.get(position).getCandidate_count());
-        holder.postJobCount.setText(candidateList.get(position).getPost_job_count());
-        holder.packPrice.setText("Price " + candidateList.get(position).getPackage_price());
+        if(sharedPreferences.getString("user_type", "").equals("candidate")){
+            holder.postJobCount.setVisibility(View.INVISIBLE);
+            holder.packName.setText(candidateList.get(position).getPackage_name());
+            holder.CandidatesCount.setText(candidateList.get(position).getCandidate_count());
+            holder.postJobCount.setText(candidateList.get(position).getPost_job_count());
+            holder.packPrice.setText("Price " + candidateList.get(position).getPackage_price());
+            holder.validFor.setText(candidateList.get(position).getValidFor());
 
-        holder.validFor.setText(candidateList.get(position).getValidFor());
-//        holder.validFor.setText("1 month");
+        }else {
+            holder.packName.setText(candidateList.get(position).getPackage_name());
+            holder.CandidatesCount.setText(candidateList.get(position).getCandidate_count());
+            holder.postJobCount.setText(candidateList.get(position).getPost_job_count());
+            holder.packPrice.setText("Price " + candidateList.get(position).getPackage_price());
+            holder.validFor.setText(candidateList.get(position).getValidFor());
+        }
+
+
 
         if (candidateList.get(position).getDiscription().equals("")) {
             holder.packDesc.setVisibility(View.GONE);

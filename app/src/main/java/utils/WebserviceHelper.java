@@ -52,7 +52,6 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
     private String errorMessage;
     private boolean error_flag = false;
     ProgressDialog mProgressDialog;
-
     public static int action;
 
     ProgressDialog dialog;
@@ -352,6 +351,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
 
                                 try {
                                     Log.e("", "Candidate");
+
                                     Constant.USER_ID = data.getString("user_id");
                                     Constant.USER_NAME = data.getString("candidate_name");
                                     Constant.USER_IMAGE = data.getString("candidate_image");
@@ -359,6 +359,13 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     Constant.PHONE_NUMBER = data.getString("phone");
                                     Constant.LOCATION = data.getString("location");
                                     Constant.USER_TYPE = data.getString("user_type");
+
+                                    Constant.COMPANY_SHOW_INTERST = data.getString("company_show_intrest");
+                                    Constant.NO_OF_APPLIED = data.getString("no_of_applicant");
+                                    Constant.OUT_OFF_APPLY = data.getString("out_of_apply");
+
+
+
                                 } catch (Exception e) {
                                     Log.e("", "Company");
 
@@ -1434,7 +1441,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                 break;
 
 
-            case Constant.SEARCH_API:
+            case Constant.CANDIDATE_SEARCH_API:
                 String[] searchapi = new String[3];
                 httppost = new HttpPost(Constant.SEARCH_URL);
                 try {
@@ -1534,7 +1541,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                 }
                 break;
 
-            case Constant.COMPANY_API:
+            case Constant.COMPANY_SEARCH_API:
                 String[] cmp_search = new String[3];
                 httppost = new HttpPost(Constant.COMPANY_SEARCH_URL);
                 try {
@@ -2473,10 +2480,16 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     membershipDTO.setPackage_name(data.getString("package_name"));
                                     membershipDTO.setCandidate_count(data.getString("candidate_count"));
                                     membershipDTO.setPost_job_count(data.getString("post_job_count"));
+                                    membershipDTO.setValidFor(data.getString("valid_days"));
                                     membershipDTO.setDiscription(data.getString("discription"));
                                     membershipDTO.setPackage_price(data.getString("package_price"));
-                                    membershipDTO.setValidFor(data.getString("valid_days"));
+                                    membershipDTO.setDownload(data.getString("download"));
+                                    membershipDTO.setPost_job(data.getString("post_job"));
+                                    membershipDTO.setApply(data.getString("apply"));
+                                    membershipDTO.setPackage_type(data.getString("package_type"));
+
                                     membershipDTO.setCreated_at(data.getString("created_at"));
+
 
                                     Global.membershipPack_List.add(membershipDTO);
                                 }
@@ -2509,6 +2522,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
 
                         jsonData.accumulate("employer_id", Constant.USER_ID);
                         jsonData.accumulate("package_name", Constant.SELECTED_PACK);
+                        jsonData.accumulate("package_type", Constant.PACKAGE_TYPE);
 
                         Log.e("", "URL " + Constant.SELECT_MEMBERSHIP_URL);
                         Log.e("Json : ", "" + jsonData.toString());
@@ -2570,7 +2584,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                 }
                 break;
 
-            case Constant.APPLY_FILTER:
+            case Constant.APPLY_EMPLOYEE_FILTER:
                 String[] apply_filter = new String[3];
                 httppost = new HttpPost(Constant.APPLY_FILTTER_URL);
                 try {
@@ -2793,8 +2807,8 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                     String result = "";
                     JSONObject object = null;
                     CompanyDTO companyDTO = null;
-                    Global.companylist.clear();
-                    Global.candidatelist.clear();
+                    Global.companySearchlist.clear();
+
                     while ((line = reader.readLine()) != null) {
                         sb.append(line + "\n");
                         result = sb.toString();
@@ -2830,10 +2844,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     companyDTO.setSpecilization(object1.getString("specilaization"));
                                     companyDTO.setJob_role(object1.getString("job_role"));
 
-
-
-
-                                    Global.companylist.add(companyDTO);
+                                    Global.companySearchlist.add(companyDTO);
 
                                     /*JSONObject jsonObject = array.getJSONObject(i);
                                     CandidateDTO candidateDTO = new CandidateDTO();
@@ -2850,10 +2861,10 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     candidateDTO.setJobRole(jsonObject.getString("job_role"));
                                     candidateDTO.setJobType(jsonObject.getString("job_type"));
                                     candidateDTO.setSpecialization(jsonObject.getString("specilaization"));
-
                                     Global.candidatelist.add(candidateDTO);*/
+
                                 }
-                                Log.e("", "Lit Size  companySearchlist " + Global.companylist.size());
+                                Log.e("", "Lit Size  companySearchlist " + Global.companySearchlist.size());
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 apply_customer_filter[0] = "000" + object.getString("success");
@@ -2880,7 +2891,9 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                 try {
                     try {
 
-                        jsonData.accumulate("employee_id", Constant.USER_ID);
+                        jsonData.accumulate("employee_id", Constant.COMPANY_ID);
+                        jsonData.accumulate("candidate_id", Constant.USER_ID);
+
 
                         Log.e("", "URL " + Constant.UPDATE_DOWNLOAD_URL);
                         Log.e("Json : ", "" + jsonData.toString());
@@ -2934,6 +2947,81 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                     }
                     return update_download;
 
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
+
+            case Constant.UPDATE_APPLICANT:
+                String[] update_applicat = new String[3];
+                httppost = new HttpPost(Constant.UPDATE_APPLICANT_URL);
+                try {
+                    try {
+                        jsonData.accumulate("candidate_id", Constant.USER_ID);
+
+                        Log.e("", "URL " + Constant.FORGOT_URL);
+                        Log.e("Json : ", "" + jsonData.toString(5));
+                        StringEntity se = new StringEntity(jsonData.toString());
+                        httppost.setEntity(se);
+                        httppost.setHeader("Accept", "application/json");
+                        httppost.setHeader("Content-type", "application/json");
+                        try {
+                            response1 = httpclient.execute(httppost);
+                            if (response1 != null) {
+                                Log.e("", "responce");
+                                jsonData.has("success");
+                            } else {
+                                Log.e("", "Null responce");
+                            }
+                            response1.getStatusLine().getStatusCode();
+                            StatusLine statusLine = response1.getStatusLine();
+                            Log.e("myapp", "response statau.." + response1.getStatusLine().getStatusCode());
+                            Log.e("myapp", "response.. " + response1.getEntity());
+
+                        } catch (ClientProtocolException e) {
+                            e.printStackTrace();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    InputStream inputStream = response1.getEntity().getContent();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF8"), 8);
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(reader.readLine() + "\n");
+                    String line = "0";
+                    String result = "";
+                    JSONObject object = null;
+
+                    while ((line = reader.readLine()) != null) {
+                        sb.append(line + "\n");
+                        result = sb.toString();
+                        Log.e("", "encodeRes : " + result);
+                    }
+
+                    try {
+                        object = new JSONObject(result);
+                        Log.d("", "jsonObj responce... " + object);
+                        update_applicat[0] = "010" + object.getString("success");
+                        update_applicat[1] = object.getString("message");
+
+                        JSONObject jsonObject = object.getJSONObject("data");
+                        Constant.NO_OF_APPLIED = jsonObject.getString("no_of_applicant");
+                        Constant.OUT_OFF_APPLY = jsonObject.getString("out_of_apply");
+
+                        try {
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        update_applicat[0] = "010"+object.getString("success");
+                        update_applicat[1] = object.getString("message");
+                    }
+
+                    return update_applicat;
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

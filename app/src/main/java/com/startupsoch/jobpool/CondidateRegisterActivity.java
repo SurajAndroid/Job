@@ -110,7 +110,7 @@ public class CondidateRegisterActivity extends Activity implements RequestReceiv
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CondidateRegisterActivity.this, WebViewForTerms.class);
-                intent.putExtra("URL", "http://jobpool.in/terms");
+                intent.putExtra("URL", "http://jobpool.in/welcome/policy");
                 startActivity(intent);
 //                new Intent(CondidateRegisterActivity.this, WebViewForTerms.class);
             }
@@ -119,7 +119,7 @@ public class CondidateRegisterActivity extends Activity implements RequestReceiv
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CondidateRegisterActivity.this, WebViewForTerms.class);
-                intent.putExtra("URL", "http://jobpool.in/policy");
+                intent.putExtra("URL", "http://jobpool.in/welcome/policy");
                 startActivity(intent);
 //                new Intent(CondidateRegisterActivity.this, WebViewForTerms.class);
             }

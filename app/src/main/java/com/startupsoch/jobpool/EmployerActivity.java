@@ -93,8 +93,6 @@ public class EmployerActivity extends AppCompatActivity implements RequestReceiv
         cty.setDropDownViewResource(R.layout.spinner_txt);
         spinnerCity.setAdapter(cty);
 
-
-
         parentLayout = (ScrollView) findViewById(R.id.parentLayout);
         termsCondiationCheck = (CheckBox) findViewById(R.id.termsCondiationCheck);
         SubmiTLayout = (LinearLayout) findViewById(R.id.SubmiTLayout);
@@ -103,15 +101,16 @@ public class EmployerActivity extends AppCompatActivity implements RequestReceiv
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EmployerActivity.this, WebViewForTerms.class);
-                intent.putExtra("URL", "http://jobpool.in/terms");
+                intent.putExtra("URL", "http://jobpool.in/welcome/policy");
                 startActivity(intent);
             }
         });
+
         conditionTxtPolicy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(EmployerActivity.this, WebViewForTerms.class);
-                intent.putExtra("URL", "http://jobpool.in/policy");
+                intent.putExtra("URL", "http://jobpool.in/welcome/policy");
                 startActivity(intent);
             }
         });

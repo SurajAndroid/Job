@@ -5,7 +5,7 @@ package dtos;
  */
 
 public class MembershipDTO {
-    String id,package_name,candidate_count,post_job_count,discription,package_price,created_at,validFor;
+    String id,package_name,candidate_count,post_job_count,discription,package_price,created_at,validFor, download, post_job, apply, package_type;
 
     public String getId() {
         return id;
@@ -13,6 +13,38 @@ public class MembershipDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDownload() {
+        return download;
+    }
+
+    public void setDownload(String download) {
+        this.download = download;
+    }
+
+    public String getPost_job() {
+        return post_job;
+    }
+
+    public void setPost_job(String post_job) {
+        this.post_job = post_job;
+    }
+
+    public String getApply() {
+        return apply;
+    }
+
+    public void setApply(String apply) {
+        this.apply = apply;
+    }
+
+    public String getPackage_type() {
+        return package_type;
+    }
+
+    public void setPackage_type(String package_type) {
+        this.package_type = package_type;
     }
 
     public String getPackage_name() {

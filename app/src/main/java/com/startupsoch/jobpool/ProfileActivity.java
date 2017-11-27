@@ -162,6 +162,7 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
     public void setProfielData() {
 
         if (TAG.equalsIgnoreCase("AllListActivity")) {
+            Constant.USER_ID = Global.searchcandidatelist.get(position).getUserId();
             candidateName.setText(Global.searchcandidatelist.get(position).getName().toUpperCase());
 
             Log.e("Sohel ","    "+ Global.searchcandidatelist.get(position).getJobRole());
@@ -206,7 +207,7 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
             }
         } else {
             candidateName.setText(Global.candidatelist.get(position).getName().toUpperCase());
-
+            Constant.USER_ID = Global.candidatelist.get(position).getUserId();
             if (!Global.candidatelist.get(position).getJobRole().equals("null")) {
                 profileJobRole.setText(Global.candidatelist.get(position).getJobRole());
             } else {
@@ -514,7 +515,6 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
                     HttpURLConnection c = (HttpURLConnection) url.openConnection();//Open Url Connection
                     c.setRequestMethod("GET");//Set Request Method to "GET" since we are grtting data
                     c.connect();//connect the URL Connection
-
                     //If Connection response is not OK then show Logs
                     if (c.getResponseCode() != HttpURLConnection.HTTP_OK) {
                         Log.e(TAG, "Server returned HTTP " + c.getResponseCode()
@@ -522,10 +522,8 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
 
                     }
 
-
                     //Get File if SD card is present
                     if (new CheckForSDCard().isSDCardPresent()) {
-
                         apkStorage = new File(
                                 Environment.getExternalStorageDirectory() + "/"
                                         + "JOBPOOL RESUME");
@@ -555,7 +553,6 @@ public class ProfileActivity extends SlidingFragmentActivity implements RequestR
                     while ((len1 = is.read(buffer)) != -1) {
                         fos.write(buffer, 0, len1);//Write new file
                     }
-
                     //Close all connection after doing task
                     fos.close();
                     is.close();

@@ -95,6 +95,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     AutoCompleteTextView lookingJob;
     Spinner spinnerJobroll;
+    String UserName;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,9 +181,17 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
 
     public  void init(){
 
+        Constant.FB_ID ="";
+        Constant.GOOGLE_ID = "";
         receiver = this;
-          callSerivice();
-//        GetJobRollSerivice();
+        if(Constant.checkInternetConnection(getApplicationContext())){
+            callSerivice();
+        }else {
+            Snackbar.make(parentLayout,"Check your Internet.!",Snackbar.LENGTH_SHORT).show();
+        }
+
+
+//      GetJobRollSerivice();
         sharedPreferences = this.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
 
         if(sharedPreferences.getString("status","").equals("1")){
@@ -206,6 +215,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
         login_button = (LoginButton) findViewById(R.id.login_button);
         callbackManager = CallbackManager.Factory.create();
         login_button.setReadPermissions("email");
+
         //Initializing signinbutton
         signInButton = (SignInButton) findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
@@ -280,6 +290,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
             Constant.GOOGLE_ID = acct.getId();
             Constant.EMAIL = acct.getEmail();
             Constant.USER_NAME = acct.getDisplayName();
+            UserName = acct.getDisplayName();
             try {
                 Constant.USER_IMAGE = acct.getPhotoUrl().toString();
             }catch (Exception e){
@@ -326,6 +337,8 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
 
                         Log.e("","Email : "+json.getString("email"));
                         try {
+                            Constant.USER_NAME = json.getString("name");
+                            UserName = json.getString("name");
                             Constant.EMAIL = json.getString("email");
                         }catch (Exception e){
                              Constant.EMAIL = json.getString("name")+"@gmail.com";
@@ -485,7 +498,13 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
                         if(sharedPreferences.getString("user_type","").equals("candidate")){
                             Toast.makeText(getApplicationContext(),"Company Searching Comming Soon.", Toast.LENGTH_LONG).show();
                         }else {
-                            searchApiSerivice();
+
+                            if(Constant.checkInternetConnection(getApplicationContext())){
+                                searchApiSerivice();
+                            }else {
+                                Snackbar.make(parentLayout,"Check your Internet.!",Snackbar.LENGTH_SHORT).show();
+                            }
+
                         }
                     }else {
                         Snackbar.make(parentLayout,"Please select location",Snackbar.LENGTH_SHORT).show();
@@ -511,6 +530,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
                         /*get all profile data*/
                         Constant.FB_ID = profile.getId();
                         Constant.USER_NAME = profile.getFirstName()+" "+profile.getLastName();
+                        UserName = profile.getFirstName()+" "+profile.getLastName();
 
                         try {
                             Constant.USER_IMAGE = profile.getProfilePictureUri(200,200).toString();
@@ -583,7 +603,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
 
     public void searchApiSerivice() {
         WebserviceHelper searchAPI = new WebserviceHelper(receiver, HomeActivity.this);
-        searchAPI.setAction(Constant.SEARCH_API);
+        searchAPI.setAction(Constant.CANDIDATE_SEARCH_API);
         searchAPI.execute();
     }
 
@@ -599,14 +619,20 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
     @Override
     public void requestFinished(String[] result) throws Exception {
         if(result[0].equals("1")){
+
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("status", "1");
             editor.putString("user_id", "" + Constant.USER_ID);
             editor.putString("email", "" + Constant.EMAIL);
-            editor.putString("user_name", "" + Constant.USER_NAME);
+            if(Constant.GOOGLE_ID.equals("") && Constant.FB_ID.equals("") ){
+                editor.putString("user_name", "" + Constant.USER_NAME);
+            }else {
+                editor.putString("user_name", "" + UserName);
+            }
+
             editor.putString("phone", "" + Constant.PHONE_NUMBER);
             editor.putString("location", "" + Constant.LOCATION);
-            editor.putString("image", "" + Constant.USER_IMAGE);
+            editor.putString("user_Image", "" + Constant.USER_IMAGE);
             editor.putString("user_type", "" + "candidate");
             Log.e("",""+ Constant.EMAIL+"  "+ Constant.USER_IMAGE);
             editor.commit();
@@ -614,6 +640,7 @@ public class HomeActivity extends FragmentActivity implements GoogleApiClient.On
             Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
+
         }if(result[0].equals("0001")){
             Intent intent = new Intent(HomeActivity.this, AllListActivity.class);
             startActivity(intent);

@@ -46,7 +46,7 @@ public class InitialActivity extends ActionBarActivity {
         if(bundle.getString("pay_amount")!= null)
         {
             amount.setText(bundle.getString("pay_amount"));
-            amount.setText("0.1");
+//            amount.setText("0.1");
         }
 
         String vAccessCode = ServiceUtility.chkNull(accessCode.getText()).toString().trim();

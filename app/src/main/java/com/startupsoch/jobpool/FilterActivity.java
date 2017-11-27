@@ -130,9 +130,9 @@ public class FilterActivity extends SlidingFragmentActivity implements RequestRe
         employer.execute();
     }
 
-    public void ApplyFilterAPI() {
+    public void ApplyEmployeeFilterAPI() {
         WebserviceHelper apply = new WebserviceHelper(receiver, FilterActivity.this);
-        apply.setAction(Constant.APPLY_FILTER);
+        apply.setAction(Constant.APPLY_EMPLOYEE_FILTER);
         apply.execute();
     }
 
@@ -171,7 +171,7 @@ public class FilterActivity extends SlidingFragmentActivity implements RequestRe
                 if (sharedPreferences.getString("user_type", "").equals("candidate")) {
                     ApplyCustomerFilterAPI();
                 } else {
-                    ApplyFilterAPI();
+                    ApplyEmployeeFilterAPI();
                 }
 
             }

@@ -1,5 +1,4 @@
 package adapter;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -23,11 +22,11 @@ import dtos.PostDTO;
 import utils.Constant;
 import utils.RequestReceiver;
 import utils.WebserviceHelper;
-
 /**
  * Created by Suraj shakya on 11/8/16.
  * shakyasuraj08@mail.com
  */
+
 public class PostAdapter extends BaseAdapter {
 
     LayoutInflater layoutInflater;

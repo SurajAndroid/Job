@@ -128,8 +128,8 @@ public class MenuFragment extends Fragment implements RequestReceiver {
             postLayout.setVisibility(View.GONE);
             postview1.setVisibility(View.GONE);
             postview2.setVisibility(View.GONE);
-            profileViewTxt.setText("Companies showed interest in you - 03");
-            resumeDownloadTxt.setText("No. of Jobs Applied - 06");
+            profileViewTxt.setText("Companies showed interest in you - "+sharedPreferences.getString("company_show_intrest", ""));
+            resumeDownloadTxt.setText("No. of Jobs Applied - "+sharedPreferences.getString("no_of_applicant", "")+"/"+sharedPreferences.getString("out_of_apply", ""));
             searchCandidate.setText("Search Company");
             if (SavedData.getPack()!=null){
                 userMemPackTxt.setText(SavedData.getPack());
@@ -173,6 +173,12 @@ public class MenuFragment extends Fragment implements RequestReceiver {
         profileViewTxt.setText("Downloaded Resumes - " +sharedPreferences.getString("no_of_download", "")+"/"+sharedPreferences.getString("out_of_download", ""));
         resumeDownloadTxt.setText("Posted Job - " +sharedPreferences.getString("no_of_post", "")+"/"+sharedPreferences.getString("out_of_post", ""));
     }
+
+    public static void SetInterestvalue(){
+        profileViewTxt.setText("Companies showed interest in you - "+sharedPreferences.getString("company_show_intrest", ""));
+        resumeDownloadTxt.setText("No. of Jobs Applied - "+sharedPreferences.getString("no_of_applicant", "")+"/"+sharedPreferences.getString("out_of_apply", ""));
+    }
+
 
     public void candidateSerivice() {
         WebserviceHelper getprofile = new WebserviceHelper(receiver, getActivity());
@@ -370,7 +376,6 @@ public class MenuFragment extends Fragment implements RequestReceiver {
                         }
                     }
                 });
-
             }
 
         } catch (Exception e) {

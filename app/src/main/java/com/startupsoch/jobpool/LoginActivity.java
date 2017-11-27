@@ -86,7 +86,12 @@ public class LoginActivity extends AppCompatActivity implements RequestReceiver 
                     public void onClick(View view) {
                         if(email_id.getText().length()!=0){
                             Constant.EMAIL  = email_id.getText().toString();
-                            forgotcallSerivice();
+                            if(Constant.checkInternetConnection(getApplicationContext())) {
+                                forgotcallSerivice();
+                            }else {
+                                Snackbar.make(parentLayout,"Check your Internet.!",Snackbar.LENGTH_SHORT).show();
+                            }
+
                             dialog.dismiss();
                         }else {
                             Snackbar.make(parentLayout,"Enter Email.!",Snackbar.LENGTH_SHORT).show();
@@ -107,7 +112,12 @@ public class LoginActivity extends AppCompatActivity implements RequestReceiver 
                        Constant.GOOGLE_ID = "";
                        Constant.EMAIL = input_username.getText().toString();
                        Constant.PASSWORD = input_password.getText().toString();
-                       logincallSerivice();
+                       if(Constant.checkInternetConnection(getApplicationContext())){
+                           logincallSerivice();
+                       }else {
+                           Snackbar.make(parentLayout,"Check your Internet.!",Snackbar.LENGTH_SHORT).show();
+                       }
+
                        if(rememberCheck.isChecked()){
                            SharedPreferences.Editor editor = rememberMe.edit();
                            editor.putString("email", "" +  input_username.getText().toString());
@@ -192,6 +202,12 @@ public class LoginActivity extends AppCompatActivity implements RequestReceiver 
             editor.putString("location", "" + Constant.LOCATION);
             editor.putString("user_type", "" + Constant.USER_TYPE);
             editor.putString("user_Image", "" + Constant.USER_IMAGE);
+
+            editor.putString("company_show_intrest", "" + Constant.COMPANY_SHOW_INTERST);
+            editor.putString("no_of_applicant", "" + Constant.NO_OF_APPLIED);
+            editor.putString("out_of_apply", "" + Constant.OUT_OFF_APPLY);
+
+
 
             editor.putString("out_of_download", "" + Constant.OUT_OF_DOWNLOAD);
             editor.putString("no_of_download", "" + Constant.NOOF_DOWNLOAD);

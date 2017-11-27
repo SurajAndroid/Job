@@ -38,8 +38,8 @@ public class Constant {
 	public static final int UPDATE_CADIDATE_PIC = 13;
 	public static final int CADIDATE_TOP_TEN = 14;
 	public static final int EMPLOYEETOP_TEN = 15;
-	public static final int SEARCH_API = 16;
-	public static final int COMPANY_API = 17;
+	public static final int CANDIDATE_SEARCH_API = 16;
+	public static final int COMPANY_SEARCH_API = 17;
 	public static final int NOTIFICATION_API = 18;
 	public static final int VIEW_PROFILE_API = 19;
 	public static final int GET_FILTER_API = 20;
@@ -54,9 +54,10 @@ public class Constant {
 	public static final int UPDATE_POST = 27;
 	public static final int DELETE_POST = 28;
 
-	public static final int APPLY_FILTER = 29;
+	public static final int APPLY_EMPLOYEE_FILTER = 29;
 	public static final int APPLY_CUSTOMER_FILTER = 30;
 	public static final int UPDATE_DWONLOAD = 31;
+	public static final int UPDATE_APPLICANT = 32;
 
 //	public static String BASE_URL ="http://smtgroup.in/jobpools/wdiapi/index.php/";
 	public static String BASE_URL ="http://jobpool.in/jobpoolapi/index.php/";
@@ -91,6 +92,7 @@ public class Constant {
 	public static String APPLY_FILTTER_URL = BASE_URL+"singalfilter";
 	public static String APPLY_CUSTOMER_FILTTER_URL = BASE_URL+"employerfilter";
 	public static String UPDATE_DOWNLOAD_URL = BASE_URL+"update_download";
+	public static String UPDATE_APPLICANT_URL = BASE_URL+"update_applicant";
 
 	public static String NAME="";
 	public static String USER_NAME="";
@@ -143,7 +145,13 @@ public class Constant {
 	public static String OUT_OF_POST = "";
 	public static String NO_OF_POST = "";
 
+	/*Maintain candiate data */
+	public static String COMPANY_SHOW_INTERST="";
+	public static String NO_OF_APPLIED="";
+	public static String OUT_OFF_APPLY="";
+
 	public static String PACKAGE_NAME = "";
+	public static String PACKAGE_TYPE = "";
 
 
 	public static String SELECTED_PACK="";

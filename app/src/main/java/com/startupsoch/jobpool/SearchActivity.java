@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
@@ -71,11 +72,8 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         setContentView(R.layout.search_activity);
 
         init();
-
 //      showPopup();
-
         clickListener();
-
 
         for (int i = 0; i < skilles.length; i++) {
             skillesDTO = new SkillesDTO(skilles[i], false);
@@ -89,7 +87,7 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
         sm.setFadeDegree(0.35f);
         sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        sm.setSlidingEnabled(false);
+        sm.setSlidingEnabled(true);
     }
 
     public void init() {
@@ -133,7 +131,6 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         } else {
             getCandidatetopTenSerivice();
         }
-
 
     }
 
@@ -199,6 +196,7 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
                 Constant.SKILLES = adapterView.getItemAtPosition(i).toString();
             }
         });
+
         skillesediTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -297,7 +295,7 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
                         if (sharedPreferences.getString("user_type", "").equals("candidate")) {
                             companySearchApiSerivice();
                         } else {
-                            searchApiSerivice();
+                            candidateSearchApiSerivice();
                         }
                     } else {
                         Snackbar.make(parentLayout, "Please select location", Snackbar.LENGTH_SHORT).show();
@@ -322,15 +320,15 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         employeeTop.execute();
     }
 
-    public void searchApiSerivice() {
+    public void candidateSearchApiSerivice(){
         WebserviceHelper searchAPI = new WebserviceHelper(receiver, SearchActivity.this);
-        searchAPI.setAction(Constant.SEARCH_API);
+        searchAPI.setAction(Constant.CANDIDATE_SEARCH_API);
         searchAPI.execute();
     }
 
     public void companySearchApiSerivice() {
         WebserviceHelper Companysearch = new WebserviceHelper(receiver, SearchActivity.this);
-        Companysearch.setAction(Constant.COMPANY_API);
+        Companysearch.setAction(Constant.COMPANY_SEARCH_API);
         Companysearch.execute();
     }
 
@@ -359,9 +357,10 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
 
     @Override
     public void requestFinished(String[] result) throws Exception {
+
         if (result[0].equals("01")) {
             if (sharedPreferences.getString("user_type", "").equals("candidate")) {
-                employeeSearchAdapter = new EmployeeSearchAdapter(SearchActivity.this, SearchActivity.this, Global.companylist);
+                employeeSearchAdapter = new EmployeeSearchAdapter(SearchActivity.this, SearchActivity.this, Global.companylist, receiver);
                 searchListView.setAdapter(employeeSearchAdapter);
                 GetJobRollSerivice();
             } else {
@@ -376,8 +375,29 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
             ArrayAdapter<String> adapter = new ArrayAdapter<String>
                     (this, R.layout.spinner_txt, Global.jobroll_List);
             spinnerJobroll.setAdapter(adapter);
-        } else {
-            Snackbar.make(parentLayout, "" + result[1], Snackbar.LENGTH_SHORT).show();
+        }else if(result[0].equals("0101")){
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("no_of_applicant", "" + Constant.NO_OF_APPLIED);
+            editor.putString("out_of_apply", "" + Constant.OUT_OFF_APPLY);
+            editor.commit();
+            MenuFragment.SetInterestvalue();
+
+            final Dialog dialog = new Dialog(SearchActivity.this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.alertpopup);
+            TextView massageTxtView = (TextView) dialog.findViewById(R.id.massageTxtView);
+            massageTxtView.setText(result[1]);
+            LinearLayout submitLayout = (LinearLayout) dialog.findViewById(R.id.submitLayout);
+            submitLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }else {
+            Snackbar.make(parentLayout,""+result[1], Snackbar.LENGTH_SHORT).show();
         }
     }
 }
