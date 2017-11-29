@@ -2564,9 +2564,17 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                             Log.e("", "jsonObj responce... " + object);
                             selectPack[0] = "00" + object.getString("success");
                             selectPack[1] = object.getString("message");
-
                             JSONObject data = object.getJSONObject("data");
-
+                            if(data.getString("user_type").equals("candidate")){
+                                Constant.COMPANY_SHOW_INTERST = data.getString("company_show_intrest");
+                                Constant.NO_OF_APPLIED = data.getString("no_of_applicant");
+                                Constant.OUT_OFF_APPLY = data.getString("out_of_apply");
+                            }else {
+                                Constant.OUT_OF_DOWNLOAD  = data.getString("out of download");
+                                Constant.NOOF_DOWNLOAD  = data.getString("no.of download");
+                                Constant.OUT_OF_POST  = data.getString("out_of_post_job");
+                                Constant.NO_OF_POST  = data.getString("posted_job");
+                            }
                             Constant.SELECTED_PACK = data.getString("package_name");
                             SavedData.savePack(Constant.SELECTED_PACK);
                             Log.e("sohel   ", "selected pack -- " + Constant.SELECTED_PACK);

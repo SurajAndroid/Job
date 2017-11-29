@@ -1,8 +1,10 @@
 package com.startupsoch.jobpool;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -44,6 +46,7 @@ public class WebViewActivity extends AppCompatActivity implements RequestReceive
     String encVal;
     String vResponse;
     RequestReceiver receiver;
+    SharedPreferences sharedPreferences;
 
 
     @Override
@@ -52,6 +55,7 @@ public class WebViewActivity extends AppCompatActivity implements RequestReceive
         setContentView(R.layout.activity_webview);
         mainIntent = getIntent();
         receiver= this;
+        sharedPreferences = getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
 
 //get rsa key method
         get_RSA_key(mainIntent.getStringExtra(AvenuesParams.ACCESS_CODE), mainIntent.getStringExtra(AvenuesParams.ORDER_ID));
@@ -67,6 +71,27 @@ public class WebViewActivity extends AppCompatActivity implements RequestReceive
     @Override
     public void requestFinished(String[] result) throws Exception {
         if(result[0].equals("001")){
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            if (sharedPreferences.getString("user_type", "").equals("candidate")){
+
+                editor.putString("company_show_intrest", "" + Constant.COMPANY_SHOW_INTERST);
+                editor.putString("no_of_applicant", "" + Constant.NO_OF_APPLIED);
+                editor.putString("out_of_apply", "" + Constant.OUT_OFF_APPLY);
+                editor.commit();
+                MenuFragment.SetInterestvalue();
+
+            }else {
+
+                editor.putString("out_of_download", "" + Constant.OUT_OF_DOWNLOAD);
+                editor.putString("no_of_download", "" + Constant.NOOF_DOWNLOAD);
+                editor.putString("out_of_post", "" + Constant.OUT_OF_POST);
+                editor.putString("no_of_post", "" + Constant.NO_OF_POST);
+                editor.commit();
+                MenuFragment.SetPostedvalue();
+            }
+
 
             Intent intent = new Intent(getApplicationContext(), StatusActivity.class);
             startActivity(intent);
@@ -164,16 +189,12 @@ public class WebViewActivity extends AppCompatActivity implements RequestReceive
     public void get_RSA_key(final String ac, final String od) {
 
         LoadingDialog.showLoadingDialog(WebViewActivity.this, "Loading...");
-
         StringRequest stringRequest = new StringRequest(Request.Method.POST, mainIntent.getStringExtra(AvenuesParams.RSA_KEY_URL),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         //Toast.makeText(WebViewActivity.this,response,Toast.LENGTH_LONG).show();
-
                         LoadingDialog.cancelLoading();
-
                         if (response != null && !response.equals("")) {
                             vResponse = response;     ///save retrived rsa key
                             if (vResponse.contains("!ERROR!")) {

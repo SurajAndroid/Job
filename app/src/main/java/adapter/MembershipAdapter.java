@@ -86,9 +86,7 @@ public class MembershipAdapter extends BaseAdapter {
             holder.validFor = (TextView) convertView.findViewById(R.id.validFor);
 
             holder.selectedPackBtn = (TextviewSemiBold) convertView.findViewById(R.id.selectedPackBtn);
-
             holder.selectLayout = (LinearLayout) convertView.findViewById(R.id.selectLayout);
-
             convertView.setTag(holder);
 
         } else {
@@ -102,7 +100,6 @@ public class MembershipAdapter extends BaseAdapter {
             holder.postJobCount.setText(candidateList.get(position).getPost_job_count());
             holder.packPrice.setText("Price " + candidateList.get(position).getPackage_price());
             holder.validFor.setText(candidateList.get(position).getValidFor());
-
         }else {
             holder.packName.setText(candidateList.get(position).getPackage_name());
             holder.CandidatesCount.setText(candidateList.get(position).getCandidate_count());
@@ -135,7 +132,6 @@ public class MembershipAdapter extends BaseAdapter {
                     customButtonListener.onButtonClick(position, "btn_click");
                     Constant.SELECTED_PACK = candidateList.get(position).getPackage_name();
                 }
-
             }
         });
 

@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
@@ -80,7 +81,6 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
         sharedPreferences = getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
         listViewMemberShip = (ListView) findViewById(R.id.listViewMemberShip);
         membershipBtnBack = (ImageView) findViewById(R.id.membershipBtnBack);
-
         membershipBtnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,18 +95,42 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
         if (result[0].equals("001")) {
             Snackbar.make(listViewMemberShip, result[1], Snackbar.LENGTH_SHORT).show();
 
-            new Handler().postDelayed(new Runnable() {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            if (sharedPreferences.getString("user_type", "").equals("candidate")){
+
+                editor.putString("company_show_intrest", "" + Constant.COMPANY_SHOW_INTERST);
+                editor.putString("no_of_applicant", "" + Constant.NO_OF_APPLIED);
+                editor.putString("out_of_apply", "" + Constant.OUT_OFF_APPLY);
+                editor.commit();
+                MenuFragment.SetInterestvalue();
+
+            }else {
+
+                editor.putString("out_of_download", "" + Constant.OUT_OF_DOWNLOAD);
+                editor.putString("no_of_download", "" + Constant.NOOF_DOWNLOAD);
+                editor.putString("out_of_post", "" + Constant.OUT_OF_POST);
+                editor.putString("no_of_post", "" + Constant.NO_OF_POST);
+                editor.commit();
+                MenuFragment.SetPostedvalue();
+            }
+
+
+
+            /*new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     Log.e("Sohel ", "working ..  .. ");
                     Intent intent = new Intent(SelectPackageActivity.this, SearchActivity.class);
                     startActivity(intent);
                 }
-            }, 1000);
+            }, 1000);*/
+
         } else {
             if (result[0].equals("01")) {
 
                 if (sharedPreferences.getString("user_type", "").equals("candidate")) {
+
                     Constant.PACKAGE_TYPE = sharedPreferences.getString("user_type", "");
                     pacakgeList = new ArrayList<>();
                     for(int i=0;i<Global.membershipPack_List.size();i++){
@@ -141,6 +165,7 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
 
     @Override
     public void onButtonClick(int position, String buttonText) {
+
         if (buttonText.equalsIgnoreCase("btn_click")) {
             /*Constant.SELECTED_PACK = Global.membershipPack_List.get(position).getPackage_name();
             SharedPreferences sharedPreferences = getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
@@ -148,10 +173,16 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
             callSerivice();*/
             sharedPreferences = getApplicationContext().getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
             Constant.USER_ID = sharedPreferences.getString("user_id","");
-            Constant.PACKAGE_NAME = Global.membershipPack_List.get(position).getPackage_name();
-            Intent intent=new Intent(SelectPackageActivity.this,InitialActivity.class);
-            intent.putExtra("pay_amount",""+Global.membershipPack_List.get(position).getPackage_price());
-            startActivity(intent);
+            Constant.PACKAGE_NAME = pacakgeList.get(position).getPackage_name();
+            if(pacakgeList.get(position).getPackage_name().equals("Free Trail") || pacakgeList.get(position).getPackage_name().equals("Trial Pack")){
+                callSerivice();
+            }else {
+                Intent intent=new Intent(SelectPackageActivity.this,InitialActivity.class);
+                intent.putExtra("pay_amount",""+pacakgeList.get(position).getPackage_price());
+                startActivity(intent);
+//                callSerivice();
+            }
+
         }
     }
 }
