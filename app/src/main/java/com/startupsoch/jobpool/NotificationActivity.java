@@ -118,8 +118,13 @@ public class NotificationActivity extends SlidingFragmentActivity implements Req
         slidMenuLayout = (LinearLayout)findViewById(R.id.slidMenuLayout);
         notificationList = (ListView)findViewById(R.id.notificationList);
 
-
-        notificationService();
+        if(sharedPreferences.getString("user_type", "").equals("candidate")){
+            Constant.TYPE = "candidate";
+            notificationService();
+        }else {
+            Constant.TYPE = "employer";
+            notificationService();
+        }
 
 }
 

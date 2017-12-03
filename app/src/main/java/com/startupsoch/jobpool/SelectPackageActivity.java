@@ -52,6 +52,7 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
     ImageView membershipBtnBack;
 
     SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferencesLoginStatus;
     ArrayList<MembershipDTO> pacakgeList;
 
     @Override
@@ -78,6 +79,7 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
     }
 
     public void init() {
+        sharedPreferencesLoginStatus = getSharedPreferences("activity_status",Context.MODE_PRIVATE);
         sharedPreferences = getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
         listViewMemberShip = (ListView) findViewById(R.id.listViewMemberShip);
         membershipBtnBack = (ImageView) findViewById(R.id.membershipBtnBack);
@@ -99,6 +101,7 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
 
             if (sharedPreferences.getString("user_type", "").equals("candidate")){
 
+                editor.putString("package",Constant.PACKAGE_NAME );
                 editor.putString("company_show_intrest", "" + Constant.COMPANY_SHOW_INTERST);
                 editor.putString("no_of_applicant", "" + Constant.NO_OF_APPLIED);
                 editor.putString("out_of_apply", "" + Constant.OUT_OFF_APPLY);
@@ -107,11 +110,20 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
 
             }else {
 
+                editor.putString("package",Constant.PACKAGE_NAME );
                 editor.putString("out_of_download", "" + Constant.OUT_OF_DOWNLOAD);
                 editor.putString("no_of_download", "" + Constant.NOOF_DOWNLOAD);
                 editor.putString("out_of_post", "" + Constant.OUT_OF_POST);
                 editor.putString("no_of_post", "" + Constant.NO_OF_POST);
+                editor.putString("first_detect", "1");
+
                 editor.commit();
+
+                SharedPreferences.Editor activity = sharedPreferencesLoginStatus.edit();
+                activity.putString("first_detect","1");
+                activity.commit();
+
+
                 MenuFragment.SetPostedvalue();
             }
 
@@ -129,6 +141,7 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
         } else {
             if (result[0].equals("01")) {
 
+
                 if (sharedPreferences.getString("user_type", "").equals("candidate")) {
 
                     Constant.PACKAGE_TYPE = sharedPreferences.getString("user_type", "");
@@ -142,6 +155,8 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
                     listViewMemberShip.setAdapter(membershipAdapter);
                     membershipAdapter.setCustomListener(SelectPackageActivity.this);
                 } else {
+
+
                     Constant.PACKAGE_TYPE = sharedPreferences.getString("user_type", "");
                     pacakgeList = new ArrayList<>();
                     for(int i=0;i<Global.membershipPack_List.size();i++){
@@ -174,7 +189,7 @@ public class SelectPackageActivity extends Activity implements RequestReceiver, 
             sharedPreferences = getApplicationContext().getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
             Constant.USER_ID = sharedPreferences.getString("user_id","");
             Constant.PACKAGE_NAME = pacakgeList.get(position).getPackage_name();
-            if(pacakgeList.get(position).getPackage_name().equals("Free Trail") || pacakgeList.get(position).getPackage_name().equals("Trial Pack")){
+            if(pacakgeList.get(position).getPackage_price().equals("0") || pacakgeList.get(position).getPackage_price().equals("0")){
                 callSerivice();
             }else {
                 Intent intent=new Intent(SelectPackageActivity.this,InitialActivity.class);

@@ -105,6 +105,7 @@ public class Constant {
 	public static String USER_IMAGE="";
 	public static String DOCUMENT="";
 	public static String RESUME="";
+	public static String TYPE="";
 
 	public static boolean JobFlage;
 

@@ -38,7 +38,7 @@ public class EditemployeActivity extends AppCompatActivity implements RequestRec
     MenuFragment menuFragment;
     EditProfileActivity editProfileActivity;
     Spinner spinner;
-    String[] citys = {"Select City", "Bengaluru", "Bidar","Delhi","Hyderabad","Indore", "Kalaburagi","Pune"};
+    String[] citys = {"Select City", "Bidar", "Delhi", "Kalaburagi", "Hyderabad", "Indore","Coimbatore","Pune","Bengaluru"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

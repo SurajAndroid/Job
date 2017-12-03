@@ -150,6 +150,10 @@ public class EmployeeSearchAdapter extends BaseAdapter {
         holder.contactLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Constant.COMPANY_ID = companylist.get(position).getEmployer_id();
+                Constant.JOBROLL = companylist.get(position).getJob_role();
+
                 Update_applicantSerivice();
             }
         });

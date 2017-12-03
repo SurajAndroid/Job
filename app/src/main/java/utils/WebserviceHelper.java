@@ -359,6 +359,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     Constant.PHONE_NUMBER = data.getString("phone");
                                     Constant.LOCATION = data.getString("location");
                                     Constant.USER_TYPE = data.getString("user_type");
+                                    Constant.PACKAGE_NAME = data.getString("package");
 
                                     Constant.COMPANY_SHOW_INTERST = data.getString("company_show_intrest");
                                     Constant.NO_OF_APPLIED = data.getString("no_of_applicant");
@@ -376,6 +377,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     Constant.PHONE_NUMBER = data.getString("phone");
                                     Constant.LOCATION = data.getString("location");
                                     Constant.USER_TYPE = data.getString("user_type");
+                                    Constant.PACKAGE_NAME = data.getString("package");
 
                                     Constant.OUT_OF_DOWNLOAD = data.getString("out of download");
                                     Constant.NOOF_DOWNLOAD = data.getString("no.of download");
@@ -394,6 +396,8 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     Constant.PHONE_NUMBER = data.getString("phone");
                                     Constant.LOCATION = data.getString("location");
                                     Constant.USER_TYPE = data.getString("user_type");
+                                    Constant.PACKAGE_NAME = data.getString("package");
+
                                 } catch (Exception e) {
 
                                     Constant.USER_ID = data.getString("user_id");
@@ -403,6 +407,8 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                     Constant.PHONE_NUMBER = data.getString("phone");
                                     Constant.LOCATION = data.getString("location");
                                     Constant.USER_TYPE = data.getString("user_type");
+                                    Constant.PACKAGE_NAME = data.getString("package");
+
                                     e.printStackTrace();
                                 }
 
@@ -1650,6 +1656,7 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                 try {
                     try {
                         jsonData.accumulate("user_id", Constant.USER_ID);
+                        jsonData.accumulate("type", Constant.TYPE);
                         Log.e("", "URL " + Constant.NOTIFICATION_URL);
                         Log.e("Json : ", "" + jsonData.toString(12));
                         StringEntity se = new StringEntity(jsonData.toString());
@@ -2569,7 +2576,9 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                                 Constant.COMPANY_SHOW_INTERST = data.getString("company_show_intrest");
                                 Constant.NO_OF_APPLIED = data.getString("no_of_applicant");
                                 Constant.OUT_OFF_APPLY = data.getString("out_of_apply");
+                                Constant.PACKAGE_NAME = data.getString("package_name");
                             }else {
+                                Constant.PACKAGE_NAME = data.getString("package_name");
                                 Constant.OUT_OF_DOWNLOAD  = data.getString("out of download");
                                 Constant.NOOF_DOWNLOAD  = data.getString("no.of download");
                                 Constant.OUT_OF_POST  = data.getString("out_of_post_job");
@@ -2966,8 +2975,10 @@ public class WebserviceHelper extends AsyncTask<Void, Void, String[]> {
                 try {
                     try {
                         jsonData.accumulate("candidate_id", Constant.USER_ID);
+                        jsonData.accumulate("employee_id", Constant.COMPANY_ID);
+                        jsonData.accumulate("jobrole", Constant.JOBROLL);
 
-                        Log.e("", "URL " + Constant.FORGOT_URL);
+                        Log.e("", "URL " + Constant.UPDATE_APPLICANT_URL);
                         Log.e("Json : ", "" + jsonData.toString(5));
                         StringEntity se = new StringEntity(jsonData.toString());
                         httppost.setEntity(se);

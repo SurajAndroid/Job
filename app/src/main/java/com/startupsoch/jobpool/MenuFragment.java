@@ -131,11 +131,12 @@ public class MenuFragment extends Fragment implements RequestReceiver {
             profileViewTxt.setText("Companies showed interest in you - "+sharedPreferences.getString("company_show_intrest", ""));
             resumeDownloadTxt.setText("No. of Jobs Applied - "+sharedPreferences.getString("no_of_applicant", "")+"/"+sharedPreferences.getString("out_of_apply", ""));
             searchCandidate.setText("Search Company");
-            if (SavedData.getPack()!=null){
+            userMemPackTxt.setText(sharedPreferences.getString("package", ""));
+            /*if (SavedData.getPack()!=null){
                 userMemPackTxt.setText(SavedData.getPack());
             }else {
                 userMemPackTxt.setText("Free Member");
-            }
+            }*/
             userNameTxt.setText(sharedPreferences.getString("user_name", ""));
             try {
                 Picasso.with(getActivity()).load(sharedPreferences.getString("user_Image", "")).placeholder(R.drawable.placeholder).into(userImage);
@@ -144,15 +145,15 @@ public class MenuFragment extends Fragment implements RequestReceiver {
             }
         } else {
 
-            if (SavedData.getPack()!=null){
+            /*if (SavedData.getPack()!=null){
                 userMemPackTxt.setText(SavedData.getPack());
-//                userMemPackTxt.setText("Trial Pack");
             }else {
                 userMemPackTxt.setText("Trial Pack");
-            }
+            }*/
             profileViewTxt.setText("Downloaded Resumes - " +sharedPreferences.getString("no_of_download", "")+"/"+sharedPreferences.getString("out_of_download", ""));
             resumeDownloadTxt.setText("Posted Job - " +sharedPreferences.getString("no_of_post", "")+"/"+sharedPreferences.getString("out_of_post", ""));
             profileText.setText("Employee Profile");
+            userMemPackTxt.setText(sharedPreferences.getString("package", ""));
             postLayout.setVisibility(View.VISIBLE);
             postview1.setVisibility(View.VISIBLE);
             postview2.setVisibility(View.VISIBLE);
@@ -170,11 +171,13 @@ public class MenuFragment extends Fragment implements RequestReceiver {
 
 
     public static void SetPostedvalue(){
+        userMemPackTxt.setText(sharedPreferences.getString("package", ""));
         profileViewTxt.setText("Downloaded Resumes - " +sharedPreferences.getString("no_of_download", "")+"/"+sharedPreferences.getString("out_of_download", ""));
         resumeDownloadTxt.setText("Posted Job - " +sharedPreferences.getString("no_of_post", "")+"/"+sharedPreferences.getString("out_of_post", ""));
     }
 
     public static void SetInterestvalue(){
+        userMemPackTxt.setText(sharedPreferences.getString("package", ""));
         profileViewTxt.setText("Companies showed interest in you - "+sharedPreferences.getString("company_show_intrest", ""));
         resumeDownloadTxt.setText("No. of Jobs Applied - "+sharedPreferences.getString("no_of_applicant", "")+"/"+sharedPreferences.getString("out_of_apply", ""));
     }

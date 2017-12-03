@@ -43,7 +43,7 @@ public class PostNewJobActivity extends AppCompatActivity implements RequestRece
     SharedPreferences sharedPreferences;
     int Postion;
 
-    String[] citys = {"Select City", "Bidar", "Gulbarga", "Indore", "Bengaluru", "Jabalpur"};
+    String[] citys = {"Select City", "Bidar", "Delhi", "Kalaburagi", "Hyderabad", "Indore","Coimbatore","Pune","Bengaluru"};
     String[] expirence = {"Select Experience", "0", "1","2","3","4", "5","6","7","8","9", "10+"};
 
     @Override

@@ -40,7 +40,7 @@ public class EmployerActivity extends AppCompatActivity implements RequestReceiv
     CheckBox termsCondiationCheck;
     LinearLayout SubmiTLayout;
     ScrollView parentLayout;
-    String[] citys = {"Select City", "Bidar", "Gulbarga", "Indore", "Bengaluru", "Jabalpur"};
+    String[] citys = {"Select City", "Bidar", "Delhi", "Kalaburagi", "Hyderabad", "Indore","Coimbatore","Pune","Bengaluru"};
     String[] expirence = {"Select your Experience", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10+"};
     int pos;
 

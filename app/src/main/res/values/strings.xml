@@ -55,4 +55,8 @@
     <string name="emi_banks">EMI Banks</string>
     <string name="emi_card_name">Card Name</string>
 
+    <string name="privacy_policy"><u> Privacy Policy</u></string>
+    <string name="terms_condition"><u>Terms &amp; Conditions</u></string>
+
+
 </resources>

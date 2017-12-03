@@ -135,7 +135,6 @@ public class CandidateSearchAdapter extends BaseAdapter {
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.login_alert);
                     dialog.show();
-
                     TextView cancelTxt = (TextView) dialog.findViewById(R.id.cancelTxt);
                     cancelTxt.setOnClickListener(new View.OnClickListener() {
                         @Override

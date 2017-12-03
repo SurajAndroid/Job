@@ -75,7 +75,7 @@ public class WebViewActivity extends AppCompatActivity implements RequestReceive
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
             if (sharedPreferences.getString("user_type", "").equals("candidate")){
-
+                editor.putString("package",Constant.PACKAGE_NAME );
                 editor.putString("company_show_intrest", "" + Constant.COMPANY_SHOW_INTERST);
                 editor.putString("no_of_applicant", "" + Constant.NO_OF_APPLIED);
                 editor.putString("out_of_apply", "" + Constant.OUT_OFF_APPLY);
@@ -83,7 +83,7 @@ public class WebViewActivity extends AppCompatActivity implements RequestReceive
                 MenuFragment.SetInterestvalue();
 
             }else {
-
+                editor.putString("package",Constant.PACKAGE_NAME );
                 editor.putString("out_of_download", "" + Constant.OUT_OF_DOWNLOAD);
                 editor.putString("no_of_download", "" + Constant.NOOF_DOWNLOAD);
                 editor.putString("out_of_post", "" + Constant.OUT_OF_POST);

@@ -61,7 +61,7 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
     Spinner spinner, spinnerJobroll;
     String TAG;
     AutoCompleteTextView lookingJob;
-    String[] citys = {"Select City", "Bidar", "Gulbarga", "Indore", "Bengaluru", "Jabalpur"};
+    String[] citys = {"Select City", "Bidar", "Delhi", "Kalaburagi", "Hyderabad", "Indore","Coimbatore","Pune","Bengaluru"};
     String[] skilles = {"Android", "PHP", "Xamarin", ".Net", "iOS", "Ionic", "Angular JS", "Node JS", "ASP .Net", "MVC", "React Native"};
     SkillesDTO skillesDTO;
     ArrayList<SkillesDTO> list = new ArrayList<>();
@@ -129,6 +129,7 @@ public class SearchActivity extends SlidingFragmentActivity implements RequestRe
         if (sharedPreferences.getString("user_type", "").equals("candidate")) {
             getEmployeeTopTenSerivice();
         } else {
+
             getCandidatetopTenSerivice();
         }
 

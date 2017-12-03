@@ -18,6 +18,7 @@ public class SplashScreen extends Activity {
     /** Duration of wait **/
     private final int SPLASH_DISPLAY_LENGTH = 1000;
     SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferencesLoginStatus;
 
     /** Called when the activity is first created. */
     @Override
@@ -28,6 +29,7 @@ public class SplashScreen extends Activity {
 
 
         sharedPreferences = this.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
+        sharedPreferencesLoginStatus = getSharedPreferences("activity_status",Context.MODE_PRIVATE);
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
         new Handler().postDelayed(new Runnable(){
@@ -35,9 +37,27 @@ public class SplashScreen extends Activity {
             public void run() {
                 /* Create an Intent that will start the Menu-Activity. */
                 if(sharedPreferences.getString("status","").equals("1")){
-                    Intent intent = new Intent(SplashScreen.this, SearchActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
+
+                    if(!sharedPreferences.getString("user_type","").equals("candidate")){
+
+                        if(sharedPreferencesLoginStatus.getString("first_detect","").equals("0")){
+                            Intent intent = new Intent(SplashScreen.this, HomeActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(SplashScreen.this, SearchActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+                    }else {
+                        Intent intent = new Intent(SplashScreen.this, SearchActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+
+//                    Intent intent = new Intent(SplashScreen.this, SearchActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    startActivity(intent);
                 }else {
                     Intent intent = new Intent(SplashScreen.this, HomeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

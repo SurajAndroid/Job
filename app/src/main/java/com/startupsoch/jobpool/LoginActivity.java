@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity implements RequestReceiver 
     LinearLayout loginLayout;
     RelativeLayout parentLayout;
     EditText input_username, input_password;
-    SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences, sharedPreferencesLoginStatus;
     SharedPreferences rememberMe;
     CheckBox rememberCheck;
 
@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements RequestReceiver 
 
 
     public void init(){
-
+        sharedPreferencesLoginStatus = getSharedPreferences("activity_status",Context.MODE_PRIVATE);
         sharedPreferences = this.getSharedPreferences("loginstatus", Context.MODE_PRIVATE);
         rememberMe = this.getSharedPreferences("remember", Context.MODE_PRIVATE);
         receiver = this;
@@ -192,6 +192,10 @@ public class LoginActivity extends AppCompatActivity implements RequestReceiver 
     public void requestFinished(String[] result) throws Exception {
         if(result[0].equals("1")){
 
+            SharedPreferences.Editor loginstatus = sharedPreferencesLoginStatus.edit();
+            loginstatus.putString("first_detect","0");
+            loginstatus.commit();
+
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("status", "1");
             editor.putString("user_id", "" + Constant.USER_ID);
@@ -202,6 +206,8 @@ public class LoginActivity extends AppCompatActivity implements RequestReceiver 
             editor.putString("location", "" + Constant.LOCATION);
             editor.putString("user_type", "" + Constant.USER_TYPE);
             editor.putString("user_Image", "" + Constant.USER_IMAGE);
+
+            editor.putString("package",Constant.PACKAGE_NAME );
 
             editor.putString("company_show_intrest", "" + Constant.COMPANY_SHOW_INTERST);
             editor.putString("no_of_applicant", "" + Constant.NO_OF_APPLIED);
@@ -215,10 +221,23 @@ public class LoginActivity extends AppCompatActivity implements RequestReceiver 
             editor.putString("no_of_post", "" + Constant.NO_OF_POST);
 
             editor.commit();
+            if(!sharedPreferences.getString("user_type","").equals("candidate")){
+                if(sharedPreferencesLoginStatus.getString("first_detect","").equals("0")){
+                    Intent intent = new Intent(LoginActivity.this, SelectPackageActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }else {
+                    Intent intent = new Intent(LoginActivity.this, SearchActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+            }else {
+                Intent intent = new Intent(LoginActivity.this, SearchActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
 
-            Intent intent = new Intent(LoginActivity.this, SearchActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
+
 
         }else if(result[0].equals("0101")) {
             Snackbar.make(parentLayout,""+result[1],Snackbar.LENGTH_SHORT).show();
