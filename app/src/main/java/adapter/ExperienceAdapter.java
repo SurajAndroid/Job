@@ -9,7 +9,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
-import com.startupsoch.jobpool.R;
+import com.startupsoch.job.R;
 
 import utils.Global;
 

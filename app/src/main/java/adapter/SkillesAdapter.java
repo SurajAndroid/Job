@@ -10,7 +10,7 @@ import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.Filterable;
 
-import com.startupsoch.jobpool.R;
+import com.startupsoch.job.R;
 
 import java.util.ArrayList;
 

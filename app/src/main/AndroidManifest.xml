@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.startupsoch.jobpool">
+    package="com.startupsoch.job">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -21,7 +21,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:name="com.startupsoch.jobpool.AppController"
+        android:name="com.startupsoch.job.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
@@ -29,7 +29,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.startupsoch.jobpool.SplashScreen"
+            android:name="com.startupsoch.job.SplashScreen"
             android:theme="@style/AppTheme.Dark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,70 +38,70 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.startupsoch.jobpool.HomeActivity"
+            android:name="com.startupsoch.job.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.CondidateRegisterActivity"
+            android:name="com.startupsoch.job.CondidateRegisterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.LoginActivity"
+            android:name="com.startupsoch.job.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.EmployerActivity"
+            android:name="com.startupsoch.job.EmployerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.CandidatepackageActivity"
+            android:name="com.startupsoch.job.CandidatepackageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.EmployerpackageActivity"
+            android:name="com.startupsoch.job.EmployerpackageActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.startupsoch.jobpool.CompleteProfileActivity"
+            android:name="com.startupsoch.job.CompleteProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.RegistrationActivity"
+            android:name="com.startupsoch.job.RegistrationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.SearchActivity"
+            android:name="com.startupsoch.job.SearchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.AllListActivity"
+            android:name="com.startupsoch.job.AllListActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.FilterActivity"
+            android:name="com.startupsoch.job.FilterActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.ProfileActivity"
+            android:name="com.startupsoch.job.ProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.NotificationActivity"
+            android:name="com.startupsoch.job.NotificationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.AboutUsActivity"
+            android:name="com.startupsoch.job.AboutUsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.PrivacyPolicyActivity"
+            android:name="com.startupsoch.job.PrivacyPolicyActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.TermsCondtionActivity"
+            android:name="com.startupsoch.job.TermsCondtionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.EditProfileActivity"
+            android:name="com.startupsoch.job.EditProfileActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
@@ -109,50 +109,50 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.PaymentsActivity"
+            android:name="com.startupsoch.job.PaymentsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.MerchantCheckoutActivity"
+            android:name="com.startupsoch.job.MerchantCheckoutActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.SelectPackageActivity"
+            android:name="com.startupsoch.job.SelectPackageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.EditCandidateActivity"
+            android:name="com.startupsoch.job.EditCandidateActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.EditemployeActivity"
+            android:name="com.startupsoch.job.EditemployeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.WebViewActivity"
+            android:name="com.startupsoch.job.WebViewActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.InitialScreenActivity"
+            android:name="com.startupsoch.job.InitialScreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
         <activity
-            android:name="com.startupsoch.jobpool.MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark" />
-
-        <activity
-            android:name="com.startupsoch.jobpool.PostNewJobActivity"
+            android:name="com.startupsoch.job.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
 
         <activity
-            android:name="com.startupsoch.jobpool.PostListaActivity"
+            android:name="com.startupsoch.job.PostNewJobActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
 
         <activity
-            android:name="com.startupsoch.jobpool.StatusActivity"
+            android:name="com.startupsoch.job.PostListaActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
+
+        <activity
+            android:name="com.startupsoch.job.StatusActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
 
@@ -168,31 +168,49 @@
         </service>
 
         <activity
-            android:name="com.startupsoch.jobpool.InitialActivity"
+            android:name="com.startupsoch.job.InitialActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
 
-        <receiver android:name="com.startupsoch.jobpool.SmsReceiver">
+        <receiver android:name="com.startupsoch.job.SmsReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
 
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"/>
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
         <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+
+        <!--<activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true"></activity>
-        <activity android:name="com.facebook.CustomTabMainActivity" />
+        <activity android:name="com.facebook.CustomTabMainActivity" />-->
 
-        <meta-data
+        <!--<meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/app_id" />
+            android:value="@string/facebook_app_id" />-->
 
         <activity android:name=".Kotlin"></activity>
-        <activity android:name="com.startupsoch.jobpool.WebViewForTerms" />
+        <activity android:name="com.startupsoch.job.WebViewForTerms" />
     </application>
 
 </manifest>

@@ -12,9 +12,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.startupsoch.jobpool.PostListaActivity;
-import com.startupsoch.jobpool.PostNewJobActivity;
-import com.startupsoch.jobpool.R;
+import com.startupsoch.job.PostNewJobActivity;
+import com.startupsoch.job.R;
 
 import java.util.ArrayList;
 

@@ -19,8 +19,7 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.startupsoch.jobpool.LoginActivity;
-import com.startupsoch.jobpool.R;
+import com.startupsoch.job.R;
 
 import java.util.ArrayList;
 

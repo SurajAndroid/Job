@@ -19,7 +19,7 @@ import android.text.Html;
 import android.text.TextUtils;
 import android.util.Patterns;
 
-import com.startupsoch.jobpool.R;
+import com.startupsoch.job.R;
 
 import java.io.IOException;
 import java.io.InputStream;

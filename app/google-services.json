@@ -1,39 +1,35 @@
 {
   "project_info": {
-    "project_number": "1072313921091",
-    "firebase_url": "https://jobpool-171816.firebaseio.com",
-    "project_id": "jobpool-171816",
-    "storage_bucket": "jobpool-171816.appspot.com"
+    "project_number": "910866992267",
+    "firebase_url": "https://startupsoch-8597b.firebaseio.com",
+    "project_id": "startupsoch-8597b",
+    "storage_bucket": "startupsoch-8597b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1072313921091:android:2d0910f3da89c57e",
+        "mobilesdk_app_id": "1:910866992267:android:9b71337f3da154ac",
         "android_client_info": {
-          "package_name": "com.startupsoch.jobpool"
+          "package_name": "com.startupsoch.job"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1072313921091-koft2uu5u6dkfp4sns091j9hdjus9t7o.apps.googleusercontent.com",
+          "client_id": "910866992267-i4anibvm2dudmifm9ek2s9ui0h34lbn1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.startupsoch.jobpool",
+            "package_name": "com.startupsoch.job",
             "certificate_hash": "3b121397dd50d9e9306c94bad40e6983a33997d6"
           }
         },
         {
-          "client_id": "1072313921091-6vtsgjiekeme3q2rcim1k4na7l4u4le4.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "1072313921091-ujd0tobe960j49jpblruvvhcn8j8ck4i.apps.googleusercontent.com",
+          "client_id": "910866992267-hq64ob9kg3knc6vpb9j4mddt5sa87hm2.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAFiM27xKbucBbR8dGfEo4tJ3LOIWzo_Vw"
+          "current_key": "AIzaSyC1f3QjEERjL-vzEc9axZsb9LblhwUaIsY"
         }
       ],
       "services": {
@@ -44,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "1072313921091-6vtsgjiekeme3q2rcim1k4na7l4u4le4.apps.googleusercontent.com",
+              "client_id": "910866992267-hq64ob9kg3knc6vpb9j4mddt5sa87hm2.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

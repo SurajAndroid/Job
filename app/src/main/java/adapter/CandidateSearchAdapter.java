@@ -20,9 +20,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-import com.startupsoch.jobpool.LoginActivity;
-import com.startupsoch.jobpool.ProfileActivity;
-import com.startupsoch.jobpool.R;
+import com.startupsoch.job.LoginActivity;
+import com.startupsoch.job.ProfileActivity;
+import com.startupsoch.job.R;
 
 import java.util.ArrayList;
 

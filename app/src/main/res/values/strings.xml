@@ -2,6 +2,8 @@
     <string name="app_name">Job</string>
     <string name="app_id">408956192824238</string>
 
+    <string name="facebook_app_id">187928301792538</string>
+    <string name="fb_login_protocol_scheme">fb138286920176161</string>
 
     <!--Sliding Menu-->
     <string name="profile_txt">Profile</string>

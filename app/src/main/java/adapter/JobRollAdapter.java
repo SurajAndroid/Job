@@ -7,11 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.startupsoch.jobpool.R;
+import com.startupsoch.job.R;
 
 import java.util.ArrayList;
 
-import dtos.GetFillterDTO;
 import dtos.JobRollDTO;
 
 

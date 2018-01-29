@@ -8,10 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.startupsoch.jobpool.R;
+import com.startupsoch.job.R;
 
 import java.util.ArrayList;
 
